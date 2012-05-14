@@ -1,0 +1,14 @@
+<?php
+// $Id: text_resize.install,v 1.1.2.1.2.1 2010/01/12 15:32:29 attheshow Exp $
+
+/**
+ * @file
+ * This file handles uninstallation of Text Resize variables.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function text_resize_uninstall() {
+  db_query("DELETE FROM {variable} WHERE name LIKE 'text_resize_%'");
+}
