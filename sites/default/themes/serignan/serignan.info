@@ -56,6 +56,18 @@ css[global.css][name] = Your custom global styles
 css[global.css][description] = This file holds all the globally active custom CSS of your theme.
 css[global.css][options][weight] = 10
 
+; FEATURES
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = comment_user_picture
+features[] = comment_user_verification
+features[] = favicon
+;features[] = main_menu
+;features[] = secondary_menu
+
 ; THEME SETTINGS (DEFAULTS)
 
 settings[alpha_grid] = 'alpha_default'
