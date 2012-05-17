@@ -1,2 +1,14 @@
 /* This file will hold styles for the mobile version of your website (mobile first). */
 /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
+
+/* MENU FOOTER */
+
+.block-menu-footer-menu {}
+.block-menu-footer-menu ul.menu {}
+.block-menu-footer-menu ul.menu > li { display: inline; float: left; position: relative; margin: 0 10px 0 10px; padding: 0; width: 220px; }
+.block-menu-footer-menu ul.menu > li.first { clear: left; margin-left: 0; }
+.block-menu-footer-menu ul.menu > li.last { margin-right: 0; }
+.block-menu-footer-menu ul.menu a.footer-menu-title { cursor: default; }
+.block-menu-footer-menu ul.menu a.footer-menu-hidden { visibility: hidden; }
+.block-menu-footer-menu ul.menu a {}
+.block-menu-footer-menu ul.menu a.footer-menu-flag {}
