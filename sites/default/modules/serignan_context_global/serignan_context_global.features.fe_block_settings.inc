@@ -27,6 +27,34 @@ function serignan_context_global_default_fe_block_settings() {
     'machine_name' => 'weather',
   );
 
+  $theme['locale-language'] = array(
+    'module' => 'locale',
+    'delta' => 'language',
+    'theme' => 'bartik',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $theme['megamenu-main-menu'] = array(
+    'module' => 'megamenu',
+    'delta' => 'main-menu',
+    'theme' => 'bartik',
+    'status' => '1',
+    'weight' => '0',
+    'region' => 'header',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
   $theme['menu-menu-footer-menu'] = array(
     'module' => 'menu',
     'delta' => 'menu-footer-menu',
@@ -38,6 +66,20 @@ function serignan_context_global_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $theme['menu-menu-top-menu'] = array(
+    'module' => 'menu',
+    'delta' => 'menu-top-menu',
+    'theme' => 'bartik',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
     'cache' => -1,
   );
 
@@ -60,9 +102,51 @@ function serignan_context_global_default_fe_block_settings() {
     'machine_name' => 'weather',
   );
 
+  $theme['locale-language'] = array(
+    'module' => 'locale',
+    'delta' => 'language',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $theme['megamenu-main-menu'] = array(
+    'module' => 'megamenu',
+    'delta' => 'main-menu',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
   $theme['menu-menu-footer-menu'] = array(
     'module' => 'menu',
     'delta' => 'menu-footer-menu',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => -1,
+  );
+
+  $theme['menu-menu-top-menu'] = array(
+    'module' => 'menu',
+    'delta' => 'menu-top-menu',
     'theme' => 'serignan',
     'status' => 0,
     'weight' => '0',

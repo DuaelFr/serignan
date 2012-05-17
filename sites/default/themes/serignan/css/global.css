@@ -1,14 +1,52 @@
 /* This file will hold styles for the mobile version of your website (mobile first). */
 /* This also can include ANY global CSS that applies site-wide. Unless overwritten by a more specific style rule, CSS declarations in global.css will apply site-wide. */
 
+/* BLOCK : LANGUAGE SWITCHER */
+
+.block-locale-language { float: right; }
+.block-locale-language ul { overflow: hidden; margin: 0; }
+.block-locale-language li { display: inline; float: left; padding: 0 2px; position: relative; }
+
+/* MENU TOP */
+
+.block-menu-top-menu { float: right; }
+.block-menu-top-menu ul.menu { overflow: hidden; }
+.block-menu-top-menu ul.menu > li { display: inline; float: left; position: relative; margin: 0 10px 0 10px; padding: 0; }
+.block-menu-top-menu ul.menu > li a { padding: 0 0 0 20px; }
+.block-menu-top-menu ul.menu > li a.top-menu-home { background: transparent url(/* icone maison */) no-repeat left center; }
+.block-menu-top-menu ul.menu > li a.top-menu-contact { background: transparent url(/* icone enveloppe */) no-repeat left center; }
+
+/* MENU MAIN */
+
+.block-megamenu-main-menu  { clear: right; }
+.megamenu-skin-serignan {}
+.megamenu-skin-serignan .megamenu-parent { float: left; margin: 0 10px 0 10px; padding: 0; position: static; }
+.megamenu-skin-serignan .megamenu-parent .megamenu-parent-title { display: block; text-align: center; width: 140px; }
+.megamenu-skin-serignan .megamenu-parent-0 .megamenu-parent-title { background: transparent url(/* icone menu 1 */) no-repeat top left; }
+.megamenu-skin-serignan .megamenu-parent-1 .megamenu-parent-title { background: transparent url(/* icone menu 2 */) no-repeat top left; }
+.megamenu-skin-serignan .megamenu-parent-2 .megamenu-parent-title { background: transparent url(/* icone menu 3 */) no-repeat top left; }
+.megamenu-skin-serignan .megamenu-parent-3 .megamenu-parent-title { background: transparent url(/* icone menu 4 */) no-repeat top left; }
+.megamenu-skin-serignan .megamenu-bin { background: #fff; border: 5px solid #7f7f7f; left: -250px !important; padding: 20px 50px; width: 850px !important; }
+.megamenu-skin-serignan .megamenu-parent-0 .megamenu-bin { border-color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-1 .megamenu-bin { border-color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-2 .megamenu-bin { border-color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-3 .megamenu-bin { border-color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-slot {}
+.megamenu-skin-serignan .megamenu-slot .megamenu-slot-title a {}
+.megamenu-skin-serignan .megamenu-parent-0 .megamenu-slot .megamenu-slot-title a { color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-1 .megamenu-slot .megamenu-slot-title a { color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-2 .megamenu-slot .megamenu-slot-title a { color: #7f7f7f; }
+.megamenu-skin-serignan .megamenu-parent-3 .megamenu-slot .megamenu-slot-title a { color: #7f7f7f; }
+
+
 /* MENU FOOTER */
 
 .block-menu-footer-menu {}
 .block-menu-footer-menu ul.menu {}
-.block-menu-footer-menu ul.menu > li { display: inline; float: left; position: relative; margin: 0 10px 0 10px; padding: 0; width: 220px; }
+.block-menu-footer-menu ul.menu > li { background: transparent url(/* gros i */) no-repeat left center; display: inline; float: left; position: relative; margin: 0 10px 0 10px; padding: 0; width: 220px; }
 .block-menu-footer-menu ul.menu > li.first { clear: left; margin-left: 0; }
-.block-menu-footer-menu ul.menu > li.last { margin-right: 0; }
-.block-menu-footer-menu ul.menu a.footer-menu-title { cursor: default; }
+.block-menu-footer-menu ul.menu > li.last { background: none; margin-right: 0; }
+.block-menu-footer-menu ul.menu a.footer-menu-title { background: transparent url(/* petit i */) no-repeat left center; cursor: default; padding: 0 0 0 25px; }
 .block-menu-footer-menu ul.menu a.footer-menu-hidden { visibility: hidden; }
-.block-menu-footer-menu ul.menu a {}
-.block-menu-footer-menu ul.menu a.footer-menu-flag {}
+.block-menu-footer-menu ul.menu ul li a { background: transparent url(/* puce flèche */) no-repeat left center; margin: 0 0 0 30px; padding: 0 0 0 30px; }
+.block-menu-footer-menu ul.menu ul li a.footer-menu-flag { background: transparent url(/* puce drapeau */) no-repeat left center; padding: 0 0 0 20px; }

@@ -38,6 +38,24 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'content',
           'weight' => '1',
         ),
+        'locale-language' => array(
+          'module' => 'locale',
+          'delta' => 'language',
+          'region' => 'menu',
+          'weight' => '-10',
+        ),
+        'menu-menu-top-menu' => array(
+          'module' => 'menu',
+          'delta' => 'menu-top-menu',
+          'region' => 'menu',
+          'weight' => '-9',
+        ),
+        'megamenu-main-menu' => array(
+          'module' => 'megamenu',
+          'delta' => 'main-menu',
+          'region' => 'menu',
+          'weight' => '9',
+        ),
         'menu-menu-footer-menu' => array(
           'module' => 'menu',
           'delta' => 'menu-footer-menu',
