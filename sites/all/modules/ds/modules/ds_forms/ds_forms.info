@@ -1,0 +1,12 @@
+name = "Forms"
+description = "Manage the layout of forms."
+core = "7.x"
+package = "Display Suite"
+dependencies[] = ds
+
+; Information added by drupal.org packaging script on 2012-05-20
+version = "7.x-2.x-dev"
+core = "7.x"
+project = "ds"
+datestamp = "1337516011"
+
