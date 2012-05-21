@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Context Home feature.
+ */
+
+include_once 'serignan_context_home.features.inc';
