@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Zoom feature.
+ */
+
+include_once 'serignan_zoom.features.inc';
