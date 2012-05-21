@@ -1,0 +1,12 @@
+name = Serignan Commons
+description = Eléments communs à plusieurs autres features
+core = 7.x
+package = Serignan
+version = 7.x-1.0-alpha1
+project = serignan_commons
+dependencies[] = ctools
+dependencies[] = ds
+features[ctools][] = ds:ds:1
+features[ds_view_modes][] = home
+features[ds_view_modes][] = list
+features[features_api][] = api:1
