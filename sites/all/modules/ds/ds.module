@@ -708,7 +708,7 @@ function ds_get_field_value($key, $field, $entity, $entity_type, $bundle, $view_
       if (isset($field['file'])) {
         include_once $field['file'];
       }
-      return $field['function']($field);
+      return $field['function']($field, $key);
 
     case DS_FIELD_TYPE_THEME:
       $format = (isset($field['formatter'])) ? $field['formatter'] : key($field['properties']['formatters']);
