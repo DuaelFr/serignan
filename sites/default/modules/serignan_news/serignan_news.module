@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan News feature.
+ */
+
+include_once 'serignan_news.features.inc';
