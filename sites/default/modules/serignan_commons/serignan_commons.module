@@ -5,3 +5,23 @@
  */
 
 include_once 'serignan_commons.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function serignan_commons_menu() {
+  $menu = array();
+  $menu['front'] = array(
+    'title' => '',
+    'page callback' => '_serignan_commons_front',
+    'access callback' => TRUE,
+  );
+  return $menu;
+}
+
+/**
+ * Front menu callback
+ */
+function _serignan_commons_front() {
+  return '';
+}
