@@ -55,6 +55,20 @@ function serignan_context_global_default_fe_block_settings() {
     'machine_name' => 'follow_us',
   );
 
+  $theme['block-sidebar_links'] = array(
+    'module' => 'block',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+    'machine_name' => 'sidebar_links',
+  );
+
   $theme['locale-language'] = array(
     'module' => 'locale',
     'delta' => 'language',

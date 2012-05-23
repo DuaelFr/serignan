@@ -40,6 +40,18 @@ function serignan_context_global_default_fe_block_boxes() {
   $export['magazine'] = $fe_block_boxes;
 
   $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Liens barre latérale';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'sidebar_links';
+  $fe_block_boxes->body = '<ul>
+  <li class="registries"><a href="#">Annuaires de Sérignan</a></li>
+  <li class="associations"><a href="#">Associations</a></li>
+  <li class="proceedings"><a href="#">Démarches administratives</a></li>
+</ul>';
+
+  $export['sidebar_links'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Affichage de la météo';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'weather';

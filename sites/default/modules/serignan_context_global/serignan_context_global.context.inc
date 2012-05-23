@@ -133,5 +133,56 @@ function serignan_context_global_context_default_contexts() {
   t('Toutes les pages du site');
   $export['all'] = $context;
 
+  $context = new stdClass();
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'not-front';
+  $context->description = 'Toutes les pages sauf l\'accueil';
+  $context->tag = 'Layout';
+  $context->conditions = array(
+    'path' => array(
+      'values' => array(
+        '~<front>' => '~<front>',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-news-block_sidebar' => array(
+          'module' => 'views',
+          'delta' => 'news-block_sidebar',
+          'region' => 'sidebar_second',
+          'weight' => '-10',
+        ),
+        'views-events-block_sidebar' => array(
+          'module' => 'views',
+          'delta' => 'events-block_sidebar',
+          'region' => 'sidebar_second',
+          'weight' => '-9',
+        ),
+        'views-zoom-block_sidebar' => array(
+          'module' => 'views',
+          'delta' => 'zoom-block_sidebar',
+          'region' => 'sidebar_second',
+          'weight' => '-8',
+        ),
+        'block-7' => array(
+          'module' => 'block',
+          'delta' => 7,
+          'region' => 'sidebar_second',
+          'weight' => '-7',
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 0;
+
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Layout');
+  t('Toutes les pages sauf l\'accueil');
+  $export['not-front'] = $context;
+
   return $export;
 }
