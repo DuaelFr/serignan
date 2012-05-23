@@ -57,6 +57,28 @@ function serignan_zoom_image_default_styles() {
     ),
   );
 
+  // Exported image style: zoom_sidebar
+  $styles['zoom_sidebar'] = array(
+    'name' => 'zoom_sidebar',
+    'effects' => array(
+      7 => array(
+        'label' => 'Scale and Smart Crop',
+        'help' => 'Similar to "Scale And Crop", but preserves the portion of the image with the most entropy.',
+        'effect callback' => 'smartcrop_scale_effect',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'smartcrop',
+        'name' => 'smartcrop_scale_and_crop',
+        'data' => array(
+          'width' => '110',
+          'height' => '74',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
   return $styles;
 }
 

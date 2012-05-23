@@ -31,6 +31,7 @@ features[field][] = node-zoom-field_subtitle
 features[field_group][] = group_content|node|zoom|sidebar
 features[field_group][] = group_content|node|zoom|slideshow
 features[image][] = zoom_home
+features[image][] = zoom_sidebar
 features[node][] = zoom
 features[variable][] = additional_settings__active_tab_zoom
 features[variable][] = enable_revisions_page_zoom
