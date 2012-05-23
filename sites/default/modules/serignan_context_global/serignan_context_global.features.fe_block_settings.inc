@@ -111,6 +111,34 @@ function serignan_context_global_default_fe_block_settings() {
     'cache' => -1,
   );
 
+  $theme['print-print-links'] = array(
+    'module' => 'print',
+    'delta' => 'print-links',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
+    'cache' => 4,
+  );
+
+  $theme['search-form'] = array(
+    'module' => 'search',
+    'delta' => 'form',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => -1,
+  );
+
   $theme['simplenews-0'] = array(
     'module' => 'simplenews',
     'delta' => '0',
@@ -122,6 +150,20 @@ function serignan_context_global_default_fe_block_settings() {
     'visibility' => '0',
     'pages' => '',
     'title' => 'Newsletter',
+    'cache' => '1',
+  );
+
+  $theme['text_resize-0'] = array(
+    'module' => 'text_resize',
+    'delta' => '0',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '<none>',
     'cache' => '1',
   );
 
