@@ -35,6 +35,36 @@ function serignan_zoom_ds_field_settings_info() {
   );
   $export['node|zoom|home'] = $ds_fieldsetting;
 
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|zoom|slideshow';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'zoom';
+  $ds_fieldsetting->view_mode = 'slideshow';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '1',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '1',
+        'wrapper' => 'h2',
+        'class' => '',
+      ),
+    ),
+    'node_link' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'type' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|zoom|slideshow'] = $ds_fieldsetting;
+
   return $export;
 }
 
@@ -73,6 +103,36 @@ function serignan_zoom_ds_layout_settings_info() {
     'classes' => array(),
   );
   $export['node|zoom|home'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|zoom|slideshow';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'zoom';
+  $ds_layout->view_mode = 'slideshow';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'hide_empty_regions' => 0,
+    'hide_sidebars' => 0,
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'type',
+        1 => 'title',
+        2 => 'node_link',
+        3 => 'field_picture',
+        4 => 'group_content',
+      ),
+    ),
+    'fields' => array(
+      'type' => 'ds_content',
+      'title' => 'ds_content',
+      'node_link' => 'ds_content',
+      'field_picture' => 'ds_content',
+      'group_content' => 'ds_content',
+    ),
+    'classes' => array(),
+  );
+  $export['node|zoom|slideshow'] = $ds_layout;
 
   return $export;
 }

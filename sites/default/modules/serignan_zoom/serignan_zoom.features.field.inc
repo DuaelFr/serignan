@@ -60,6 +60,12 @@ function serignan_zoom_field_default_fields() {
           'type' => 'text_summary_or_trimmed',
           'weight' => '3',
         ),
+        'slideshow' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -146,6 +152,16 @@ function serignan_zoom_field_default_fields() {
           'type' => 'image',
           'weight' => '0',
         ),
+        'slideshow' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => 'slideshow',
+          ),
+          'type' => 'image',
+          'weight' => '3',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -228,6 +244,12 @@ function serignan_zoom_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '2',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
