@@ -1,0 +1,6 @@
+name = Views Slideshow Pager Counter
+description = Provide a new pager for views slideshow
+core = 7.x
+package = Views
+
+dependencies[] = views_slideshow

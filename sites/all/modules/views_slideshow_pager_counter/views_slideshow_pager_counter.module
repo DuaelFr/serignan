@@ -1,0 +1,150 @@
+<?php
+/**
+ * @file
+ * Code for the views_slideshow_pager_counter module.
+ */
+
+// -----------------------------------------------------------------------------
+// HOOKS
+
+/**
+ * Implements hook_init().
+ */
+function views_slideshow_pager_counter_init() {
+  // Load javascript on the page in init to help fool caching.
+  drupal_add_js(drupal_get_path('module', 'views_slideshow_pager_counter') . '/js/views_slideshow_pager_counter.js');
+}
+
+/**
+ * Implementation of hook_views_slideshow_widget_pager_info().
+ */
+function views_slideshow_pager_counter_views_slideshow_widget_pager_info($view) {
+  $settings = array();
+
+  $settings = array(
+    'views_slideshow_pager_counter' => array(
+      'name' => t('Counter'),
+    ),
+  );
+
+  return $settings;
+}
+
+/**
+ * Implementation [widget-type]_views_slideshow_pager_form_options().
+ */
+function views_slideshow_pager_counter_views_slideshow_widget_pager_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {
+  // Settings for fields pager.
+  $options = array();
+  // Need to wrap this so it indents correctly.
+  $form['views_slideshow_pager_counter_wrapper'] = array(
+    '#markup' => '<div class="vs-dependent">',
+  );
+  // Add ability to choose which fields to show in the pager.
+  $form['views_slideshow_pager_counter_start'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Pager start'),
+    '#default_value' => $defaults['views_slideshow_pager_counter_start'],
+    '#description' => t("Choose the number from which the pager will start."),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="' . $dependency . '[enable]"]' => array('checked' => TRUE),
+        ':input[name="' . $dependency . '[type]"]' => array('value' => 'views_slideshow_pager_counter'),
+      ),
+    ),
+  );
+
+  // Add field to see if they would like to activate slide and pause on pager
+  // hover
+  $form['views_slideshow_pager_counter_hover'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Activate Slide and Pause on Pager Hover'),
+    '#default_value' => $defaults['views_slideshow_pager_counter_hover'],
+    '#description' => t('Should the slide be activated and paused when hovering over a pager item.'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="' . $dependency . '[enable]"]' => array('checked' => TRUE),
+        ':input[name="' . $dependency . '[type]"]' => array('value' => 'views_slideshow_pager_counter'),
+      ),
+    ),
+  );
+
+  $form['views_slideshow_pager_counter_wrapper_close'] = array(
+    '#markup' => '</div>',
+  );
+}
+
+/**
+ * Implements hook_views_slideshow_option_definition().
+ */
+function views_slideshow_pager_counter_views_slideshow_option_definition() {
+  // Defaults for the pager widget.
+  $locations = array('top', 'bottom');
+  foreach ($locations as $location) {
+    $options['widgets']['contains'][$location]['contains']['views_slideshow_pager']['contains']['views_slideshow_pager_counter_start'] = array('default' => 1);
+    $options['widgets']['contains'][$location]['contains']['views_slideshow_pager']['contains']['views_slideshow_pager_counter_hover'] = array('default' => 0);
+  }
+
+  return $options;
+}
+
+/**
+ * Implement hook_theme().
+ */
+function views_slideshow_pager_counter_theme($existing, $type, $theme, $path) {
+  return array(
+    'views_slideshow_pager_counter' => array(
+      'variables' => array('vss_id' => NULL, 'view' => NULL, 'settings' => array(), 'location' => NULL, 'attributes' => array()),
+      'template' => 'theme/views-slideshow-pager-counter',
+    ),
+    'views_slideshow_pager_counter_item' => array(
+      'variables' => array('vss_id' => NULL, 'item' => NULL, 'count' => NULL, 'location' => NULL),
+      'template' => 'theme/views-slideshow-pager-counter-item',
+    ),
+  );
+}
+
+/**
+ * Implements template_preprocess_[theme-name]().
+ */
+function template_preprocess_views_slideshow_pager_counter(&$vars) {
+  // Build our javascript settings.
+  $js_vars = array(
+    'viewsSlideshowPagerCounter' => array(
+      $vars['vss_id'] => array(
+        $vars['location'] => array(
+          'activatePauseOnHover' => $vars['settings']['views_slideshow_pager_counter_hover'],
+        ),
+      ),
+    ),
+  );
+
+  // Add the settings to the page.
+  drupal_add_js($js_vars, 'setting');
+  
+  // Add hover intent library
+  if ($vars['settings']['views_slideshow_pager_counter_hover']) {
+    if (module_exists('libraries')) {
+      // Load jQuery hoverIntent
+      $hoverIntent_path = libraries_get_path('jquery.hoverIntent');
+      if (!empty($hoverIntent_path) && file_exists($hoverIntent_path . '/jquery.hoverIntent.js')) {
+        drupal_add_js($hoverIntent_path . '/jquery.hoverIntent.js');
+      }
+    }
+  }
+
+  $vars['classes_array'][] = $vars['attributes']['class'];
+  $vars['widget_id'] = $vars['attributes']['id'];
+  // Add our class to the wrapper.
+  $vars['classes_array'][] = 'views_slideshow_pager_counter';
+
+  // Render all the fields unless there is only 1 slide and the user specified
+  // to hide them when there is only one slide.
+  $vars['rendered_counter_items'] = '';
+  $i = $vars['settings']['views_slideshow_pager_counter_start'];
+  if (empty($vars['settings']['hide_on_single_slide']) && count($vars['view']->result) > 1) {
+    foreach ($vars['view']->result as $count => $node) {
+      $vars['rendered_counter_items'] .= theme('views_slideshow_pager_counter_item', array('vss_id' => $vars['vss_id'], 'item' => $i++, 'count' => $count, 'location' => $vars['location']));
+    }
+  }
+}
