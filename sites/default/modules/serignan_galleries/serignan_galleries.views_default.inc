@@ -143,7 +143,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['filters']['type']['group'] = 1;
 
   /* Display: Home Videos (Block) */
-  $handler = $view->new_display('block', 'Home Videos (Block)', 'block_1');
+  $handler = $view->new_display('block', 'Home Videos (Block)', 'block_home_videos');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Vidéos';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -277,7 +277,7 @@ function serignan_galleries_views_default_views() {
   );
 
   /* Display: Home Photos (Block) */
-  $handler = $view->new_display('block', 'Home Photos (Block)', 'block_2');
+  $handler = $view->new_display('block', 'Home Photos (Block)', 'block_home_photos');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Photos';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
@@ -414,7 +414,7 @@ function serignan_galleries_views_default_views() {
   );
 
   /* Display: Home Visits (Block) */
-  $handler = $view->new_display('block', 'Home Visits (Block)', 'block_3');
+  $handler = $view->new_display('block', 'Home Visits (Block)', 'block_home_visits');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Visites virtuelles';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;

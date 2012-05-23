@@ -80,9 +80,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'postscript_first',
           'weight' => '-10',
         ),
-        'views-galleries-block_1' => array(
+        'views-galleries-block_home_videos' => array(
           'module' => 'views',
-          'delta' => 'galleries-block_1',
+          'delta' => 'galleries-block_home_videos',
           'region' => 'postscript_first',
           'weight' => '-9',
         ),
@@ -92,9 +92,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'postscript_second',
           'weight' => '-10',
         ),
-        'views-galleries-block_2' => array(
+        'views-galleries-block_home_photos' => array(
           'module' => 'views',
-          'delta' => 'galleries-block_2',
+          'delta' => 'galleries-block_home_photos',
           'region' => 'postscript_second',
           'weight' => '-9',
         ),
@@ -104,9 +104,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'postscript_third',
           'weight' => '-10',
         ),
-        'views-galleries-block_3' => array(
+        'views-galleries-block_home_visits' => array(
           'module' => 'views',
-          'delta' => 'galleries-block_3',
+          'delta' => 'galleries-block_home_visits',
           'region' => 'postscript_third',
           'weight' => '-9',
         ),
