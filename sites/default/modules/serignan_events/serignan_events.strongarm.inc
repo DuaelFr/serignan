@@ -52,10 +52,22 @@ function serignan_events_strongarm() {
         'custom_settings' => FALSE,
       ),
       'list' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'slideshow' => array(
         'custom_settings' => TRUE,
+      ),
+      'sidebar' => array(
+        'custom_settings' => TRUE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(

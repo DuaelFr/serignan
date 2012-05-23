@@ -292,7 +292,7 @@ function serignan_events_views_default_views() {
   );
 
   /* Display: Home (Block) */
-  $handler = $view->new_display('block', 'Home (Block)', 'block_1');
+  $handler = $view->new_display('block', 'Home (Block)', 'block_home');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = TRUE;
@@ -372,7 +372,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
-  $handler->display->display_options['sorts']['field_date_end_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -409,8 +408,70 @@ function serignan_events_views_default_views() {
   );
 
   /* Display: List (Page) */
-  $handler = $view->new_display('page', 'List (Page)', 'page_1');
+  $handler = $view->new_display('page', 'List (Page)', 'page_list');
   $handler->display->display_options['path'] = 'agenda';
+
+  /* Display: Sidebar (Block) */
+  $handler = $view->new_display('block', 'Sidebar (Block)', 'block_sidebar');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_text'] = 'Tout l\'agenda';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'sidebar';
+  $handler->display->display_options['row_options']['links'] = 0;
+  $handler->display->display_options['row_options']['comments'] = 0;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Critère de tri: Contenu : Épinglé (en haut des listes) */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'node';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+  /* Critère de tri: Contenu : au (field_date_end) */
+  $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
+  $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
+  $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Contenu : au (field_date_end) */
+  $handler->display->display_options['filters']['field_date_end_value']['id'] = 'field_date_end_value';
+  $handler->display->display_options['filters']['field_date_end_value']['table'] = 'field_data_field_date_end';
+  $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
+  $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>';
+  $handler->display->display_options['filters']['field_date_end_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_date_end_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
+  /* Critère de filtrage: Traduction du contenu : Langue */
+  $handler->display->display_options['filters']['language']['id'] = 'language';
+  $handler->display->display_options['filters']['language']['table'] = 'node';
+  $handler->display->display_options['filters']['language']['field'] = 'language';
+  $handler->display->display_options['filters']['language']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  $handler->display->display_options['filters']['language']['group'] = 1;
   $translatables['events'] = array(
     t('Master'),
     t('Agenda'),
@@ -429,6 +490,7 @@ function serignan_events_views_default_views() {
     t('Home (Block)'),
     t('Tout l\'agenda'),
     t('List (Page)'),
+    t('Sidebar (Block)'),
   );
   $export['events'] = $view;
 
