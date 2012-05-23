@@ -34,6 +34,7 @@ features[field_group][] = group_content|node|news|sidebar
 features[field_group][] = group_content|node|news|slideshow
 features[field_group][] = group_data|node|news|home
 features[image][] = news_home
+features[image][] = news_sidebar
 features[node][] = news
 features[taxonomy][] = news_category
 features[variable][] = additional_settings__active_tab_news
