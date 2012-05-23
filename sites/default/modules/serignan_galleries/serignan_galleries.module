@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Galleries feature.
+ */
+
+include_once 'serignan_galleries.features.inc';
