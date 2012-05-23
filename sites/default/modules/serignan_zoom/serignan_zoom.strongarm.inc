@@ -43,7 +43,7 @@ function serignan_zoom_strongarm() {
         'custom_settings' => FALSE,
       ),
       'list' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'slideshow' => array(
         'custom_settings' => TRUE,
@@ -55,6 +55,18 @@ function serignan_zoom_strongarm() {
         'custom_settings' => FALSE,
       ),
       'email_textalt' => array(
+        'custom_settings' => FALSE,
+      ),
+      'sidebar' => array(
+        'custom_settings' => TRUE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'print' => array(
         'custom_settings' => FALSE,
       ),
     ),

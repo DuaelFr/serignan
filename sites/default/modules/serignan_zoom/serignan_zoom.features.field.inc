@@ -60,6 +60,22 @@ function serignan_zoom_field_default_fields() {
           'type' => 'text_summary_or_trimmed',
           'weight' => '3',
         ),
+        'list' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+        'sidebar' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => '70',
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '1',
+        ),
         'slideshow' => array(
           'label' => 'hidden',
           'settings' => array(),
@@ -148,6 +164,26 @@ function serignan_zoom_field_default_fields() {
           'settings' => array(
             'image_link' => 'content',
             'image_style' => 'zoom_home',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
+        'list' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '1',
+        ),
+        'sidebar' => array(
+          'label' => 'above',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => 'content',
+            'image_style' => 'zoom_sidebar',
           ),
           'type' => 'image',
           'weight' => '0',
@@ -244,6 +280,19 @@ function serignan_zoom_field_default_fields() {
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '2',
+        ),
+        'list' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'sidebar' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '7',
         ),
         'slideshow' => array(
           'label' => 'above',

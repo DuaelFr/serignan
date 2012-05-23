@@ -37,6 +37,36 @@ function serignan_zoom_ds_field_settings_info() {
 
   $ds_fieldsetting = new stdClass();
   $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|zoom|sidebar';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'zoom';
+  $ds_fieldsetting->view_mode = 'sidebar';
+  $ds_fieldsetting->settings = array(
+    'title' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link' => '1',
+        'wrapper' => 'h3',
+        'class' => '',
+      ),
+    ),
+    'node_link' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+      'formatter_settings' => array(
+        'link text' => 'Read more',
+        'wrapper' => '',
+        'class' => '',
+      ),
+    ),
+  );
+  $export['node|zoom|sidebar'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
   $ds_fieldsetting->id = 'node|zoom|slideshow';
   $ds_fieldsetting->entity_type = 'node';
   $ds_fieldsetting->bundle = 'zoom';
@@ -103,6 +133,36 @@ function serignan_zoom_ds_layout_settings_info() {
     'classes' => array(),
   );
   $export['node|zoom|home'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|zoom|sidebar';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'zoom';
+  $ds_layout->view_mode = 'sidebar';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'hide_empty_regions' => 0,
+    'hide_sidebars' => 0,
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title',
+        1 => 'field_picture',
+        2 => 'body',
+        3 => 'group_content',
+        4 => 'node_link',
+      ),
+    ),
+    'fields' => array(
+      'title' => 'ds_content',
+      'field_picture' => 'ds_content',
+      'body' => 'ds_content',
+      'group_content' => 'ds_content',
+      'node_link' => 'ds_content',
+    ),
+    'classes' => array(),
+  );
+  $export['node|zoom|sidebar'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
