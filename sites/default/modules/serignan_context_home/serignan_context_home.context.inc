@@ -26,6 +26,12 @@ function serignan_context_home_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-nodequeue_1-block' => array(
+          'module' => 'views',
+          'delta' => 'nodequeue_1-block',
+          'region' => 'header_first',
+          'weight' => '-10',
+        ),
         'views-news-block_1' => array(
           'module' => 'views',
           'delta' => 'news-block_1',
