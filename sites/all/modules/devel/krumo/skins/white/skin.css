@@ -95,7 +95,6 @@ div.krumo-preview {
 	border: solid 1px #808000;
 	overflow:auto;
 	margin: 5px 1em 1em 0px;
-	white-space: pre;
 	}
 * html div.krumo-preview {
 	padding-top: 2px;

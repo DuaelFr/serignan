@@ -14,31 +14,21 @@ function _file_devel_generate($object, $field, $instance, $bundle) {
 
   if (empty($file)) {
     if ($path = devel_generate_textfile()) {
-      $source = new stdClass();
       $source->uri = $path;
       $source->uid = 1; // TODO: randomize? use case specific.
       $source->filemime = 'text/plain';
-      $source->filename = array_pop(explode("//", $path));
-      $destination_dir = $field['settings']['uri_scheme'] . '://' . $instance['settings']['file_directory'];
-      file_prepare_directory($destination_dir, FILE_CREATE_DIRECTORY);
-      $destination = $destination_dir . '/' . basename($path);
-      $file = file_move($source, $destination, FILE_CREATE_DIRECTORY);
+      $destination = $field['settings']['uri_scheme'] . '://' . $instance['settings']['file_directory'] . '/' . basename($path);
+      $file = file_move($source, $destination);
     }
     else {
       return FALSE;
     }
   }
-  if (!$file) {
-    // In case a previous file operation failed or no file is set, return FALSE
-    return FALSE;
-  }
-  else {
-    $object_field['fid'] = $file->fid;
-    $object_field['display'] = $field['settings']['display_default'];
-    $object_field['description'] = devel_create_greeking(10);
+  $object_field['fid'] = $file->fid;
+  $object_field['display'] = $field['settings']['display_default'];
+  $object_field['description'] = devel_create_greeking(10);
 
-    return $object_field;
-  }
+  return $object_field;
 }
 
 /**
