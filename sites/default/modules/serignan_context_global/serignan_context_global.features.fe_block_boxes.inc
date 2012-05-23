@@ -11,6 +11,35 @@ function serignan_context_global_default_fe_block_boxes() {
   $export = array();
 
   $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Suivez-nous';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'follow_us';
+  $fe_block_boxes->body = '<ul>
+  <li><a href="#"><img src="sites/all/default/themes/serignan/images/icon-facebook.png" alt="Facebook" /></a>
+  <li><a href="#"><img src="sites/all/default/themes/serignan/images/icon-picasa.png" alt="Picasa" /></a>
+  <li><a href="#"><img src="sites/all/default/themes/serignan/images/icon-twitter.png" alt="Twitter" /></a>
+  <li><a href="#"><img src="sites/all/default/themes/serignan/images/icon-rss.png" alt="RSS" /></a>
+  <li><a href="#"><img src="sites/all/default/themes/serignan/images/icon-forward.png" alt="Forward" /></a>
+</ul>';
+
+  $export['follow_us'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Magazine';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'magazine';
+  $fe_block_boxes->body = '<div class="magazine-block">
+  <img src="sites/default/file/..." alt="Couverture magazine" />
+  <div class="content">
+    <h3>Avril 2012 - Hors série</h3>
+    <p>&gt; Déjà 4 ans avec vous et pour vous</p>
+    <a href="#">Télécharger (PDF - 3,50 Mo)</a>
+  </div>
+</div>';
+
+  $export['magazine'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Affichage de la météo';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'weather';

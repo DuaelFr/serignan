@@ -56,6 +56,42 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'menu',
           'weight' => '9',
         ),
+        'block-5' => array(
+          'module' => 'block',
+          'delta' => 5,
+          'region' => 'postscript_first',
+          'weight' => '-10',
+        ),
+        'views-galleries-block_1' => array(
+          'module' => 'views',
+          'delta' => 'galleries-block_1',
+          'region' => 'postscript_first',
+          'weight' => '-9',
+        ),
+        'simplenews-0' => array(
+          'module' => 'simplenews',
+          'delta' => 0,
+          'region' => 'postscript_second',
+          'weight' => '-10',
+        ),
+        'views-galleries-block_2' => array(
+          'module' => 'views',
+          'delta' => 'galleries-block_2',
+          'region' => 'postscript_second',
+          'weight' => '-9',
+        ),
+        'block-6' => array(
+          'module' => 'block',
+          'delta' => 6,
+          'region' => 'postscript_third',
+          'weight' => '-10',
+        ),
+        'views-galleries-block_3' => array(
+          'module' => 'views',
+          'delta' => 'galleries-block_3',
+          'region' => 'postscript_third',
+          'weight' => '-9',
+        ),
         'menu-menu-footer-menu' => array(
           'module' => 'menu',
           'delta' => 'menu-footer-menu',

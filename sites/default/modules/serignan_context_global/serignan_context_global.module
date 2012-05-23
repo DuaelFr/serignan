@@ -5,3 +5,66 @@
  */
 
 include_once 'serignan_context_global.features.inc';
+
+/**
+ * Implements hook_form_alter().
+ */
+function serignan_context_global_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'simplenews_subscriptions_multi_block_form' && user_is_anonymous()) {
+    // Force newsletters selection
+    $values = $form['newsletters']['#options'];
+    foreach ($values as $k => &$v) {
+      $v = TRUE;
+    }
+    $form['newsletters']['#default_value'] = $values;
+    // Make newsletter selection disappear
+    $form['newsletters']['#access'] = FALSE;
+    
+    // Convert buttons into radios
+    unset($form['subscribe']);
+    unset($form['unsubscribe']);
+    $form['action'] = array(
+      '#type' => 'radios',
+      '#options' => array(
+        'subscribe' => t('Subscribe'),
+    	'unsubscribe' => t('Unsubscribe'),
+      ),
+      '#default_value' => 'subscribe',
+      '#weight' => 3,
+    );
+    
+    // Create new button
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Submit'),
+      '#weight' => 2,
+    );
+    
+    // Position email field
+    $form['mail']['#weight'] = 1;
+    $form['mail']['#default_value'] = t('Your email');
+    
+    // Add custom validation function to manage fields modifications consequences
+    array_unshift($form['#validate'], '_serignan_context_global_simplenews_form_validate');
+  }
+}
+
+/**
+ * Callback custom simplenews subscription form validator
+ */
+function _serignan_context_global_simplenews_form_validate($form, &$form_state) {
+  // Restore newsletters data
+  $news = array_keys($form['newsletters']['#options']);
+  $form_state['values']['newsletters'] = array_combine($news, $news);
+  
+  // Restore (un)subscribe buttons data
+  $form_state['values']['subscribe'] = t('Subscribe');
+  $form_state['values']['unsubscribe'] = t('Unsubscribe');
+  $form_state['values']['op'] = $form_state['values'][$form_state['values']['action']];
+  $form_state['input']['op'] = $form_state['values'][$form_state['values']['action']];
+  
+  // Hide non wanted data
+  unset($form_state['values']['submit']);
+  unset($form_state['values']['action']);
+  unset($form_state['input']['action']);
+}
