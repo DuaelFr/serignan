@@ -39,6 +39,24 @@ function serignan_events_strongarm() {
       'rss' => array(
         'custom_settings' => FALSE,
       ),
+      'home' => array(
+        'custom_settings' => TRUE,
+      ),
+      'email_plain' => array(
+        'custom_settings' => FALSE,
+      ),
+      'email_html' => array(
+        'custom_settings' => FALSE,
+      ),
+      'email_textalt' => array(
+        'custom_settings' => FALSE,
+      ),
+      'list' => array(
+        'custom_settings' => FALSE,
+      ),
+      'slideshow' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

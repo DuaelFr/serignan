@@ -148,11 +148,10 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['fields']['field_event_categories']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_event_categories']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_event_categories']['field_api_classes'] = 0;
-  /* Champ: Contenu : Date de début */
+  /* Champ: Contenu : Du */
   $handler->display->display_options['fields']['field_date_start']['id'] = 'field_date_start';
   $handler->display->display_options['fields']['field_date_start']['table'] = 'field_data_field_date_start';
   $handler->display->display_options['fields']['field_date_start']['field'] = 'field_date_start';
-  $handler->display->display_options['fields']['field_date_start']['label'] = 'Du';
   $handler->display->display_options['fields']['field_date_start']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_date_start']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_date_start']['alter']['absolute'] = 0;
@@ -179,11 +178,10 @@ function serignan_events_views_default_views() {
     'multiple_to' => '',
   );
   $handler->display->display_options['fields']['field_date_start']['field_api_classes'] = 0;
-  /* Champ: Contenu : Date de fin */
+  /* Champ: Contenu : au */
   $handler->display->display_options['fields']['field_date_end']['id'] = 'field_date_end';
   $handler->display->display_options['fields']['field_date_end']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['fields']['field_date_end']['field'] = 'field_date_end';
-  $handler->display->display_options['fields']['field_date_end']['label'] = 'au';
   $handler->display->display_options['fields']['field_date_end']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_date_end']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_date_end']['alter']['absolute'] = 0;
@@ -266,7 +264,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['sorts']['sticky']['table'] = 'node';
   $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
-  /* Critère de tri: Contenu : Date de fin (field_date_end) */
+  /* Critère de tri: Contenu : au (field_date_end) */
   $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
@@ -316,7 +314,7 @@ function serignan_events_views_default_views() {
   );
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['enable'] = 1;
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['weight'] = '1';
-  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['type'] = 'views_slideshow_pager_counter';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
     'counter' => 'counter',
     'title' => 0,
@@ -327,6 +325,7 @@ function serignan_events_views_default_views() {
     'body' => 0,
     'view_node' => 0,
   );
+  $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['views_slideshow_pager_counter_start'] = '1';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['weight'] = '1';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_slide_counter']['weight'] = '1';
@@ -342,6 +341,7 @@ function serignan_events_views_default_views() {
     'body' => 0,
     'view_node' => 0,
   );
+  $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['views_slideshow_pager_counter_start'] = '1';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['weight'] = '1';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_slide_counter']['weight'] = '1';
@@ -357,9 +357,10 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['style_options']['views_slideshow_cycle']['cleartypenobg'] = 0;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['hide_empty'] = 0;
-  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'home';
+  $handler->display->display_options['row_options']['links'] = 0;
+  $handler->display->display_options['row_options']['comments'] = 0;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Critère de tri: Contenu : Épinglé (en haut des listes) */
@@ -367,7 +368,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['sorts']['sticky']['table'] = 'node';
   $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
-  /* Critère de tri: Contenu : Date de fin (field_date_end) */
+  /* Critère de tri: Contenu : au (field_date_end) */
   $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
@@ -392,7 +393,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['promote']['table'] = 'node';
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
-  /* Critère de filtrage: Contenu : Date de fin (field_date_end) */
+  /* Critère de filtrage: Contenu : au (field_date_end) */
   $handler->display->display_options['filters']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['filters']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';

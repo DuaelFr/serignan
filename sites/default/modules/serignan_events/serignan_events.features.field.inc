@@ -51,6 +51,21 @@ function serignan_events_field_default_fields() {
           'type' => 'text_default',
           'weight' => '0',
         ),
+        'home' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(
+            'trim_length' => '160',
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '6',
+        ),
+        'slideshow' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
+        ),
         'teaser' => array(
           'label' => 'hidden',
           'module' => 'text',
@@ -130,6 +145,25 @@ function serignan_events_field_default_fields() {
           'type' => 'date_default',
           'weight' => '4',
         ),
+        'home' => array(
+          'label' => 'inline',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'short',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '5',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -139,7 +173,7 @@ function serignan_events_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_date_end',
-      'label' => 'Date de fin',
+      'label' => 'au',
       'required' => 1,
       'settings' => array(
         'default_value' => 'now',
@@ -212,6 +246,25 @@ function serignan_events_field_default_fields() {
           'type' => 'date_default',
           'weight' => '3',
         ),
+        'home' => array(
+          'label' => 'inline',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'short',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '4',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -221,7 +274,7 @@ function serignan_events_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_date_start',
-      'label' => 'Date de début',
+      'label' => 'Du',
       'required' => 1,
       'settings' => array(
         'default_value' => 'now',
@@ -293,6 +346,19 @@ function serignan_events_field_default_fields() {
           'type' => 'taxonomy_term_reference_link',
           'weight' => '2',
         ),
+        'home' => array(
+          'label' => 'hidden',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '3',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '8',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -362,6 +428,26 @@ function serignan_events_field_default_fields() {
           'type' => 'image',
           'weight' => '1',
         ),
+        'home' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => 'content',
+            'image_style' => 'event_home',
+          ),
+          'type' => 'image',
+          'weight' => '1',
+        ),
+        'slideshow' => array(
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => '',
+            'image_style' => '',
+          ),
+          'type' => 'image',
+          'weight' => '0',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
@@ -405,10 +491,10 @@ function serignan_events_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Catégories');
-  t('Date de début');
-  t('Date de fin');
   t('Description');
+  t('Du');
   t('Image');
+  t('au');
 
   return $fields;
 }
