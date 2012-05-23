@@ -32,5 +32,14 @@ function serignan_commons_ds_view_modes_info() {
   );
   $export['list'] = $ds_view_mode;
 
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'slideshow';
+  $ds_view_mode->label = 'Slideshow';
+  $ds_view_mode->entities = array(
+    'node' => 'node',
+  );
+  $export['slideshow'] = $ds_view_mode;
+
   return $export;
 }

@@ -6,6 +6,9 @@
 
 include_once 'serignan_commons.features.inc';
 
+// -----------------------------------------------------------------------------
+// HOOKS
+
 /**
  * Implements hook_menu().
  */
@@ -20,8 +23,35 @@ function serignan_commons_menu() {
 }
 
 /**
+ * Implements hook_ds_fields_info().
+ */
+function serignan_commons_ds_fields_info($entity_type) {
+  $fields = array();
+
+  $fields['type'] = array(
+    'title' => t('Type'),
+    'field_type' => DS_FIELD_TYPE_FUNCTION,
+    'function' => '_serignan_commons_ds_field_type',
+  );
+
+  return array('node' => $fields);
+}
+
+// -----------------------------------------------------------------------------
+// CALLBACKS
+
+/**
  * Front menu callback
  */
 function _serignan_commons_front() {
   return '';
+}
+
+/**
+ * Type field callback
+ */
+function _serignan_commons_ds_field_type($field) {
+  if (!empty($field['entity'])) {
+    return node_type_get_name($field['entity']);
+  }
 }
