@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Config Editors feature.
+ */
+
+include_once 'serignan_config_editors.features.inc';
