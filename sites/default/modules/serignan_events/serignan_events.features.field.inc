@@ -520,7 +520,6 @@ function serignan_events_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'event',
-      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -584,7 +583,7 @@ function serignan_events_field_default_fields() {
       'settings' => array(
         'alt_field' => 1,
         'default_image' => 0,
-        'file_directory' => 'events',
+        'file_directory' => 'images/events',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
         'max_resolution' => '',
@@ -596,13 +595,24 @@ function serignan_events_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
-          'collapsible' => '3',
-          'croparea' => '500x500',
-          'enforce_minimum' => 1,
-          'enforce_ratio' => 1,
+          'filefield_sources' => array(
+            'filefield_sources' => array(
+              'attach' => 0,
+              'imce' => 'imce',
+              'reference' => 0,
+              'remote' => 0,
+            ),
+            'source_attach' => array(
+              'absolute' => '0',
+              'attach_mode' => 'copy',
+              'path' => 'file_attach',
+            ),
+            'source_reference' => array(
+              'autocomplete' => '0',
+            ),
+          ),
           'preview_image_style' => 'thumbnail',
           'progress_indicator' => 'throbber',
-          'resolution' => '200x150',
         ),
         'type' => 'image_image',
         'weight' => '1',
