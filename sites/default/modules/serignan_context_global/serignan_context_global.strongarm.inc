@@ -34,6 +34,20 @@ function serignan_context_global_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'megamenu_settings_main-menu';
+  $strongarm->value = (object) array(
+    'menu_name' => 'main-menu',
+    'enabled' => '1',
+    'skin' => 'serignan',
+    'menu_orientation' => 'horizontal',
+    'slot_orientation' => 'columnar',
+    'slot_attributes' => NULL,
+  );
+  $export['megamenu_settings_main-menu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'print_display_sys_urllist';
   $strongarm->value = 1;
   $export['print_display_sys_urllist'] = $strongarm;
