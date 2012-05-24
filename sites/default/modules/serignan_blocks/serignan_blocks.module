@@ -1,0 +1,115 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Blocks module.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function serignan_blocks_block_info() {
+  $blocks = array();
+  
+  // Globals
+  $blocks['follow_us'] = array(
+    'info' => 'Sérignan: Suivez-nous',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['magazine'] = array(
+    'info' => 'Sérignan: Magazine',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['weather'] = array(
+    'info' => 'Sérignan: Météo',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['sidebar_links'] = array(
+    'info' => 'Sérignan: Barre latérale générale',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['sidebar_links_special'] = array(
+    'info' => 'Sérignan: Barre latérale tourisme',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  // Home
+  $blocks['home_col1'] = array(
+    'info' => 'Sérignan: Home Column 1',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['home_col2'] = array(
+    'info' => 'Sérignan: Home Column 2',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  $blocks['home_col3'] = array(
+    'info' => 'Sérignan: Home Column 3',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function serignan_blocks_block_view($delta) {
+  $subject = '';
+  $vars = array();
+  switch ($delta) {
+    case 'follow_us':
+      $subject = t('Follow us');
+      break;
+    case 'magazine':
+      $subject = t('Magazine');
+      break;
+  }
+  return array(
+    'subject' => $subject,
+    'content' => theme('serignan_blocks_' . $delta, $vars),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function serignan_blocks_theme() {
+  // Base parameters for all themes
+  $base = array(
+  	'variables' => array(
+  	  'theme_path' => drupal_get_path('theme', variable_get('theme_default')),
+    ),
+    'path' => drupal_get_path('module', 'serignan_blocks') . '/theme',
+  );
+  
+  $theme = array();
+  
+  // Globals
+  $theme['serignan_blocks_follow_us'] = array(
+    'template' => 'serignan-blocks-follow-us',
+  ) + $base;
+  $theme['serignan_blocks_magazine'] = array(
+    'template' => 'serignan-blocks-magazine',
+  ) + $base;
+  $theme['serignan_blocks_weather'] = array(
+    'template' => 'serignan-blocks-weather',
+  ) + $base;
+  $theme['serignan_blocks_sidebar_links'] = array(
+    'template' => 'serignan-blocks-sidebar-links',
+  ) + $base;
+  $theme['serignan_blocks_sidebar_links_special'] = array(
+    'template' => 'serignan-blocks-sidebar-links-special',
+  ) + $base;
+  
+  // Home
+  $theme['serignan_blocks_home_col1'] = array(
+    'template' => 'serignan-blocks-home-col1',
+  ) + $base;
+  $theme['serignan_blocks_home_col2'] = array(
+    'template' => 'serignan-blocks-home-col2',
+  ) + $base;
+  $theme['serignan_blocks_home_col3'] = array(
+    'template' => 'serignan-blocks-home-col3',
+  ) + $base;
+  
+  return $theme;
+}

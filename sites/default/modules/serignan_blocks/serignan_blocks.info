@@ -1,0 +1,5 @@
+name = Serignan Blocks
+description = Blocs statiques du site
+core = 7.x
+package = Serignan
+version = 7.x-1.0-alpha1
