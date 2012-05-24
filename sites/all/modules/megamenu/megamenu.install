@@ -22,5 +22,5 @@ function megamenu_update_7001() {
     }
     db_query('DROP TABLE {megamenu}');
   }
-  return empty($mm) ?: count($mm) . ' megamenu settings updated';
+  return empty($mm) ? FALSE : count($mm) . ' megamenu settings updated';
 }
