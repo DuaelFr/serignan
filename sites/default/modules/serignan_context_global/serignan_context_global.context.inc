@@ -74,9 +74,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'header_second',
           'weight' => '-23',
         ),
-        'block-5' => array(
-          'module' => 'block',
-          'delta' => 5,
+        'serignan_blocks-magazine' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'magazine',
           'region' => 'postscript_first',
           'weight' => '-10',
         ),
@@ -84,7 +84,7 @@ function serignan_context_global_context_default_contexts() {
           'module' => 'views',
           'delta' => 'galleries-block_home_videos',
           'region' => 'postscript_first',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'simplenews-0' => array(
           'module' => 'simplenews',
@@ -98,9 +98,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'postscript_second',
           'weight' => '-9',
         ),
-        'block-6' => array(
-          'module' => 'block',
-          'delta' => 6,
+        'serignan_blocks-follow_us' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'follow_us',
           'region' => 'postscript_third',
           'weight' => '-10',
         ),
@@ -108,7 +108,7 @@ function serignan_context_global_context_default_contexts() {
           'module' => 'views',
           'delta' => 'galleries-block_home_visits',
           'region' => 'postscript_third',
-          'weight' => '-9',
+          'weight' => '-8',
         ),
         'menu-menu-footer-menu' => array(
           'module' => 'menu',
@@ -116,11 +116,11 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'footer_first',
           'weight' => '0',
         ),
-        'block-1' => array(
-          'module' => 'block',
-          'delta' => 1,
+        'serignan_blocks-weather' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'weather',
           'region' => 'footer_second',
-          'weight' => '0',
+          'weight' => '-10',
         ),
       ),
     ),
@@ -167,9 +167,9 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-8',
         ),
-        'block-7' => array(
-          'module' => 'block',
-          'delta' => 7,
+        'serignan_blocks-sidebar_links' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'sidebar_links',
           'region' => 'sidebar_second',
           'weight' => '-7',
         ),

@@ -13,8 +13,9 @@ function serignan_context_home_default_fe_block_settings() {
   // serignan
   $theme = array();
 
-  $theme['block-home_col1'] = array(
-    'module' => 'block',
+  $theme['serignan_blocks-home_col1'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'home_col1',
     'theme' => 'serignan',
     'status' => 0,
     'weight' => '0',
@@ -22,13 +23,13 @@ function serignan_context_home_default_fe_block_settings() {
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
-    'title' => '<none>',
-    'cache' => -1,
-    'machine_name' => 'home_col1',
+    'title' => '',
+    'cache' => 8,
   );
 
-  $theme['block-home_col2'] = array(
-    'module' => 'block',
+  $theme['serignan_blocks-home_col2'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'home_col2',
     'theme' => 'serignan',
     'status' => 0,
     'weight' => '0',
@@ -36,13 +37,13 @@ function serignan_context_home_default_fe_block_settings() {
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
-    'title' => '<none>',
-    'cache' => -1,
-    'machine_name' => 'home_col2',
+    'title' => '',
+    'cache' => 8,
   );
 
-  $theme['block-home_col3'] = array(
-    'module' => 'block',
+  $theme['serignan_blocks-home_col3'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'home_col3',
     'theme' => 'serignan',
     'status' => 0,
     'weight' => '0',
@@ -50,9 +51,8 @@ function serignan_context_home_default_fe_block_settings() {
     'custom' => '0',
     'visibility' => '0',
     'pages' => '',
-    'title' => '<none>',
-    'cache' => -1,
-    'machine_name' => 'home_col3',
+    'title' => '',
+    'cache' => 8,
   );
 
   $export['serignan'] = $theme;

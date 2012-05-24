@@ -13,62 +13,6 @@ function serignan_context_global_default_fe_block_settings() {
   // serignan
   $theme = array();
 
-  $theme['block-weather'] = array(
-    'module' => 'block',
-    'theme' => 'serignan',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '<none>',
-    'cache' => -1,
-    'machine_name' => 'weather',
-  );
-
-  $theme['block-magazine'] = array(
-    'module' => 'block',
-    'theme' => 'serignan',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'Magazine',
-    'cache' => -1,
-    'machine_name' => 'magazine',
-  );
-
-  $theme['block-follow_us'] = array(
-    'module' => 'block',
-    'theme' => 'serignan',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => 'Suivez-nous',
-    'cache' => -1,
-    'machine_name' => 'follow_us',
-  );
-
-  $theme['block-sidebar_links'] = array(
-    'module' => 'block',
-    'theme' => 'serignan',
-    'status' => 0,
-    'weight' => '0',
-    'region' => '',
-    'custom' => '0',
-    'visibility' => '0',
-    'pages' => '',
-    'title' => '',
-    'cache' => -1,
-    'machine_name' => 'sidebar_links',
-  );
-
   $theme['locale-language'] = array(
     'module' => 'locale',
     'delta' => 'language',
@@ -151,6 +95,62 @@ function serignan_context_global_default_fe_block_settings() {
     'pages' => '',
     'title' => '',
     'cache' => -1,
+  );
+
+  $theme['serignan_blocks-follow_us'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'follow_us',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['serignan_blocks-magazine'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'magazine',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['serignan_blocks-sidebar_links'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'sidebar_links',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
+  );
+
+  $theme['serignan_blocks-weather'] = array(
+    'module' => 'serignan_blocks',
+    'delta' => 'weather',
+    'theme' => 'serignan',
+    'status' => 0,
+    'weight' => '0',
+    'region' => '',
+    'custom' => '0',
+    'visibility' => '0',
+    'pages' => '',
+    'title' => '',
+    'cache' => 8,
   );
 
   $theme['simplenews-0'] = array(

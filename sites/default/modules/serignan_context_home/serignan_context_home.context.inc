@@ -38,9 +38,9 @@ function serignan_context_home_context_default_contexts() {
           'region' => 'preface_first',
           'weight' => '-10',
         ),
-        'block-2' => array(
-          'module' => 'block',
-          'delta' => 2,
+        'serignan_blocks-home_col1' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'home_col1',
           'region' => 'preface_first',
           'weight' => '-9',
         ),
@@ -50,9 +50,9 @@ function serignan_context_home_context_default_contexts() {
           'region' => 'preface_second',
           'weight' => '-10',
         ),
-        'block-3' => array(
-          'module' => 'block',
-          'delta' => 3,
+        'serignan_blocks-home_col2' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'home_col2',
           'region' => 'preface_second',
           'weight' => '-9',
         ),
@@ -62,9 +62,9 @@ function serignan_context_home_context_default_contexts() {
           'region' => 'preface_third',
           'weight' => '-10',
         ),
-        'block-4' => array(
-          'module' => 'block',
-          'delta' => 4,
+        'serignan_blocks-home_col3' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'home_col3',
           'region' => 'preface_third',
           'weight' => '-9',
         ),
