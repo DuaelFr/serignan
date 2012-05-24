@@ -12,7 +12,7 @@ function megamenu_admin_form($form, &$form_state = NULL) {
 
   foreach (_megamenu_menulist() as $menu) {
     $menu_details = menu_load($menu);
-    _megamenu_verify_menu_entry($menu_details['menu_name']);
+//    _megamenu_verify_menu_entry($menu_details['menu_name']);
     $enabled = _megamenu_is_enabled($menu_details['menu_name']);
 
     $form['enabled'][$menu_details['menu_name']] = array(
@@ -157,15 +157,13 @@ function megamenu_admin_form_submit($form, &$form_state) {
   variable_set('megamenu_menu_timeout',$form_state['values']['timeout']);
   variable_set('megamenu_menu_sizewait',$form_state['values']['sizewait']);
   variable_set('megamenu_menu_hoverwait',$form_state['values']['hoverwait']);
+  
   foreach (_megamenu_menulist() as $menu) {
-    //db_query("UPDATE {megamenu} SET enabled = %d WHERE menu_name = '%s'", $form_state['values'][$menu], $menu);
+    $settings = megamenu_get_settings($menu);
     
-    db_update('megamenu')
-      ->fields(array(
-        'enabled' => $form_state['values'][$menu],
-      ))
-      ->condition('menu_name', $menu)
-      ->execute();
+    $settings->enabled = $form_state['values'][$menu];
+    
+    megamenu_set_settings($settings);
   }
 }
 
@@ -200,26 +198,11 @@ function megamenu_settings_form_validate($form, &$form_state) {
  * Submit the settings form
  */
 function megamenu_settings_form_submit($form, &$form_state) {
-  $menu_name = $form_state['values']['menu_name'];
-  $skin = $form_state['megamenu']['skin'];
-  $menu_orientation = $form_state['values']['menu_orientation'];
-  $slot_orientation = $form_state['values']['slot_orientation'];
-/*
-  db_query("UPDATE {megamenu}
-            SET
-              menu_orientation = '%s',
-              slot_orientation = '%s',
-              skin = '%s'
-            WHERE
-              menu_name = '%s'", $menu_orientation, $slot_orientation, $skin, $menu_name);
-*/
-  db_update('megamenu')
-  ->fields(array(
-    'menu_orientation' => $menu_orientation,
-    'slot_orientation' => $slot_orientation,
-    'skin' => $skin,
-  ))
-  ->condition('menu_name', $menu_name)
-  ->execute();
+  $settings = megamenu_get_settings($form_state['values']['menu_name']);
 
+  $settings->menu_orientation = $form_state['values']['menu_orientation'];
+  $settings->slot_orientation = $form_state['values']['slot_orientation'];
+  $settings->skin = $form_state['megamenu']['skin'];
+
+  megamenu_set_settings($settings);
 }

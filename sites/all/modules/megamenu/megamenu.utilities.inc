@@ -19,18 +19,12 @@ function _megamenu_menulist() {
 }
 
 function _megamenu_enabled_menus() {
-  $result = db_query("SELECT menu_name FROM {megamenu} WHERE enabled = :enabled", array(':enabled' => 1));
-  /*
   $menus = array();
-  $result = db_query("SELECT menu_name FROM {megamenu} WHERE enabled = 1");
-  
-  while ($menu = db_fetch_object($result)) {
-    $menus[] = $menu->menu_name;
-  }
-  */
-  $menus = array();
-  foreach($result as $menu){
-    $menus[] = $menu->menu_name;
+  foreach (_megamenu_menulist() as $menu_name) {
+    $menu = megamenu_get_settings($menu_name);
+    if (!empty($menu->enabled)) {
+      $menus[] = $menu->menu_name;
+    }
   }
 
   if (is_array($menus)){
@@ -168,53 +162,28 @@ function _megamenu_count_attributes($position,$total_count) {
 }
 
 function _megamenu_is_enabled($menu_name) {
-  //$result = db_result(db_query("SELECT enabled FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT enabled FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
-  return $result; 
+  $menu = megamenu_get_settings($menu_name);
+  return !empty($menu->enabled); 
 }
 
 function _megamenu_get_menu_orientation_by_name($menu_name) {
-  //$result = db_result(db_query("SELECT menu_orientation FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT menu_orientation FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
-  return $result;
+  $menu = megamenu_get_settings($menu_name);
+  return $menu->menu_orientation;
 }
 
 function _megamenu_get_skin_by_name($menu_name) {
-  //$result = db_result(db_query("SELECT skin FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT skin FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
-  return $result;
+  $menu = megamenu_get_settings($menu_name);
+  return $menu->skin;
 }
 
 function _megamenu_get_slot_orientation_by_name($menu_name) {
-  //$result = db_result(db_query("SELECT slot_orientation FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT slot_orientation FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
-  return $result;
+  $menu = megamenu_get_settings($menu_name);
+  return $menu->slot_orientation;
 }
 
 function _megamenu_get_slot_attributes_by_name($menu_name) {
-  // TODO: Query db
-  return '';
-}
-
-/**
- * Verify Menu Entry
- * Check to see if an entry exists for the givn menu name. If not, then insert a default row.
- * 
- * @param <string> $menu_name
- */
-function _megamenu_verify_menu_entry($menu_name) {
-  //$result = db_result(db_query("SELECT menu_name FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT menu_name FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
-
-  if (!$result) {
-    //db_query("INSERT INTO {megamenu} (menu_name, enabled) VALUES ('%s', %d)", $menu_name, 0);
-    db_insert('megamenu')
-    ->fields(array(
-      'menu_name' => $menu_name,
-      'enabled' => 0,
-    ))
-    ->execute();
-  }
+  $menu = megamenu_get_settings($menu_name);
+  return $menu->slot_attributes;
 }
 
 /**
@@ -225,8 +194,7 @@ function _megamenu_verify_menu_entry($menu_name) {
  * @param <string> $menu_name
  */
 function _megamenu_is_skin_default($menu_name) {
-  //$result = db_result(db_query("SELECT skin FROM {megamenu} WHERE menu_name = '%s'", $menu_name));
-  $result = db_query("SELECT skin FROM {megamenu} WHERE menu_name = :menu_name", array(':menu_name' => $menu_name))->fetchField();
+  $result = _megamenu_get_skin_by_name($menu_name);
 
   if ($result == 'minimal' || $result == 'friendly') {
     return true;

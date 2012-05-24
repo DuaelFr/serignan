@@ -316,3 +316,48 @@ function megamenu_theme_menu_tree($menu_name) {
   
   return $output;
 }
+
+/**
+ * Prepares a menu settings item with default values.
+ * @param $menu_name
+ *   The menu name
+ * @return stdClass
+ *   The settings object
+ */
+function megamenu_get_defaults($menu_name) {
+  $defaults = new stdClass();
+  $defaults->menu_name = $menu_name;
+  $defaults->enabled = 0;
+  $defaults->skin = 'friendly';
+  $defaults->menu_orientation = 'horizontal';
+  $defaults->slot_orientation = 'columnar';
+  $defaults->slot_attributes = NULL;
+  return $defaults;
+}
+
+/**
+ * Gets the settings object of a given menu.
+ * @param $menu_name
+ *   The menu name
+ * @return stdClass
+ *   The settings object   
+ */
+function megamenu_get_settings($menu_name) {
+  $settings = drupal_static('megamenu_settings', array());
+  if (empty($settings[$menu_name])) {
+    $settings[$menu_name] = variable_get('megamenu_settings_' . $menu_name, megamenu_get_defaults($menu_name));
+  }
+  return $settings[$menu_name];
+}
+
+/**
+ * Sets the settings object of a given menu.
+ * @param stdClass $menu
+ *   The settings object
+ */
+function megamenu_set_settings($menu) {
+  $settings = drupal_static('megamenu_settings', array());
+  $menu_name = $menu->menu_name;
+  variable_set('megamenu_settings_' . $menu_name, $menu);
+  $settings[$menu_name] = $menu;
+}
