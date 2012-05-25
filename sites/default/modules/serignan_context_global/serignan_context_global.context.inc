@@ -183,9 +183,6 @@ function serignan_context_global_context_default_contexts() {
         ),
       ),
     ),
-    'debug' => array(
-      'debug' => 1,
-    ),
   );
   $context->condition_mode = 1;
 
