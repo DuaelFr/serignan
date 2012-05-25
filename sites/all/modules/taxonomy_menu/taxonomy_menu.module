@@ -45,7 +45,20 @@ function taxonomy_menu_form_alter(&$form, &$form_state, $form_id) {
       $default = variable_get(_taxonomy_menu_build_variable('vocab_menu', $form['vid']['#value']), NULL) . ':' .
                  variable_get(_taxonomy_menu_build_variable('vocab_parent', $form['vid']['#value']), NULL);
       if (!isset($menu_items[$default])) {
-        $default = 0;
+        // Try to get default item from uuid
+        if (module_exists('uuid')) {
+          $default_uuid = variable_get(_taxonomy_menu_build_variable('vocab_menu', $form['vid']['#value']), NULL) . ':' .
+                          variable_get(_taxonomy_menu_build_variable('vocab_parent_uuid', $form['vid']['#value']), NULL);
+          module_load_include('inc', 'uuid', 'uuid.features.menu');
+          $item = uuid_menu_link_load($default_uuid);
+          // If an item was found
+          if ($item) {
+            $default = $item['menu_name'].':'.$item['mlid'];
+          }
+          else {
+            $default = 0;
+          }
+        }
       }
     }
     else {
@@ -138,6 +151,14 @@ function taxonomy_menu_vocab_submit($form, &$form_state) {
     $changed_menu = TRUE;
   }
   variable_set($variable_name, $vocab_parent['vocab_parent']);
+  
+  // Set the menu parent item UUID
+  if (module_exists('uuid')) {
+    module_load_include('inc', 'uuid', 'uuid.features.menu');
+    $item = menu_link_load($vocab_parent['vocab_parent']);
+    $variable_name = _taxonomy_menu_build_variable('vocab_parent_uuid', $vid);
+    variable_set($variable_name, uuid_menu_path_to_uri_transform($item['link_path']));
+  }
 
   // Set the path and check for changes
   $variable_name = _taxonomy_menu_build_variable('path', $vid);
@@ -613,6 +634,17 @@ $item['vid']));
   $plid = _taxonomy_menu_get_mlid($item['ptid'], $item['vid']);
   if (!$plid || $flatten_menu) {
     $plid = variable_get(_taxonomy_menu_build_variable('vocab_parent', $item['vid']), NULL);
+    if (!$plid && module_exists('uuid')) {
+      $menu_name = variable_get(_taxonomy_menu_build_variable('vocab_menu', $item['vid']), NULL);
+      $uuid = variable_get(_taxonomy_menu_build_variable('vocab_parent_uuid', $item['vid']), NULL);
+      if ($uuid) {
+        module_load_include('inc', 'uuid', 'uuid.features.menu');
+        $menu_item = uuid_menu_link_load($menu_name . ':' . $uuid);
+        if ($item) {
+          $plid = $menu_item['mlid'];
+        }
+      }
+    }
   }
 
   // Make sure the path has less then 256 characters
