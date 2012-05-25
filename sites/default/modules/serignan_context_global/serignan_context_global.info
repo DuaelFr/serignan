@@ -22,6 +22,7 @@ dependencies[] = serignan_galleries
 dependencies[] = serignan_news
 dependencies[] = serignan_zoom
 dependencies[] = simplenews
+dependencies[] = special_menu_items
 dependencies[] = strongarm
 dependencies[] = text_resize
 dependencies[] = views
