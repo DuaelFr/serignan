@@ -31,6 +31,10 @@ function serignan_blocks_block_info() {
     'info' => 'Sérignan: Barre latérale tourisme',
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['header_decorator'] = array(
+    'info' => 'Sérignan: Décorateur header',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   
   // Home
   $blocks['home_col1'] = array(
@@ -98,6 +102,9 @@ function serignan_blocks_theme() {
   ) + $base;
   $theme['serignan_blocks_sidebar_links_special'] = array(
     'template' => 'serignan-blocks-sidebar-links-special',
+  ) + $base;
+  $theme['serignan_blocks_header_decorator'] = array(
+    'template' => 'serignan-blocks-header-decorator',
   ) + $base;
   
   // Home
