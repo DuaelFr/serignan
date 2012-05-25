@@ -16,6 +16,7 @@ function serignan_sheets_taxonomy_default_vocabularies() {
       'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
+      'metatags' => array(),
     ),
   );
 }
