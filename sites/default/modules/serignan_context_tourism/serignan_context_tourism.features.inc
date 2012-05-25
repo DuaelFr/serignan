@@ -13,3 +13,10 @@ function serignan_context_tourism_ctools_plugin_api() {
     return array("version" => "3");
   }
 }
+
+/**
+ * Implements hook_views_api().
+ */
+function serignan_context_tourism_views_api() {
+  return array("version" => "3.0");
+}
