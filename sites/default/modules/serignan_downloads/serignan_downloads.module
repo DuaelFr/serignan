@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Downloads feature.
+ */
+
+include_once 'serignan_downloads.features.inc';
