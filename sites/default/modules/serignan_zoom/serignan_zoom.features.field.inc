@@ -189,7 +189,7 @@ function serignan_zoom_field_default_fields() {
           'weight' => '0',
         ),
         'slideshow' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
