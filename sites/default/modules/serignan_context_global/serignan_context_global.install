@@ -1,0 +1,74 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Context Global feature install.
+ */
+
+/**
+ * Implements hook_install().
+ * 
+ * Initialize top and footer menus.
+ */
+function serignan_context_global_install() {
+  // Menu top
+  $item = array(
+    'link_path' => '<front>',
+  	'link_title' => 'Accueil',
+    'menu_name' => 'top-menu',
+    'weight' => 0,
+    'expanded' => TRUE,
+  );
+  menu_link_save($item);
+  
+  $item = array(
+    'link_path' => '<front>',
+  	'link_title' => 'Contact',
+    'menu_name' => 'top-menu',
+    'weight' => 1,
+    'expanded' => TRUE,
+  );
+  menu_link_save($item);
+  
+  // Menu footer
+  $item = array(
+    'link_path' => '<nolink>',
+  	'link_title' => 'Tourisme',
+    'menu_name' => 'footer-menu',
+    'weight' => 0,
+    'expanded' => TRUE,
+    'options' => array(
+      'attributes' => array(
+        'class' => array('footer-menu-title'),
+      ),
+    ),
+  );
+  menu_link_save($item);
+  
+  $item = array(
+    'link_path' => '<nolink>',
+  	'link_title' => 'Informations pratiques',
+    'menu_name' => 'footer-menu',
+    'weight' => 1,
+    'expanded' => TRUE,
+    'options' => array(
+      'attributes' => array(
+        'class' => array('footer-menu-title'),
+      ),
+    ),
+  );
+  menu_link_save($item);
+  
+  $item = array(
+    'link_path' => '<nolink>',
+  	'link_title' => 'Liens divers',
+    'menu_name' => 'footer-menu',
+    'weight' => 2,
+    'expanded' => TRUE,
+    'options' => array(
+      'attributes' => array(
+        'class' => array('footer-menu-title', 'footer-menu-hidden'),
+      ),
+    ),
+  );
+  menu_link_save($item);
+}

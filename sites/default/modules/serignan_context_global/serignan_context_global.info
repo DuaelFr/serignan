@@ -13,6 +13,7 @@ dependencies[] = features
 dependencies[] = locale
 dependencies[] = megamenu
 dependencies[] = menu
+dependencies[] = menu_attributes
 dependencies[] = print
 dependencies[] = search
 dependencies[] = serignan_blocks
