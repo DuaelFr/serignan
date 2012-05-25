@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Config SEO feature.
+ */
+
+include_once 'serignan_config_seo.features.inc';
