@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Sections feature.
+ */
+
+include_once 'serignan_sections.features.inc';
+
+/**
+ * Implements hook_form_[form-name]_alter().
+ */
+function serignan_sections_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_description'])) {
+    $form['description']['#access'] = FALSE;
+  }
+}
