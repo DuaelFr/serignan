@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Context Tourism feature.
+ */
+
+include_once 'serignan_context_tourism.features.inc';

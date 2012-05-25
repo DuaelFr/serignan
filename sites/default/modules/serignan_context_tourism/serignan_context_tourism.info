@@ -1,0 +1,15 @@
+name = Serignan Context Tourism
+description = Contexte des pages tourisme
+core = 7.x
+package = Serignan
+php = 5.2.4
+version = 7.x-1.0-alpha1
+project = serignan_context_tourism
+dependencies[] = context
+dependencies[] = serignan_blocks
+dependencies[] = serignan_events
+dependencies[] = views
+features[context][] = front-tourism
+features[context][] = not-front-tourism
+features[ctools][] = context:context:3
+features[features_api][] = api:1
