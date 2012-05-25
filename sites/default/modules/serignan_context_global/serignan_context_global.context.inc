@@ -137,12 +137,14 @@ function serignan_context_global_context_default_contexts() {
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
   $context->name = 'not-front';
-  $context->description = 'Toutes les pages sauf l\'accueil';
+  $context->description = 'Toutes les pages sauf l\'accueil et les pages tourisme';
   $context->tag = 'Layout';
   $context->conditions = array(
-    'path' => array(
+    'context' => array(
       'values' => array(
-        '~<front>' => '~<front>',
+        '~front' => '~front',
+        '~front-tourism' => '~front-tourism',
+        '~not-front-tourism' => '~not-front-tourism',
       ),
     ),
   );
@@ -173,15 +175,24 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-7',
         ),
+        'serignan_blocks-header_decorator' => array(
+          'module' => 'serignan_blocks',
+          'delta' => 'header_decorator',
+          'region' => 'header_first',
+          'weight' => '-10',
+        ),
       ),
     ),
+    'debug' => array(
+      'debug' => 1,
+    ),
   );
-  $context->condition_mode = 0;
+  $context->condition_mode = 1;
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Layout');
-  t('Toutes les pages sauf l\'accueil');
+  t('Toutes les pages sauf l\'accueil et les pages tourisme');
   $export['not-front'] = $context;
 
   return $export;
