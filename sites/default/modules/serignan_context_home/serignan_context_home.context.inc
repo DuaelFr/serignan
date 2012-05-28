@@ -26,9 +26,9 @@ function serignan_context_home_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-nodequeue_1-block' => array(
+        'views-slideshow-block' => array(
           'module' => 'views',
-          'delta' => 'nodequeue_1-block',
+          'delta' => 'slideshow-block',
           'region' => 'header_first',
           'weight' => '-10',
         ),
