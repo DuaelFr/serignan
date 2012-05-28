@@ -38,9 +38,9 @@ function serignan_context_tourism_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-nodequeue_2-block' => array(
+        'views-slideshow_tourism-block' => array(
           'module' => 'views',
-          'delta' => 'nodequeue_2-block',
+          'delta' => 'slideshow_tourism-block',
           'region' => 'header_first',
           'weight' => '-10',
         ),
