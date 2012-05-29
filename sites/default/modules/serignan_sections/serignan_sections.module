@@ -14,3 +14,33 @@ function serignan_sections_form_taxonomy_form_term_alter(&$form, &$form_state, $
     $form['description']['#access'] = FALSE;
   }
 }
+
+/**
+ * Initialize main terms.
+ */
+function _serignan_sections_init() {
+  if (!variable_get('serignan_sections_init', FALSE)) {
+    module_load_include('module', 'taxonomy');
+    $vocabulary = taxonomy_vocabulary_machine_name_load('section');
+
+    $terms = array(
+      'Vivre à Sérignan',
+      'Mairie - Services',
+      'Sortir - Découvrir',
+      'Actualité - Agenda',
+    );
+
+    foreach ($terms as $i => $term_name) {
+      $term = new stdClass();
+      $term->name = $term_name;
+      $term->description = '';
+      $term->vid = $vocabulary->vid;
+      $term->vocabulary_machine_name = $vocabulary->machine_name;
+      $term->weight = $i;
+
+      taxonomy_term_save($term);
+    }
+    
+    variable_set('serignan_sections_init', TRUE);
+  }
+}
