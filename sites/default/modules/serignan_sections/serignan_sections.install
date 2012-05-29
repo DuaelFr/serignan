@@ -15,12 +15,14 @@ function serignan_sections_enable() {
     
     $base = new stdClass();
     $base->vid = $voc->vid;
+    $base->vocabulary_machine_name = 'section';
+    $base->bundle = 'section';
     
     $terms = array(
       'Vivre à Sérignan',
       'Mairie - Services',
-    	'Sortir - Découvrir',
-    	'Actualité - Agenda',
+      'Sortir - Découvrir',
+      'Actualité - Agenda',
     );
     
     foreach ($terms as $i => $term_name) {
