@@ -6,6 +6,7 @@ version = 7.x-1.0-alpha1
 project = serignan_config_seo
 dependencies[] = entity
 dependencies[] = entity_token
+dependencies[] = features
 dependencies[] = metatag
 dependencies[] = path
 dependencies[] = pathauto

@@ -6,6 +6,7 @@ php = 5.2.4
 version = 7.x-1.0-alpha7
 project = serignan_context_home
 dependencies[] = context
+dependencies[] = ctools
 dependencies[] = fe_block
 dependencies[] = fe_nodequeue
 dependencies[] = image

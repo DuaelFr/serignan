@@ -5,6 +5,7 @@ package = Serignan
 version = 7.x-1.0-alpha1
 project = serignan_config_breadcrumbs
 dependencies[] = crumbs
+dependencies[] = features
 dependencies[] = serignan_commons
 dependencies[] = serignan_events
 dependencies[] = serignan_news
