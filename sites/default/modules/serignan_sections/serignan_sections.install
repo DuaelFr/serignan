@@ -5,26 +5,30 @@
  */
 
 /**
- * Implements hook_install().
+ * Implements hook_enable().
  * 
  * Initialize main terms.
  */
-function serignan_sections_install() {
-  $voc = taxonomy_vocabulary_machine_name_load('sections');
-  
-  $base = new stdClass();
-  $base->vid = $voc->vid;
-  
-  $terms = array(
-    'Vivre à Sérignan',
-    'Mairie - Services',
-  	'Sortir - Découvrir',
-  	'Actualité - Agenda',
-  );
-  
-  foreach ($terms as $i => $term_name) {
-    $base->name = $term_name;
-    $base->weight = $i;
-    taxonomy_term_save($base);
+function serignan_sections_enable() {
+  if (!variable_get('serignan_sections_init', FALSE)) {
+    $voc = taxonomy_vocabulary_machine_name_load('sections');
+    
+    $base = new stdClass();
+    $base->vid = $voc->vid;
+    
+    $terms = array(
+      'Vivre à Sérignan',
+      'Mairie - Services',
+    	'Sortir - Découvrir',
+    	'Actualité - Agenda',
+    );
+    
+    foreach ($terms as $i => $term_name) {
+      $base->name = $term_name;
+      $base->weight = $i;
+      taxonomy_term_save($base);
+    }
+    
+    variable_set('serignan_sections_init', TRUE);
   }
 }
