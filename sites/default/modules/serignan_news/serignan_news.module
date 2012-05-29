@@ -5,3 +5,12 @@
  */
 
 include_once 'serignan_news.features.inc';
+
+/**
+ * Implements hook_serignan_commons_get_parent().
+ */
+function serignan_news_serignan_commons_get_parent($node) {
+  if ($node->type == 'news') {
+    return array('actualites' => 'Actualités');
+  }
+}

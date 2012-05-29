@@ -37,6 +37,21 @@ function serignan_commons_ds_fields_info($entity_type) {
   return array('node' => $fields);
 }
 
+/**
+ * Implements hook_node_insert($node).
+ */
+function serignan_commons_node_insert($node) {
+  _serignan_commons_node_save($node);
+}
+
+/**
+ * Implements hook_node_update($node).
+ */
+function serignan_commons_node_update($node) {
+  _serignan_commons_node_save($node);
+}
+
+
 // -----------------------------------------------------------------------------
 // CALLBACKS
 
@@ -53,5 +68,50 @@ function _serignan_commons_front() {
 function _serignan_commons_ds_field_type($field) {
   if (!empty($field['entity'])) {
     return node_type_get_name($field['entity']);
+  }
+}
+
+/**
+ * Node save callback
+ */
+function _serignan_commons_node_save($node) {
+  $modules = module_implements('serignan_commons_get_parent');
+  $result = FALSE;
+  while (empty($result) && ($module = current($modules))) {
+    $result = module_invoke($module, 'serignan_commons_get_parent', $node);
+    next($modules);
+  }
+  
+  if (!empty($result)) {
+    // Create or update parent
+    $parent_path = drupal_get_normal_path(key($result));
+    $parent_title = current($result);
+    $parent = menu_link_get_preferred($parent_path, 'navigation');
+    if (empty($parent) || $parent['link_path'] != $parent_path) {
+      $parent = array(
+        'link_path' => $parent_path,
+        'menu_name' => 'navigation',
+      );
+    }
+    $parent['link_title'] = $parent_title;
+    menu_link_save($parent);
+    $plid = $parent['mlid'];
+    
+    // Create or update link
+    $node_path = 'node/' . $node->nid;
+    $node_title = $node->title;
+    $menu_link = menu_link_get_preferred($node_path, 'navigation');
+    if (empty($menu_link) || $menu_link['link_path'] != $node_path) {
+      $menu_link = array(
+        'link_path' => $node_path,
+        'menu_name' => 'navigation',
+      );
+    }
+    $menu_link['link_title'] = $node_title;
+    $menu_link['plid'] =  $plid;
+    menu_link_save($menu_link);
+
+    // Clear cache
+    menu_cache_clear_all();
   }
 }
