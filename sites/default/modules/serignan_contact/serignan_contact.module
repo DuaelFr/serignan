@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Contact feature.
+ */
+
+include_once 'serignan_contact.features.inc';
