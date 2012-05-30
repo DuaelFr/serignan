@@ -19,6 +19,7 @@ dependencies[] = print_pdf
 dependencies[] = search
 dependencies[] = serignan_blocks
 dependencies[] = serignan_config_languages
+dependencies[] = serignan_contact
 dependencies[] = serignan_events
 dependencies[] = serignan_galleries
 dependencies[] = serignan_news
