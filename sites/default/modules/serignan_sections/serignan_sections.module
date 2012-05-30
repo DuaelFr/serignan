@@ -38,7 +38,7 @@ function _serignan_sections_init() {
       $term->vocabulary_machine_name = $vocabulary->machine_name;
       $term->weight = $i;
 
-      taxonomy_term_save($term);
+//      taxonomy_term_save($term);
     }
     
     variable_set('serignan_sections_init', TRUE);
