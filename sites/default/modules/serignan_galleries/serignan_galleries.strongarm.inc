@@ -110,6 +110,13 @@ function serignan_galleries_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'scheduler_publish_revision_gallery';
+  $strongarm->value = 0;
+  $export['scheduler_publish_revision_gallery'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'scheduler_publish_touch_gallery';
   $strongarm->value = 0;
   $export['scheduler_publish_touch_gallery'] = $strongarm;

@@ -62,7 +62,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_url']['field_api_classes'] = 0;
-  /* Champ: Contenu : Image */
+  /* Champ: Champ : Image */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
@@ -182,7 +182,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_url']['field_api_classes'] = 0;
-  /* Champ: Contenu : Image */
+  /* Champ: Champ : Image */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
@@ -316,7 +316,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_url']['field_api_classes'] = 0;
-  /* Champ: Contenu : Image */
+  /* Champ: Champ : Image */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
@@ -453,7 +453,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_url']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_url']['field_api_classes'] = 0;
-  /* Champ: Contenu : Image */
+  /* Champ: Champ : Image */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
