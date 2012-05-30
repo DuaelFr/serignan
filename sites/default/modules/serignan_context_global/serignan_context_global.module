@@ -86,9 +86,9 @@ function _serignan_context_global_init() {
     );
     menu_link_save($item);
     
-    $node = current(entity_get_id_by_uuid('node', array('4045c45f-1b50-4d8e-91d7-e25f4a2cc359')));
+    $nid = current(entity_get_id_by_uuid('node', array('4045c45f-1b50-4d8e-91d7-e25f4a2cc359')));
     $item = array(
-      'link_path' => 'node/' . $node->nid,
+      'link_path' => 'node/' . $nid,
       'link_title' => 'Contact',
       'menu_name' => 'menu-top-menu',
       'weight' => 1,
