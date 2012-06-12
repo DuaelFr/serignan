@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * @file
+ * Definition of views_plugin_exposed_form.
+ */
+
+/**
+ * @defgroup views_exposed_form_plugins Views exposed form plugins
+ * @{
+ * Plugins that handle the validation/submission and rendering of exposed forms.
+ *
+ * If needed, it is possible to use them to add additional form elements.
+ *
+ * @see hook_views_plugins()
+ */
+
+/**
  * The base plugin to handle exposed filter forms.
  */
 class views_plugin_exposed_form extends views_plugin {
@@ -28,8 +43,8 @@ class views_plugin_exposed_form extends views_plugin {
     $options['exposed_sorts_label'] = array('default' => 'Sort by', 'translatable' => TRUE);
     $options['sort_asc_label'] = array('default' => 'Asc', 'translatable' => TRUE);
     $options['sort_desc_label'] = array('default' => 'Desc', 'translatable' => TRUE);
-    $options['autosubmit'] = array('default' => FALSE);
-    $options['autosubmit_hide'] = array('default' => TRUE);
+    $options['autosubmit'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['autosubmit_hide'] = array('default' => TRUE, 'bool' => TRUE);
     return $options;
   }
 
@@ -300,3 +315,7 @@ class views_plugin_exposed_form extends views_plugin {
     $form_state['values'] = array();
   }
 }
+
+/**
+ * @}
+ */

@@ -1,8 +1,15 @@
 <?php
+
+/**
+ * @file
+ * Definition of views_handler_field_history_user_timestamp.
+ */
+
 /**
  * Field handler to display the marker for new content.
  *
- * The handler is named history_user, because of compability reasons, the table is history.
+ * The handler is named history_user, because of compability reasons, the table
+ * is history.
  *
  * @ingroup views_field_handlers
  */
@@ -22,7 +29,7 @@ class views_handler_field_history_user_timestamp extends views_handler_field_nod
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['comments'] = array('default' => FALSE);
+    $options['comments'] = array('default' => FALSE, 'bool' => TRUE);
 
     return $options;
   }

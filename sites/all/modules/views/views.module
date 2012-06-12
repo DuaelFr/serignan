@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Primarily Drupal hooks and global API functions to manipulate views.
@@ -173,7 +174,7 @@ function views_theme($existing, $type, $theme, $path) {
  * @param $path
  *   The path to search.
  *
- * @see drupal_find_theme_templates
+ * @see drupal_find_theme_templates()
  */
 function _views_find_module_templates($cache, $path) {
   $templates = array();
@@ -281,7 +282,7 @@ function views_preprocess_comment(&$vars) {
   }
 }
 
-/*
+/**
  * Implement hook_permission().
  */
 function views_permission() {
@@ -453,13 +454,21 @@ function views_arg_load($value, $name, $display_id, $index) {
 }
 
 /**
- * Page callback entry point; requires a view and a display id, then
- * passes control to the display handler.
+ * Page callback: Displays a page view, given a name and display id.
+ *
+ * @param $name
+ *   The name of a view.
+ * @param $display_id
+ *   The display id of a view.
+ *
+ * @return
+ *   Either the HTML of a fully-executed view, or MENU_NOT_FOUND.
  */
-function views_page() {
+function views_page($name, $display_id) {
   $args = func_get_args();
-  $name = array_shift($args);
-  $display_id = array_shift($args);
+  // Remove $name and $display_id from the arguments.
+  array_shift($args);
+  array_shift($args);
 
   // Load the view and render it.
   if ($view = views_get_view($name)) {
@@ -467,7 +476,7 @@ function views_page() {
   }
 
   // Fallback; if we get here no view was found or handler was not valid.
-  return drupal_not_found();
+  return MENU_NOT_FOUND;
 }
 
 /**
@@ -807,7 +816,7 @@ function views_add_contextual_links(&$render_element, $location, $view, $display
  * @param $all
  *   Boolean to return all languages or only enabled ones
  *
- * @see locale_language_list
+ * @see locale_language_list()
  */
 function views_language_list($field = 'name', $all = FALSE) {
   if ($all) {
@@ -1681,12 +1690,15 @@ function views_view_has_form_elements($view) {
  */
 function views_form($form, &$form_state, $view, $output) {
   $form_state['step'] = isset($form_state['step']) ? $form_state['step'] : 'views_form_views_form';
+  // Cache the built form to prevent it from being rebuilt prior to validation
+  // and submission, which could lead to data being processed incorrectly,
+  // because the views rows (and thus, the form elements as well) have changed
+  // in the meantime.
+  $form_state['cache'] = TRUE;
 
   $form = array();
   $query = drupal_get_query_parameters($_GET, array('q'));
   $form['#action'] = url($view->get_url(), array('query' => $query));
-  $form['#validate'] = array('views_form_validate');
-  $form['#submit'] = array('views_form_submit');
   // Tell the preprocessor whether it should hide the header, footer, pager...
   $form['show_view_elements'] = array(
     '#type' => 'value',
@@ -1695,32 +1707,6 @@ function views_form($form, &$form_state, $view, $output) {
 
   $form = $form_state['step']($form, $form_state, $view, $output);
   return $form;
-}
-
-/**
- * The basic form validate handler.
- * Fires the hook_views_form_validate() function.
- */
-function views_form_validate($form, &$form_state) {
-  // Fire the hook. Doesn't use module_invoke_all() because $form_state needs
-  // to be passed by reference.
-  foreach (module_implements('views_form_validate') as $module) {
-    $function = $module . '_views_form_validate';
-    $function($form, $form_state);
-  }
-}
-
-/**
- * The basic form submit handler.
- * Fires the hook_views_form_submit() function.
- */
-function views_form_submit($form, &$form_state) {
-  // Fire the hook. Doesn't use module_invoke_all() because $form_state needs
-  // to be passed by reference.
-  foreach (module_implements('views_form_submit') as $module) {
-    $function = $module . '_views_form_submit';
-    $function($form, $form_state);
-  }
 }
 
 /**
@@ -1922,7 +1908,7 @@ function views_exposed_form($form, &$form_state) {
     '#id' => drupal_html_id('edit-submit-' . $view->name),
   );
 
-  $form['#action'] = url($view->get_url());
+  $form['#action'] = url($view->display_handler->get_url());
   $form['#theme'] = views_theme_functions('views_exposed_form', $view, $display);
   $form['#id'] = drupal_clean_css_identifier('views_exposed_form-' . check_plain($view->name) . '-' . check_plain($display->id));
 //  $form['#attributes']['class'] = array('views-exposed-form');
@@ -2129,23 +2115,22 @@ function views_embed_view($name, $display_id = 'default') {
 }
 
 /**
-* Get the result of a view.
-*
-* @param string $name
-*      The name of the view to retrieve the data from.
-* @param string $display_id
-*      The display id. On the edit page for the view in question, you'll find
-*      a list of displays at the left side of the control area. "Master"
-*      will be at the top of that list. Hover your cursor over the name of the
-*      display you want to use. An URL will appear in the status bar of your
-*      browser. This is usually at the bottom of the window, in the chrome.
-*      Everything after #views-tab- is the display ID, e.g. page_1.
+ * Get the result of a view.
+ *
+ * @param string $name
+ *   The name of the view to retrieve the data from.
+ * @param string $display_id
+ *   The display id. On the edit page for the view in question, you'll find
+ *   a list of displays at the left side of the control area. "Master"
+ *   will be at the top of that list. Hover your cursor over the name of the
+ *   display you want to use. An URL will appear in the status bar of your
+ *   browser. This is usually at the bottom of the window, in the chrome.
+ *   Everything after #views-tab- is the display ID, e.g. page_1.
  * @param ...
  *   Any additional parameters will be passed as arguments.
-* @return
-*      array
-*          An array containing an object for each view item.
-*/
+ * @return array
+ *   An array containing an object for each view item.
+ */
 function views_get_view_result($name, $display_id = NULL) {
   $args = func_get_args();
   array_shift($args); // remove $name
@@ -2228,7 +2213,7 @@ function views_var_export($var, $prefix = '', $init = TRUE) {
  * @return
  *   The cleaned identifier.
  *
- * @see drupal_clean_css_identifier
+ * @see drupal_clean_css_identifier()
  */
 function views_clean_css_identifier($identifier, $filter = array(' ' => '-', '/' => '-', '[' => '-', ']' => '')) {
   // By default, we filter using Drupal's coding standards.
@@ -2445,10 +2430,6 @@ if (!function_exists('taxonomy_views_api')) {
 
 if (!function_exists('translation_views_api')) {
   function translation_views_api() { return views_views_api(); }
-}
-
-if (!function_exists('upload_views_api')) {
-  function upload_views_api() { return views_views_api(); }
 }
 
 if (!function_exists('user_views_api')) {
