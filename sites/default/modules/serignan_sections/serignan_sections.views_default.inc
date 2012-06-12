@@ -10,7 +10,7 @@
 function serignan_sections_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'sections';
   $view->description = '';
   $view->tag = 'default';
@@ -22,12 +22,12 @@ function serignan_sections_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
@@ -35,7 +35,6 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '2';
-  $handler->display->display_options['style_options']['fill_single_line'] = 1;
   $handler->display->display_options['row_plugin'] = 'ds';
   $handler->display->display_options['row_options']['view_mode'] = 'list';
   $handler->display->display_options['row_options']['alternating'] = 0;
@@ -57,23 +56,15 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_sections_node']['id'] = 'reverse_field_sections_node';
   $handler->display->display_options['relationships']['reverse_field_sections_node']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['relationships']['reverse_field_sections_node']['field'] = 'reverse_field_sections_node';
-  $handler->display->display_options['relationships']['reverse_field_sections_node']['required'] = 1;
+  $handler->display->display_options['relationships']['reverse_field_sections_node']['required'] = TRUE;
   /* Champ: Terme de taxonomie : Nom */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['label'] = '';
-  $handler->display->display_options['fields']['name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['name']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = 1;
+  $handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
   /* Critère de tri: Terme de taxonomie : Poids */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_term_data';
@@ -83,25 +74,18 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['parent']['table'] = 'taxonomy_term_hierarchy';
   $handler->display->display_options['arguments']['parent']['field'] = 'parent';
   $handler->display->display_options['arguments']['parent']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['parent']['title_enable'] = 1;
+  $handler->display->display_options['arguments']['parent']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['parent']['title'] = '%1';
   $handler->display->display_options['arguments']['parent']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['parent']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['parent']['default_argument_options']['node'] = 0;
-  $handler->display->display_options['arguments']['parent']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['parent']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['parent']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['parent']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['parent']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['parent']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['parent']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['parent']['validate']['type'] = 'taxonomy_term';
   $handler->display->display_options['arguments']['parent']['validate_options']['vocabularies'] = array(
     'section' => 'section',
   );
-  $handler->display->display_options['arguments']['parent']['validate_options']['transform'] = 0;
   $handler->display->display_options['arguments']['parent']['validate']['fail'] = 'empty';
-  $handler->display->display_options['arguments']['parent']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['parent']['not'] = 0;
   /* Critère de filtrage: Vocabulaire de taxonomie : Nom système */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -128,7 +112,7 @@ function serignan_sections_views_default_views() {
   );
   $export['sections'] = $view;
 
-  $view = new view;
+  $view = new view();
   $view->name = 'sections_content';
   $view->description = '';
   $view->tag = 'default';
@@ -140,11 +124,11 @@ function serignan_sections_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
@@ -152,32 +136,26 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'list';
-  $handler->display->display_options['row_options']['links'] = 0;
-  $handler->display->display_options['row_options']['comments'] = 0;
+  $handler->display->display_options['row_options']['links'] = FALSE;
   /* Relation: Contenu : Rubrique (field_sections) */
   $handler->display->display_options['relationships']['field_sections_tid']['id'] = 'field_sections_tid';
   $handler->display->display_options['relationships']['field_sections_tid']['table'] = 'field_data_field_sections';
   $handler->display->display_options['relationships']['field_sections_tid']['field'] = 'field_sections_tid';
-  $handler->display->display_options['relationships']['field_sections_tid']['required'] = 1;
+  $handler->display->display_options['relationships']['field_sections_tid']['required'] = TRUE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Critère de tri: Contenu : Titre */
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
@@ -189,21 +167,14 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['tid']['relationship'] = 'field_sections_tid';
   $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['term_page'] = 1;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['node'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_options']['limit'] = 0;
-  $handler->display->display_options['arguments']['tid']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['specify_validation'] = 1;
+  $handler->display->display_options['arguments']['tid']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
   $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
     'section' => 'section',
   );
-  $handler->display->display_options['arguments']['tid']['validate_options']['transform'] = 0;
-  $handler->display->display_options['arguments']['tid']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['tid']['not'] = 0;
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -225,6 +196,10 @@ function serignan_sections_views_default_views() {
     t('Éléments par page'),
     t('- Tout -'),
     t('Décalage'),
+    t('« premier'),
+    t('‹ précédent'),
+    t('suivant ›'),
+    t('dernier »'),
     t('terme à partir de field_sections'),
     t('Tout'),
     t('List (Block)'),

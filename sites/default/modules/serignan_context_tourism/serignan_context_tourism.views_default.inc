@@ -10,7 +10,7 @@
 function serignan_context_tourism_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'slideshow_tourism';
   $view->description = 'Affiche une liste de tous les nœuds dans la file \'Slideshow\'';
   $view->tag = 'file de nœuds';
@@ -22,23 +22,22 @@ function serignan_context_tourism_views_default_views() {
 
   /* Display: Paramètres par défaut */
   $handler = $view->new_display('default', 'Paramètres par défaut', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['links'] = 1;
   /* Relation: Nodequeue : File */
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
   $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
-  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = TRUE;
   $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
   $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
     'slideshow_tourism' => 'slideshow_tourism',
@@ -50,107 +49,36 @@ function serignan_context_tourism_views_default_views() {
   $handler->display->display_options['fields']['counter']['field'] = 'counter';
   $handler->display->display_options['fields']['counter']['label'] = '';
   $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['counter']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['counter']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['counter']['alter']['html'] = 0;
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['counter']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['counter']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['counter']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['counter']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   /* Champ: Champ : Image */
   $handler->display->display_options['fields']['field_picture']['id'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['table'] = 'field_data_field_picture';
   $handler->display->display_options['fields']['field_picture']['field'] = 'field_picture';
   $handler->display->display_options['fields']['field_picture']['label'] = '';
-  $handler->display->display_options['fields']['field_picture']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_picture']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_picture']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_picture']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_picture']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_picture']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_picture']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_picture']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
     'image_style' => '',
     'image_link' => '',
   );
-  $handler->display->display_options['fields']['field_picture']['field_api_classes'] = 0;
   /* Champ: Contenu : Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
-  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['type']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['type']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
-  $handler->display->display_options['fields']['type']['machine_name'] = 0;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Champ: Contenu : Lien */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
-  $handler->display->display_options['fields']['view_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['view_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['view_node']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['view_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['view_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['view_node']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['view_node']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['view_node']['text'] = 'Lire la suite';
   /* Critère de tri: Nodequeue : Position */
   $handler->display->display_options['sorts']['position']['id'] = 'position';
@@ -205,8 +133,7 @@ function serignan_context_tourism_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'slideshow';
-  $handler->display->display_options['row_options']['links'] = 0;
-  $handler->display->display_options['row_options']['comments'] = 0;
+  $handler->display->display_options['row_options']['links'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['slideshow_tourism'] = array(
     t('Paramètres par défaut'),
