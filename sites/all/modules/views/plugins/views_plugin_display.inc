@@ -552,7 +552,8 @@ class views_plugin_display extends views_plugin {
       ),
       'use_more_always' => array(
         'default' => FALSE,
-        'bool' => FALSE,
+        'bool' => TRUE,
+        'export' => 'export_option_always',
       ),
       'use_more_text' => array(
         'default' => 'more',
