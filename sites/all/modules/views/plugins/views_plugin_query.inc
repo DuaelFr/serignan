@@ -1,7 +1,16 @@
 <?php
+
 /**
- * @file views_plugin_query.inc
+ * @file
  * Defines the base query class, which is the underlying layer in a View.
+ */
+
+/**
+ * @defgroup views_query_plugins Views query plugins
+ * @{
+ * A Views query plugin builds SQL to execute using the Drupal database API.
+ *
+ * @see hook_views_plugins()
  */
 
 /**
@@ -10,6 +19,8 @@
 class views_plugin_query extends views_plugin {
   /**
    * A pager plugin that should be provided by the display.
+   *
+   * @var views_plugin_pager
    */
   var $pager = NULL;
 
@@ -167,3 +178,7 @@ class views_plugin_query extends views_plugin {
     return FALSE;
   }
 }
+
+/**
+ * @}
+ */

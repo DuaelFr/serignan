@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Definition of views_handler_field_url.
+ */
+
+/**
  * Field handler to provide simple renderer that turns a URL into a clickable link.
  *
  * @ingroup views_field_handlers
@@ -9,7 +14,7 @@ class views_handler_field_url extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['display_as_link'] = array('default' => TRUE);
+    $options['display_as_link'] = array('default' => TRUE, 'bool' => TRUE);
 
     return $options;
   }

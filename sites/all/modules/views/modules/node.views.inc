@@ -1,18 +1,14 @@
 <?php
+
 /**
  * @file
- * Provide views data and handlers for node.module
- */
-
-/**
- * @defgroup views_node_module node.module handlers
+ * Provide views data and handlers for node.module.
  *
- * Includes the tables 'node', 'node_revision' and 'history'.
- * @{
+ * @ingroup views_module_handlers
  */
 
 /**
- * Implements hook_views_data()
+ * Implements hook_views_data().
  */
 function node_views_data() {
   // ----------------------------------------------------------------
@@ -221,7 +217,7 @@ function node_views_data() {
       'handler' => 'views_handler_field_boolean',
       'click sortable' => TRUE,
       'output formats' => array(
-        'sticky' => array(t('Sticky'), ''),
+        'sticky' => array(t('Sticky'), t('Not sticky')),
       ),
     ),
     'filter' => array(
@@ -426,6 +422,7 @@ function node_views_data() {
   // Define the base group of this table. Fields that don't
   // have a group defined will go into this field by default.
   $data['node_revisions']['moved to'] = 'node_revision';
+  $data['node_revision']['table']['entity type'] = 'node';
   $data['node_revision']['table']['group']  = t('Content revision');
   // Support the conversion of the field body
   $data['node_revisions']['body']['moved to'] = array('field_revision_data', 'body-revision_id');
@@ -540,6 +537,14 @@ function node_views_data() {
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_date',
+    ),
+  );
+
+  $data['node_revision']['link_to_revision'] = array(
+    'field' => array(
+      'title' => t('Link'),
+      'help' => t('Provide a simple link to the revision.'),
+      'handler' => 'views_handler_field_node_revision_link',
     ),
   );
 
@@ -665,7 +670,7 @@ function node_views_plugins() {
 }
 
 /**
- * Implements hook_preprocess_node
+ * Implements hook_preprocess_node().
  */
 function node_row_node_view_preprocess_node(&$vars) {
   $node = $vars['node'];
@@ -747,7 +752,3 @@ function node_views_analyze($view) {
 
   return $ret;
 }
-
-/**
- * @}
- */

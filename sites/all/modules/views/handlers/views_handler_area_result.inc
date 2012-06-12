@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Contains views_handler_area_result handler.
+ * Definition of views_handler_area_result.
  */
 
 /**
  * Views area handler to display some configurable result summary.
  *
- * @ingroup views_area_handlers Views' area handlers
+ * @ingroup views_area_handlers
  */
 class views_handler_area_result extends views_handler_area {
 
@@ -61,7 +61,9 @@ class views_handler_area_result extends views_handler_area {
     $current_page = (int) $this->view->get_current_page() + 1;
     $per_page = (int) $this->view->get_items_per_page();
     $count = count($this->view->result);
-    $total = $this->view->total_rows;
+    // @TODO: Maybe use a possible is views empty functionality.
+    // Not every view has total_rows set, use view->result instead.
+    $total = isset($this->view->total_rows) ? $this->view->total_rows : count($this->view->result);
     $name = check_plain($this->view->human_name);
     if ($per_page === 0) {
       $page_count = 1;
@@ -90,4 +92,3 @@ class views_handler_area_result extends views_handler_area {
     return $output;
   }
 }
-

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * @file views_ui.module
+ * @file
  * Provide structure for the administrative interface to Views.
  */
 
@@ -9,15 +10,6 @@
  */
 function views_ui_menu() {
   $items = array();
-
-  //module_load_include('inc', 'views_ui', 'includes/admin');
-
-  // Drupal core loads the module file when uninstall a module. So views.module is not loaded.
-  // There is a core bug filled, remove it once the bug is fixed.
-  // @see http://drupal.org/node/1029606
-  if (!module_exists('views')) {
-    return;
-  }
 
   // Minor code reduction technique.
   $base = array(
@@ -837,19 +829,6 @@ function views_ui_library_alter(&$libraries, $module) {
       $libraries['ui.dialog']['js'][drupal_get_path('module', 'views') . '/js/jquery.ui.dialog.patch.js'] = array();
     }
   }
-}
-
-/**
- * Handle bad updates from alpha versions to beta versions.
- *
- * This function will ONLY be called if there is an old menu entry for
- * this hanging around. This will force a menu rebuild and a cache clear
- * which should resolve the problem.
- */
-function views_ui_list_views() {
-  drupal_flush_all_caches();
-  menu_rebuild();
-  drupal_goto($_GET['q']);
 }
 
 /**
