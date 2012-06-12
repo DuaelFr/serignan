@@ -35,6 +35,12 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'node';
+  /* Relation: Contenu : Catégorie (field_gallery_category) */
+  $handler->display->display_options['relationships']['field_gallery_category_tid']['id'] = 'field_gallery_category_tid';
+  $handler->display->display_options['relationships']['field_gallery_category_tid']['table'] = 'field_data_field_gallery_category';
+  $handler->display->display_options['relationships']['field_gallery_category_tid']['field'] = 'field_gallery_category_tid';
+  $handler->display->display_options['relationships']['field_gallery_category_tid']['label'] = 'category';
+  $handler->display->display_options['relationships']['field_gallery_category_tid']['required'] = 1;
   /* Champ: Contenu : URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
@@ -251,22 +257,20 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'gallery' => 'gallery',
   );
-  /* Critère de filtrage: Contenu : Catégorie (field_gallery_category) */
-  $handler->display->display_options['filters']['field_gallery_category_tid']['id'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['table'] = 'field_data_field_gallery_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['field'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['value'] = array(
-    29 => '29',
-  );
-  $handler->display->display_options['filters']['field_gallery_category_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_gallery_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['vocabulary'] = 'galleries_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['hierarchy'] = 1;
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Critère de filtrage: Terme de taxonomie : Terme de taxonomie UUID */
+  $handler->display->display_options['filters']['uuid']['id'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['uuid']['field'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['relationship'] = 'field_gallery_category_tid';
+  $handler->display->display_options['filters']['uuid']['value'] = 'cacf4f6e-1d03-4de2-9d3b-94bfa364a6ef';
+  $handler->display->display_options['filters']['uuid']['group'] = 1;
   /* Critère de filtrage: Contenu : Promu en page d'accueil */
   $handler->display->display_options['filters']['promote']['id'] = 'promote';
   $handler->display->display_options['filters']['promote']['table'] = 'node';
   $handler->display->display_options['filters']['promote']['field'] = 'promote';
   $handler->display->display_options['filters']['promote']['value'] = '1';
+  $handler->display->display_options['filters']['promote']['group'] = 1;
   /* Critère de filtrage: Traduction du contenu : Langue */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
@@ -275,6 +279,7 @@ function serignan_galleries_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
     'und' => 'und',
   );
+  $handler->display->display_options['filters']['language']['group'] = 1;
 
   /* Display: Home Photos (Block) */
   $handler = $view->new_display('block', 'Home Photos (Block)', 'block_home_photos');
@@ -386,18 +391,13 @@ function serignan_galleries_views_default_views() {
     'gallery' => 'gallery',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Catégorie (field_gallery_category) */
-  $handler->display->display_options['filters']['field_gallery_category_tid']['id'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['table'] = 'field_data_field_gallery_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['field'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['value'] = array(
-    28 => '28',
-  );
-  $handler->display->display_options['filters']['field_gallery_category_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_gallery_category_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_gallery_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['vocabulary'] = 'galleries_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['hierarchy'] = 1;
+  /* Critère de filtrage: Terme de taxonomie : Terme de taxonomie UUID */
+  $handler->display->display_options['filters']['uuid']['id'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['uuid']['field'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['relationship'] = 'field_gallery_category_tid';
+  $handler->display->display_options['filters']['uuid']['value'] = 'ea0dd39f-05b4-410b-8c4c-87fd15840374';
+  $handler->display->display_options['filters']['uuid']['group'] = 1;
   /* Critère de filtrage: Contenu : Promu en page d'accueil */
   $handler->display->display_options['filters']['promote']['id'] = 'promote';
   $handler->display->display_options['filters']['promote']['table'] = 'node';
@@ -412,6 +412,7 @@ function serignan_galleries_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
     'und' => 'und',
   );
+  $handler->display->display_options['filters']['language']['group'] = 1;
 
   /* Display: Home Visits (Block) */
   $handler = $view->new_display('block', 'Home Visits (Block)', 'block_home_visits');
@@ -523,18 +524,13 @@ function serignan_galleries_views_default_views() {
     'gallery' => 'gallery',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Critère de filtrage: Contenu : Catégorie (field_gallery_category) */
-  $handler->display->display_options['filters']['field_gallery_category_tid']['id'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['table'] = 'field_data_field_gallery_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['field'] = 'field_gallery_category_tid';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['value'] = array(
-    31 => '31',
-  );
-  $handler->display->display_options['filters']['field_gallery_category_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_gallery_category_tid']['reduce_duplicates'] = 0;
-  $handler->display->display_options['filters']['field_gallery_category_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['vocabulary'] = 'galleries_category';
-  $handler->display->display_options['filters']['field_gallery_category_tid']['hierarchy'] = 1;
+  /* Critère de filtrage: Terme de taxonomie : Terme de taxonomie UUID */
+  $handler->display->display_options['filters']['uuid']['id'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['filters']['uuid']['field'] = 'uuid';
+  $handler->display->display_options['filters']['uuid']['relationship'] = 'field_gallery_category_tid';
+  $handler->display->display_options['filters']['uuid']['value'] = 'a894b3b5-4e37-4ee2-8ac0-b31faac22b2b';
+  $handler->display->display_options['filters']['uuid']['group'] = 1;
   /* Critère de filtrage: Contenu : Promu en page d'accueil */
   $handler->display->display_options['filters']['promote']['id'] = 'promote';
   $handler->display->display_options['filters']['promote']['table'] = 'node';
@@ -549,6 +545,7 @@ function serignan_galleries_views_default_views() {
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
     'und' => 'und',
   );
+  $handler->display->display_options['filters']['language']['group'] = 1;
   $translatables['galleries'] = array(
     t('Master'),
     t('plus'),
@@ -557,6 +554,7 @@ function serignan_galleries_views_default_views() {
     t('Trier par'),
     t('Asc'),
     t('Desc'),
+    t('category'),
     t('[field_url]'),
     t('+ de vidéos'),
     t('Home Videos (Block)'),
