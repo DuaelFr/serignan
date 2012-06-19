@@ -26,18 +26,24 @@ margin-bottom:0;
 
 /*ZONE HEADER*/
 #region-branding{
+background:url("../images/bandeau_logo.png") no-repeat;
+width:230px;
+height:103px;
+z-index: 20;
+margin:0;
+}
+.region-branding-inner{
 background:url("../images/logo_serignan.png") no-repeat;
 width:220px;
 height:110px;
 }
-#zone-header{
-background:url("../images/bandeau_menu.png") no-repeat;
-}
 #region-menu{
+background: url("../images/bandeau_menu.png") no-repeat;
+width: 730px;
+height: 103px;
 z-index: 20;
-position: relative;
+margin:0;
 }
-
 /* BLOCK : LANGUAGE SWITCHER */
 
 .block-locale-language { float: right; }
@@ -105,7 +111,7 @@ margin-top: -10px;
 .megamenu-skin-serignan .megamenu-parent-2 .megamenu-parent-title:hover { background: transparent url("../images/menu_hover_sortir.png") no-repeat top left; padding:15px 0 0 0; width:123px;}
 .megamenu-skin-serignan .megamenu-parent-3 .megamenu-parent-title:hover { background: transparent url("../images/menu_hover_actus.png") no-repeat top left; padding:15px 0 0 0; width:123px;}
 
-.megamenu-skin-serignan .megamenu-bin { background: #fff; border: 5px solid #7f7f7f; left: -250px !important; padding: 20px 50px; width: 850px !important; }
+.megamenu-skin-serignan .megamenu-bin { background: #fff; border: 5px solid #7f7f7f; left: -235px !important; padding: 20px 55px; width: 850px !important; }
 .megamenu-skin-serignan .megamenu-parent-0 .megamenu-bin { border-color: #99cc33; }
 .megamenu-skin-serignan .megamenu-parent-1 .megamenu-bin { border-color: #003366; }
 .megamenu-skin-serignan .megamenu-parent-2 .megamenu-bin { border-color: #3399cc; }
@@ -130,7 +136,6 @@ text-decoration:underline;
 .block-slideshow-block{
 margin-top: -110px;
 margin-left: -38px;
-z-index: -10;
 position: relative;
 }
 .block-slideshow-tourism-block .views-slideshow-controls-text-previous a,
@@ -176,7 +181,7 @@ position: relative;
 float: right;
 margin-top: -160px;
 color: white;
-z-index: 100;
+z-index: 10;
 position: relative;
 clear: right;
 margin-right: 66px;
@@ -328,6 +333,10 @@ text-decoration:underline;
 background: url("../images/img1.jpg") no-repeat;
 width:1019px;
 height:324px;
+margin-left: -40px;
+margin-top: -110px;
+z-index: -100;
+position: relative;
 }
 
 
@@ -337,7 +346,7 @@ background: url("../images/bandeau_recherche.png") no-repeat;
 height: 68px;
 width: 960px;
 margin: 0;
-z-index: 200;
+z-index: 10;
 position: relative;
 margin-top: -45px;
 }
@@ -369,7 +378,66 @@ float:left;
 div#block-print-print-links span{
 display: inline;
 }
+.print_html{
+text-indent:-9999px;
+}
+.print_html a{
+background: url("../images/icon_imp.png") no-repeat;
+width:25px;
+height:25px;
+}
+/*BREADCRUMB*/
+.breadcrumb {
+padding-bottom: 0.5em;
+float: left;
+margin-top: -40px;
+z-index: 10;
+position: relative;
+font-size:11px;
+color:#666;
+background: url("../images/icon_breadcrumb.png") no-repeat left;
+padding-left:22px;
+height: 12px;
+}
+.breadcrumb a:link,
+.breadcrumb a:visited,
+.breadcrumb a:hover{
+color:#666;
+}
 
+/*CKEDITOR*/
+#block-system-main address{
+color:#666;
+font-size:15px;
+}
+#block-system-main h2{
+color:#003366;
+font-size:18px;
+text-transform:uppercase;
+font-weight:bold;
+}
+#block-system-main h3{
+color:#99cc33;
+font-size:18px;
+font-weight:bold;
+}
+#block-system-main h4{
+color:#333;
+font-size:14px;
+font-weight:bold;
+}
+a:link{
+color:#3399cc;
+text-decoration;underline;
+}
+a:hover{
+color:#003366;
+text-decoration;underline;
+}
+a:visited{
+color:#99cc33;
+text-decoration;underline;
+}
 
 /*CONTENT*/
 #zone-preface, #zone-content, #zone-postscript{
@@ -385,6 +453,8 @@ font-style: normal;
 color: #666;
 font-size: 30px;
 text-transform:uppercase;
+margin-bottom: 20px;
+margin-top: 20px;
 }
 .context-actualites h1.title,
 .context-agenda h1.title,
@@ -429,7 +499,7 @@ padding:0;
 .view-display-id-page_subterms .group_content{
 background: url("../images/bg_liste_rubrique_content.jpg") no-repeat #fff;
 padding: 0 10px;
-width:300px;
+width:280px;
 }
 .view-display-id-page_subterms .field-name-title{
 line-height:28px;
@@ -541,7 +611,8 @@ padding-left: 10px;
 }
 .view-id-news.view-display-id-page_list .field-name-body p,
 .view-id-events.view-display-id-page_list .field-name-body p,
-.block-views-sections-content-block-list .field-name-body p{
+.block-views-sections-content-block-list .field-name-body p,
+.block-views-sections-content-block-list .field-name-body address{
 margin:0;
 padding-left: 10px;
 line-height:14px;
@@ -610,6 +681,68 @@ clear:left;
 .node-type-event .node-event .field-name-body{
 background: url("../images/bg_body.jpg") no-repeat #fff;
 padding:15px;
+}
+/*Contenu Fiche type*/
+.node-type-sheet .field-name-field-geoloc{
+float:left;
+}
+.node-type-sheet .group-infos{
+background-color:#888;
+color:#fff;
+height: 170px;
+padding: 20px;
+margin-bottom: 10px;
+width:235px;
+font-size: 13px;
+line-height: 16px;
+}
+.node-type-sheet.context-sortir-decouvrir .group-infos{
+background-color:#3399cc;
+}
+.node-type-sheet.context-vivre-serignan .group-infos{
+background-color:#99cc33;
+}
+.node-type-sheet.context-mairie-services .group-infos{
+background-color:#003366;
+}
+.node-type-sheet .field-name-field-add-infos{
+margin-bottom:10px;
+}
+.node-type-sheet .group-content{
+background: url("../images/bg_body.jpg") no-repeat #fff;
+padding:15px;
+}
+.node-type-sheet .group-content .field-name-field-slideshow{
+float:left;
+margin-right:10px;
+margin-bottom: 25px;
+}
+.node-type-sheet .group-content .field-name-body{
+}
+.node-type-sheet .group-content .field-slideshow-pager{
+margin-top: -25px;
+z-index: 5;
+position: relative;
+}
+.node-type-sheet .group-content .field-slideshow-pager a{
+background-color:#3399cc;
+color:#FFF;
+font-weight:bold;
+float:left;
+padding:0 6px 0 6px;
+margin-left:5px;
+cursor:pointer;
+text-decoration:none;
+}
+.node-type-sheet .group-content .field-slideshow-pager a.activeSlide{
+background-color:#FFF;
+color:#3399cc;
+text-decoration:none;
+}
+/*Contenu Page standard*/
+.node-type-page .field-name-field-picture{
+float:left;
+margin:0 10px 0 0;
 }
 /*Bloc actualites + agenda + zoom home*/
 .block-zoom-block-home,
@@ -830,6 +963,9 @@ background:url("../images/home-col3.png") no-repeat;
 }
 
 /*SIDEBAR*/
+#region-sidebar-second{
+margin-top:20px;
+}
 /*bloc actu + agenda + zoom*/
 .block-zoom-block-sidebar h2.block-title,
 .block-events-block-sidebar h2.block-title,
@@ -1187,6 +1323,16 @@ margin-bottom: 5px;
 line-height: 13px;
 font-size: 11px;
 margin-top: 10px;
+}
+.block-simplenews-0 .form-item-mail{
+margin:0;
+}
+.block-simplenews-0 .form-text.required{
+float:left;
+}
+.block-simplenews-0 .form-item-action{
+float:left;
+margin-right:10px;
 }
 /* Bloc follow us*/
 .block-serignan-blocks-follow-us{
