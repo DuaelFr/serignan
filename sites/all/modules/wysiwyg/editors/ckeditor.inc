@@ -188,6 +188,14 @@ function wysiwyg_ckeditor_settings($editor, $config, $theme) {
     }
   }
 
+  // Get additional styles, supported in ckeditor versions 3.2.1 and above.
+  if (!empty($config['css_classes'])) {
+    $styles = wysiwyg_ckeditor_get_styles_set($config['css_classes']);
+    if (!empty($styles)) {
+      $settings['stylesSet'] = $styles;
+    }
+  }
+
   if (isset($config['language'])) {
     $settings['language'] = $config['language'];
   }
@@ -343,4 +351,53 @@ function wysiwyg_ckeditor_plugins($editor) {
   }
   return $plugins;
 }
+
+/**
+ * Converts the CSS classes string to an array of js settings.
+ *
+ * The CSS classes are edited in element CSS Classes, fieldset CSS
+ * of page admin/config/content/wysiwyg/profile/{filter}/edit.
+ *
+ * Note: only checking for correct format of each line. No error
+ * logging/hinting, as that should be done on the settings form.
+ *
+ * @param string $css_classes
+ *   A list of classes to add to the style drop down.
+ * @return array
+ */
+function wysiwyg_ckeditor_get_styles_set($css_classes) {
+  $css_styles = array();
+  $lines = explode("\n", $css_classes);
+  foreach ($lines as $line) {
+    // This removes also Windows line endings.
+    $line = trim($line);
+    if (!empty($line)) {
+      // [name]=[element].[class] pattern expected.
+      $line_parts = explode('=', $line, 2);
+      if (count($line_parts) === 2) {
+        $selector_parts = explode('.', $line_parts[1], 2);
+        if (count($selector_parts) === 2) {
+          $style['name'] = trim($line_parts[0]);
+          $style['element'] = trim($selector_parts[0]);
+          $style['attributes']['class'] = trim($selector_parts[1]);
+          if (!empty($style['name']) && !empty($style['element']) && !empty($style['attributes']['class'])) {
+            $css_styles[] = $style;
+          }
+        }
+      }
+    }
+  }
+  return $css_styles;
+}
+
+/**
+ *  load the stylesheet parser to parse the user defined stylesheets
+ */
+function ckeditor_styles_wysiwyg_editor_settings_alter(&$settings, &$context) {
+  if ($context['profile']->editor == 'ckeditor') {
+    $settings['extraPlugins'] .= ',stylesheetparser';
+    $settings['stylesSet'] = array();
+  }
+}
+
 
