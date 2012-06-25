@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the php code argument default plugin.
@@ -7,8 +6,6 @@
 
 /**
  * Default argument plugin to provide a PHP code block.
- *
- * @ingroup views_argument_default_plugins
  */
 class views_plugin_argument_default_php extends views_plugin_argument_default {
   function option_definition() {

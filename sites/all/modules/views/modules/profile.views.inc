@@ -1,14 +1,17 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for user.module.
- *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for user.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_profile_module profile.module handlers
+ *
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function profile_views_data() {
   $data['profile_values']['moved to'] = 'profile_value';
@@ -79,7 +82,7 @@ function profile_views_get_fields() {
         }
         else {
           // serialized fields or modified version
-          $row->options = unserialize($row->options);
+          $row->options = unserialize(db_decode_blob($row->options));
         }
       }
       $fields[$row->fid] = $row;
@@ -215,3 +218,7 @@ function profile_views_fetch_field($field) {
   // @todo: add access control to hidden fields.
   return $data;
 }
+
+/**
+ * @}
+ */

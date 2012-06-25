@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_argument_users_roles_rid.
- */
-
 /**
  * Allow role ID(s) as argument.
  *

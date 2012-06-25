@@ -1,13 +1,6 @@
 <?php
 
-/**
- * @file
- * Definition of ViewsModuleTest.
- */
 
-/**
- * Tests basic functions from the Views module.
- */
 class ViewsModuleTest extends ViewsSqlTest {
   public static function getInfo() {
     return array(
@@ -103,7 +96,7 @@ class ViewsModuleTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the views_get_handler method.
+   * Test the views_get_handler method.
    */
   function testviews_get_handler() {
     $types = array('field', 'area', 'filter');

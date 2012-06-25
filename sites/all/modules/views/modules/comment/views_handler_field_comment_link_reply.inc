@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_comment_link_reply.
- */
-
-/**
  * Field handler to present a link to delete a node.
  *
  * @ingroup views_field_handlers

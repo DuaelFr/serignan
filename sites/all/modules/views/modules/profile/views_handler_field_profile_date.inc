@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_profile_date.
- */
-
 /**
  * Field handler display a profile date
  *

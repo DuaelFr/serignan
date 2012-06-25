@@ -1,13 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of ViewsArgumentValidatorTest.
- */
-
-/**
- * Tests Views argument validators.
- */
 class ViewsArgumentValidatorTest extends ViewsSqlTest {
   public static function getInfo() {
     return array(

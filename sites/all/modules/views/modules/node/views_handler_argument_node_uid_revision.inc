@@ -1,9 +1,5 @@
 <?php
-
-/**
- * @file
- * Defintion of views_handler_argument_node_uid_revision.
- */
+// $Id$
 
 /**
  * Filter handler to accept a user id to check for nodes that

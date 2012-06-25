@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_filter_locale_version.
- */
-
-/**
  * Filter by version.
  *
  * @ingroup views_filter_handlers

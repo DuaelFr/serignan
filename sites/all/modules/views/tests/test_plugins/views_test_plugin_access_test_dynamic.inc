@@ -1,17 +1,9 @@
 <?php
 
-/**
- * @file
- * Definition of views_test_plugin_access_test_dynamic.
- */
-
-/**
- * Tests a dynamic access plugin.
- */
 class views_test_plugin_access_test_dynamic extends views_plugin_access {
   function option_definition() {
     $options = parent::option_definition();
-    $options['access'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['access'] = array('default' => FALSE);
 
     return $options;
   }

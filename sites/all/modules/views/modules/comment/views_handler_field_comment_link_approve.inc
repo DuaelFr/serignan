@@ -1,11 +1,6 @@
 <?php
-
 /**
  * @file
- * Definition of views_handler_field_comment_link_approve.
- */
-
-/**
  * Provides a comment approve link.
  *
  * @ingroup views_field_handlers

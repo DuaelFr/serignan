@@ -1,13 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of ViewsUiCommentViewsWizard.
- */
-
-/**
- * Tests creating comment views with the wizard.
- */
 class ViewsUiCommentViewsWizard extends ViewsUiBaseViewsWizard {
 
   protected function row_style_options($type) {

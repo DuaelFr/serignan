@@ -2,13 +2,17 @@
 
 /**
  * @file
- * Provide Views data and handlers for field.module.
- *
- * @ingroup views_module_handlers
+ * Provide Views data and handlers for field.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_field_module field.module handlers
+ *
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  *
  * Field modules can implement hook_field_views_data() to override
  * the default behavior for adding fields.
@@ -37,7 +41,7 @@ function field_views_data() {
 }
 
 /**
- * Implements hook_views_data_alter().
+ * Implements hook_views_data_alter()
  *
  * Field modules can implement hook_field_views_data_views_data_alter() to
  * alter the views data on a per field basis. This is weirdly named so as
@@ -338,7 +342,7 @@ function field_views_field_default_views_data($field) {
         'handler' => $argument,
         'additional fields' => $additional_fields,
         'field_name' => $field['field_name'],
-        'empty field name' => t('- No value -'),
+        'empty field name' => t('<No value>'),
       );
       $data[$table][$column_real_name]['filter'] = array(
         'field' => $column_real_name,
@@ -377,7 +381,7 @@ function field_views_field_default_views_data($field) {
           'table' => $table,
           'handler' => 'views_handler_argument_numeric',
           'additional fields' => $additional_fields,
-          'empty field name' => t('- No value -'),
+          'empty field name' => t('<No value>'),
           'field_name' => $field['field_name'],
         );
         $data[$table]['delta']['filter'] = array(
@@ -408,19 +412,18 @@ function field_views_field_default_views_data($field) {
 function list_field_views_data($field) {
   $data = field_views_field_default_views_data($field);
   foreach ($data as $table_name => $table_data) {
-    foreach ($table_data as $field_name => $field_data) {
-      if (isset($field_data['filter']) && $field_name != 'delta') {
-        $data[$table_name][$field_name]['filter']['handler'] = 'views_handler_filter_field_list';
+    foreach ($table_data as $field => $field_data) {
+      if (isset($field_data['filter']) && $field != 'delta') {
+        $data[$table_name][$field]['filter']['handler'] = 'views_handler_filter_field_list';
       }
-      if (isset($field_data['argument']) && $field_name != 'delta') {
-        if ($field['type'] == 'list_text') {
-          $data[$table_name][$field_name]['argument']['handler'] = 'views_handler_argument_field_list_string';
-        }
-        else {
-          $data[$table_name][$field_name]['argument']['handler'] = 'views_handler_argument_field_list';
-        }
+      if (isset($field_data['argument']) && $field != 'delta') {
+        $data[$table_name][$field]['argument']['handler'] = 'views_handler_argument_field_list';
       }
     }
   }
   return $data;
 }
+
+/**
+ * @}
+ */

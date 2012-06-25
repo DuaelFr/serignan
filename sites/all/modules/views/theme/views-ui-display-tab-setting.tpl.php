@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file
+ * @file views-ui-display-tab-setting.tpl.php
  * Template for each row inside the "boxes" on the display query edit screen.
  */
 ?>

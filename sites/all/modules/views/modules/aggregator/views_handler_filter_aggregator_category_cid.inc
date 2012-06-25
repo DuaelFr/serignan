@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_filter_aggregator_category_cid.
- */
-
 /**
  * Filter by aggregator category cid
  *

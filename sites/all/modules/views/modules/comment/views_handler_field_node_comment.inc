@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_node_comment.
- */
-
-/**
  * Display node comment status.
  *
  * @ingroup views_field_handlers

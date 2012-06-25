@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the table style plugin.
@@ -14,11 +13,11 @@ class views_plugin_style_jump_menu extends views_plugin_style {
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['hide'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['hide'] = array('default' => FALSE);
     $options['path'] = array('default' => '');
     $options['text'] = array('default' => 'Go', 'translatable' => TRUE);
     $options['choose'] = array('default' => '- Choose -', 'translatable' => TRUE);
-    $options['default_value'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['default_value'] = array('default' => FALSE);
 
     return $options;
   }

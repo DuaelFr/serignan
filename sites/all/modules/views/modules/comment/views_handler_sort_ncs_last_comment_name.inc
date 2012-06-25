@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_sort_ncs_last_comment_name.
- */
-
 /**
  * Sort handler to sort by last comment name which might be in 2 different
  * fields.

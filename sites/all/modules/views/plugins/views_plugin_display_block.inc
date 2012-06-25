@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the block display plugin.
@@ -31,10 +30,10 @@ class views_plugin_display_block extends views_plugin_display {
 
     if (empty($desc)) {
       if ($this->display->display_title == $this->definition['title']) {
-        $desc = t('View: !view', array('!view' => $this->view->get_human_name()));
+        $desc = t('View: @view', array('@view' => $this->view->get_human_name()));
       }
       else {
-        $desc = t('View: !view: !display', array('!view' => $this->view->get_human_name(), '!display' => $this->display->display_title));
+        $desc = t('View: @view: @display', array('@view' => $this->view->get_human_name(), '@display' => $this->display->display_title));
       }
     }
     return array(
@@ -86,6 +85,11 @@ class views_plugin_display_block extends views_plugin_display {
       'value' => views_ui_truncate($block_description, 24),
     );
 
+    $cache_type = $this->get_option('block_caching');
+    if (empty($cache_type)) {
+      $cache_type = DRUPAL_NO_CACHE;
+    }
+
     $types = $this->block_caching_modes();
     $options['block_caching'] = array(
       'category' => 'other',
@@ -125,6 +129,7 @@ class views_plugin_display_block extends views_plugin_display {
    * Provide the default form for setting options.
    */
   function options_form(&$form, &$form_state) {
+    parent::options_form($form, $form_state);
     // It is very important to call the parent function here:
     parent::options_form($form, $form_state);
 
@@ -147,14 +152,6 @@ class views_plugin_display_block extends views_plugin_display {
           '#default_value' => $this->get_cache_type(),
         );
         break;
-      case 'exposed_form_options':
-        $this->view->init_handlers();
-        if (!$this->uses_exposed() && parent::uses_exposed()) {
-          $form['exposed_form_options']['warning'] = array(
-            '#weight' => -10,
-            '#markup' => '<div class="messages warning">' . t('Exposed filters in block displays require "Use AJAX" to be set to work correctly.') . '</div>',
-          );
-        }
     }
   }
 
@@ -182,12 +179,13 @@ class views_plugin_display_block extends views_plugin_display {
   /**
    * Block views use exposed widgets only if AJAX is set.
    */
-    function uses_exposed() {
-      if ($this->use_ajax()) {
-        return parent::uses_exposed();
-      }
-      return FALSE;
+  function uses_exposed() {
+    if ($this->use_ajax()) {
+      return parent::uses_exposed();
     }
+
+    return FALSE;
+  }
 
   /**
    * Update the block delta when you change the machine readable name of the display.

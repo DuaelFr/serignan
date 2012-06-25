@@ -1,14 +1,7 @@
 <?php
 
 /**
- * @file
- * Definition of views_plugin_exposed_form_input_required.
- */
-
-/**
- * Exposed form plugin that provides an exposed form with required input.
- *
- * @ingroup views_exposed_form_plugins
+ * Exposed form plugin that provides basic exposed form
  */
 class views_plugin_exposed_form_input_required extends views_plugin_exposed_form {
 

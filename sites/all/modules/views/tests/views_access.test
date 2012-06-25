@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of ViewsAccessTest.
- */
-
-/**
  * Basic test for pluggable access.
  */
 class ViewsAccessTest extends ViewsSqlTest {
@@ -53,7 +48,7 @@ class ViewsAccessTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests none access plugin.
+   * Test none access plugin.
    */
   function testAccessNone() {
     $view = $this->view_access_none();
@@ -66,7 +61,7 @@ class ViewsAccessTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests perm access plugin.
+   * Test perm access plugin.
    */
   function testAccessPerm() {
     $view = $this->view_access_perm();
@@ -80,7 +75,7 @@ class ViewsAccessTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests role access plugin.
+   * Test role access plugin.
    */
   function testAccessRole() {
     $view = $this->view_access_role();
@@ -98,7 +93,7 @@ class ViewsAccessTest extends ViewsSqlTest {
    */
 
   /**
-   * Tests static access check.
+   * Test static access check.
    */
   function testStaticAccessPlugin() {
     $view = $this->view_access_static();
@@ -125,7 +120,7 @@ class ViewsAccessTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests dynamic access plugin.
+   * Test dynamic access plugin.
    */
   function testDynamicAccessPlugin() {
     $view = $this->view_access_dynamic();

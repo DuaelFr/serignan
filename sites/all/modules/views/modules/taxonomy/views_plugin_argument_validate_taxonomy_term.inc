@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the 'taxonomy term' argument validator plugin.
@@ -27,7 +26,7 @@ class views_plugin_argument_validate_taxonomy_term extends views_plugin_argument
     $options = parent::option_definition();
     $options['vocabularies'] = array('default' => array());
     $options['type'] = array('default' => 'tid');
-    $options['transform'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['transform'] = array('default' => FALSE);
 
     return $options;
   }

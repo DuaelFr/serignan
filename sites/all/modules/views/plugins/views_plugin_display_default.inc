@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the default display plugin.
@@ -29,7 +28,6 @@ class views_plugin_display_default extends views_plugin_display {
    * @code
    *   $view->set_arguments($args);
    *   $view->build('default'); // Build the query
-   *   $view->pre_execute(); // Pre-execute the query.
    *   $view->execute(); // Run the query
    *   $output = $view->render(); // Render the view
    * @endcode

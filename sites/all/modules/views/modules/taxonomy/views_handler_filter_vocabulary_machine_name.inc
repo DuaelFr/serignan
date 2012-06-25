@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_filter_vocabulary_machine_name.
- */
-
-/**
  * Filter by vocabulary machine name.
  *
  * @ingroup views_filter_handlers

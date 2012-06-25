@@ -1,12 +1,6 @@
 <?php
-
 /**
- * @file
- * Definition of views_handler_filter_ncs_last_updated.
- */
-
-/**
- * Filter handler for the newer of last comment / node updated.
+ * Filter handler for the newer of last comment / node updated
  *
  * @ingroup views_filter_handlers
  */

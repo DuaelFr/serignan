@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_filter_node_language.
- */
-
 /**
  * Filter by language.
  *

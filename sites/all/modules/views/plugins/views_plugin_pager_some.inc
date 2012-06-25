@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_plugin_pager_some.
- */
-
-/**
  * Plugin for views without pagers.
  *
  * @ingroup views_pager_plugins

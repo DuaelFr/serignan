@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_comment_link.
- */
-
 /**
  * Base field handler to present a link.
  *
@@ -18,7 +12,7 @@ class views_handler_field_comment_link extends views_handler_field_entity {
   function option_definition() {
     $options = parent::option_definition();
     $options['text'] = array('default' => '', 'translatable' => TRUE);
-    $options['link_to_node'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['link_to_node'] = array('default' => FALSE);
     return $options;
   }
 

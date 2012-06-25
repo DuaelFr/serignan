@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_argument_null.
- */
-
 /**
  * Argument handler that ignores the argument.
  *
@@ -13,7 +7,7 @@
 class views_handler_argument_null extends views_handler_argument {
   function option_definition() {
     $options = parent::option_definition();
-    $options['must_not_be'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['must_not_be'] = array('default' => FALSE);
     return $options;
   }
 

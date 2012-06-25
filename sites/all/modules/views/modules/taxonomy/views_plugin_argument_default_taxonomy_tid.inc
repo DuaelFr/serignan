@@ -1,13 +1,9 @@
 <?php
-
 /**
  * @file
- * Definition of views_plugin_argument_default_taxonomy_tid.
+ *   Taxonomy tid default argument.
  */
 
-/**
- * Taxonomy tid default argument.
- */
 class views_plugin_argument_default_taxonomy_tid extends views_plugin_argument_default {
   function init(&$view, &$argument, $options) {
     parent::init($view, $argument, $options);
@@ -26,10 +22,10 @@ class views_plugin_argument_default_taxonomy_tid extends views_plugin_argument_d
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['term_page'] = array('default' => TRUE, 'bool' => TRUE);
-    $options['node'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['term_page'] = array('default' => TRUE);
+    $options['node'] = array('default' => FALSE);
     $options['anyall'] = array('default' => ',');
-    $options['limit'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['limit'] = array('default' => FALSE);
     $options['vocabularies'] = array('default' => array());
 
     return $options;

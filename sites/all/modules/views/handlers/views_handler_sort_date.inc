@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_sort_date.
- */
-
-/**
  * Basic sort handler for dates.
  *
  * This handler enables granularity, which is the ability to make dates

@@ -1,8 +1,7 @@
 <?php
-
 /**
  * @file
- * Definition of views_handler_argument_numeric.
+ * Contains the numeric argument handler.
  */
 
 /**
@@ -27,8 +26,8 @@ class views_handler_argument_numeric extends views_handler_argument {
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['break_phrase'] = array('default' => FALSE, 'bool' => TRUE);
-    $options['not'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['break_phrase'] = array('default' => FALSE);
+    $options['not'] = array('default' => FALSE);
 
     return $options;
   }

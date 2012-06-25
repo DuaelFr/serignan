@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the page display plugin.
@@ -218,10 +217,6 @@ class views_plugin_display_page extends views_plugin_display {
       return drupal_not_found();
     }
 
-    if (!empty($this->view->build_info['denied'])) {
-      return drupal_access_denied();
-    }
-
     $this->view->get_breadcrumb(TRUE);
 
 
@@ -376,6 +371,7 @@ class views_plugin_display_page extends views_plugin_display {
           );
         }
         $form['menu']['weight'] = array(
+          '#suffix' => '</div>',
           '#title' => t('Weight'),
           '#type' => 'textfield',
           '#default_value' => isset($menu['weight']) ? $menu['weight'] : 0,
@@ -384,7 +380,6 @@ class views_plugin_display_page extends views_plugin_display {
         );
         $form['menu']['context'] = array(
           '#title' => t('Context'),
-          '#suffix' => '</div>',
           '#type' => 'checkbox',
           '#default_value' => !empty($menu['context']),
           '#description' => t('Displays the link in contextual links'),

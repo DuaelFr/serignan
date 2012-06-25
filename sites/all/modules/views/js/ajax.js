@@ -1,5 +1,6 @@
 /**
- * @file
+ * @file ajax_admin.js
+ *
  * Handles AJAX submission and response in Views UI.
  */
 (function ($) {

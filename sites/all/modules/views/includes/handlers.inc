@@ -1,7 +1,6 @@
 <?php
-
 /**
- * @file
+ * @file handlers.inc
  * Defines the various handler objects to help build and display views.
  */
 
@@ -58,7 +57,6 @@ function _views_create_handler($definition, $type = 'handler', $handler_type = N
   else {
     $handler->is_plugin = TRUE;
     $handler->plugin_type = $type;
-    $handler->plugin_name = $definition['name'];
   }
 
   // let the handler have something like a constructor.
@@ -315,17 +313,11 @@ class views_handler extends views_object {
    *   The value being rendered.
    * @param $type
    *   The type of sanitization needed. If not provided, check_plain() is used.
-   *
-   * @return string
-   *   Returns the safe value.
    */
   function sanitize_value($value, $type = NULL) {
     switch ($type) {
       case 'xss':
         $value = filter_xss($value);
-        break;
-      case 'xss_admin':
-        $value = filter_xss_admin($value);
         break;
       case 'url':
         $value = check_url($value);
@@ -564,11 +556,11 @@ class views_handler extends views_object {
     }
   }
 
-  /**
-   * Check whether current user has access to this handler.
-   *
-   * @return boolean
-   */
+ /**
+  * Check whether current user has access to this handler.
+  *
+  * @return boolean
+  */
   function access() {
     if (isset($this->definition['access callback']) && function_exists($this->definition['access callback'])) {
       if (isset($this->definition['access arguments']) && is_array($this->definition['access arguments'])) {
@@ -744,7 +736,7 @@ class views_many_to_one_helper {
   }
 
   static function option_definition(&$options) {
-    $options['reduce_duplicates'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['reduce_duplicates'] = array('default' => FALSE);
   }
 
   function options_form(&$form, &$form_state) {
@@ -1038,7 +1030,7 @@ class views_many_to_one_helper {
   }
 }
 
-/**
+/*
  * Break x,y,z and x+y+z into an array. Works for strings.
  *
  * @param $str
@@ -1093,8 +1085,7 @@ function views_break_phrase_string($str, &$handler = NULL) {
 
   return $handler;
 }
-
-/**
+/*
  * Break x,y,z and x+y+z into an array. Numeric only.
  *
  * @param $str
@@ -1395,10 +1386,10 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  */
 
 /**
- * @defgroup views_join_handlers Views join handlers
+ * @defgroup views_join_handlers Views' join handlers
  * @{
  * Handlers to tell Views how to join tables together.
- *
+
  * Here is how you do complex joins:
  *
  * @code
@@ -1417,7 +1408,6 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  * }
  * @endcode
  */
-
 /**
  * A function class to represent a join and create the SQL necessary
  * to implement the join.
@@ -1435,9 +1425,9 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  *   - type: either LEFT (default) or INNER
  *   - extra: An array of extra conditions on the join. Each condition is
  *     either a string that's directly added, or an array of items:
- *   - - table: If not set, current table; if NULL, no table. If you specify a
- *       table in cached definition, Views will try to load from an existing
- *       alias. If you use realtime joins, it works better.
+ *   - - table: if not set, current table; if NULL, no table. This field can't
+ *       be set in the cached definition because it can't know aliases; this field
+ *       can only be used by realtime joins.
  *   - - field: Field or formula
  *       in formulas we can reference the right table by using %alias
  *       @see SelectQueryInterface::addJoin()
@@ -1489,14 +1479,14 @@ class views_join {
   /**
    * Build the SQL for the join this object represents.
    *
-   * When possible, try to use table alias instead of table names.
-   *
    * @param $select_query
    *   An implementation of SelectQueryInterface.
    * @param $table
    *   The base table to join.
    * @param $view_query
    *   The source query, implementation of views_plugin_query.
+   * @return
+   *
    */
   function build_join($select_query, $table, $view_query) {
     if (empty($this->definition['table formula'])) {
@@ -1531,14 +1521,7 @@ class views_join {
             $join_table = $table['alias'] . '.';
           }
           elseif (isset($info['table'])) {
-            // If we're aware of a table alias for this table, use the table
-            // alias instead of the table name.
-            if (isset($left) && $left['table'] == $info['table']) {
-              $join_table = $left['alias'] . '.';
-            }
-            else {
-              $join_table = $info['table'] . '.';
-            }
+            $join_table = $info['table'] . '.';
           }
 
           // Convert a single-valued array of values to the single-value case,

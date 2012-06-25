@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_comment_link_edit.
- */
-
 /**
  * Field handler to present a link node edit.
  *
@@ -13,7 +7,7 @@
 class views_handler_field_comment_link_edit extends views_handler_field_comment_link {
   function option_definition() {
     $options = parent::option_definition();
-    $options['destination'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['destination'] = array('default' => FALSE);
 
     return $options;
   }

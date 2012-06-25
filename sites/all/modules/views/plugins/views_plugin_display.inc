@@ -1,12 +1,11 @@
 <?php
-
 /**
  * @file
  * Contains the base display plugin.
  */
 
 /**
- * @defgroup views_display_plugins Views display plugins
+ * @defgroup views_display_plugins Views' display plugins
  * @{
  * Display plugins control how Views interact with the rest of Drupal.
  *
@@ -15,12 +14,14 @@
  * handle creating Views from an external module source, such as
  * a Panels pane, or an insert view, or a CCK field type.
  *
- * @see hook_views_plugins()
+ * @see hook_views_plugins
  */
 
 /**
  * The default display plugin handler. Display plugins handle options and
  * basic mechanisms for different output methods.
+ *
+ * @ingroup views_display_plugins
  */
 class views_plugin_display extends views_plugin {
   /**
@@ -40,23 +41,6 @@ class views_plugin_display extends views_plugin {
   function init(&$view, &$display, $options = NULL) {
     $this->view = &$view;
     $this->display = &$display;
-
-    // Load extenders as soon as possible.
-    $this->extender = array();
-    $extenders = views_get_enabled_display_extenders();
-    // If you update to the dev version the registry might not be loaded yet.
-    if (!empty($extenders) && class_exists('views_plugin_display_extender')) {
-      foreach ($extenders as $extender) {
-        $plugin = views_get_plugin('display_extender', $extender);
-        if ($plugin) {
-          $plugin->init($this->view, $this);
-          $this->extender[$extender] = $plugin;
-        }
-        else {
-          vpr('Invalid display extender @extender', array('@handler' => $extender));
-        }
-      }
-    }
 
     // Track changes that the user should know about.
     $changed = FALSE;
@@ -228,29 +212,29 @@ class views_plugin_display extends views_plugin {
       $changed = TRUE;
     }
 
-    // Filter groups were allowed to be rewritten without its filters, so
-    // before this update the view was using the default values. To be sure that
-    // the existing view isn't broken, don't use this overridden values but copy
-    // them from the default display. Only do this if the filters are overridden
-    // but the filter_groups are not marked as so.
-    if (!$this->is_default_display() && !$this->options['defaults']['filters'] && $this->options['defaults']['filter_groups']) {
-      // Set filter_groups to be overridden and save the value in the
-      // display_options as well.
-      $this->options['defaults']['filter_groups'] = FALSE;
-      $this->display->display_options['defaults']['filter_groups'] = $this->options['defaults']['filter_groups'];
-      // Copy the filter_groups from the default, and add them to the
-      // display_options as well. $this->default_display is not initialized at
-      // this point.
-      $this->options['filter_groups'] = $this->view->display['default']->handler->options['filter_groups'];
-      $this->display->display_options['filter_groups'] = $this->options['filter_groups'];
-
-      $changed = TRUE;
-    }
-
     // Mark the view as changed so the user has a chance to save it.
     if ($changed) {
       $this->view->changed = TRUE;
     }
+  }
+
+  function construct() {
+    // Load extenders as soon as possible
+    $this->extender = array();
+    $extenders = views_get_enabled_display_extenders();
+    // If you update to the dev version the registry might not be loaded yet.
+    if (!empty($extenders) && class_exists('views_plugin_display_extender')) {
+      foreach ($extenders as $extender) {
+        $data = views_fetch_plugin_data('display_extender', $extender);
+        if (isset($data['handler']) && class_exists($data['handler'])) {
+          $this->extender[$extender] = new $data['handler']($this->view, $this);
+        }
+        else {
+          vpr('Invalid display extender @extender', array('@handler' => $extender));
+        }
+      }
+    }
+    parent::construct();
   }
 
   function destroy() {
@@ -437,7 +421,6 @@ class views_plugin_display extends views_plugin {
       'sorts' => array('sorts'),
       'arguments' => array('arguments'),
       'filters' => array('filters', 'filter_groups'),
-      'filter_groups' => array('filters', 'filter_groups'),
     );
 
     // If the display cannot use a pager, then we cannot default it.
@@ -703,7 +686,7 @@ class views_plugin_display extends views_plugin {
     }
 
     foreach ($this->extender as $extender) {
-      $extender->options_definition_alter($options);
+      $extender->option_definition($options);
     }
 
     return $options;
@@ -774,10 +757,6 @@ class views_plugin_display extends views_plugin {
     if ($display_id && !empty($this->view->display[$display_id]) && is_object($this->view->display[$display_id]->handler)) {
       return $this->view->display[$display_id]->handler->get_path();
     }
-  }
-
-  function get_url() {
-    return $this->view->get_url();
   }
 
   /**
@@ -1474,8 +1453,8 @@ class views_plugin_display extends views_plugin {
         );
         $form['use_more_always'] = array(
           '#type' => 'checkbox',
-          '#title' => t("Display 'more' link only if there is more content"),
-          '#description' => t("Leave this unchecked to display the 'more' link even if there are no more items to display."),
+          '#title' => t('Do not display more link unless there is more content'),
+          '#description' => t("This will display the more link even if there are no more items to display."),
           '#default_value' => !$this->get_option('use_more_always'),
             '#dependency' => array(
               'edit-use-more' => array(TRUE),
@@ -2435,13 +2414,6 @@ class views_plugin_display extends views_plugin {
 
   /**
    * Flip the override setting for the given section.
-   *
-   * @param string $section
-   *   Which option should be marked as overridden, for example "filters".
-   * @param bool $new_state
-   *   Select the new state of the option.
-   *     - TRUE: Revert to default.
-   *     - FALSE: Mark it as overridden.
    */
   function set_override($section, $new_state = NULL) {
     $options = $this->defaultable_sections($section);
@@ -2694,15 +2666,6 @@ class views_plugin_display extends views_plugin {
 
   /**
    * Check if the provided identifier is unique.
-   *
-   * @param string $id
-   *   The id of the handler which is checked.
-   * @param string $identifier
-   *   The actual get identifier configured in the exposed settings.
-   *
-   * @return bool
-   *   Returns whether the identifier is unique on all handlers.
-   *
    */
   function is_identifier_unique($id, $identifier) {
     foreach (views_object_types() as $type => $info) {

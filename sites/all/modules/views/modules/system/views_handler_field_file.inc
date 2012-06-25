@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_file.
- */
-
 /**
  * Field handler to provide simple renderer that allows linking to a file.
  *
@@ -23,7 +17,7 @@ class views_handler_field_file extends views_handler_field {
 
   function option_definition() {
     $options = parent::option_definition();
-    $options['link_to_file'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['link_to_file'] = array('default' => FALSE);
     return $options;
   }
 

@@ -1,14 +1,20 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for aggregator.module.
- *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for aggregator.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_aggregator_module aggregator.module handlers
+ *
+ * Includes the core 'aggregator_feed,' 'aggregator_category,' and 'aggregator_item'
+ * tables.
+ *
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function aggregator_views_data() {
   // ----------------------------------------------------------------------
@@ -384,7 +390,7 @@ function aggregator_views_data() {
 }
 
 /**
- * Implements hook_views_plugins().
+ * Implements hook_views_plugins
  */
 function aggregator_views_plugins() {
   return array(
@@ -404,3 +410,6 @@ function aggregator_views_plugins() {
     ),
   );
 }
+/**
+ * @}
+ */

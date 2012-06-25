@@ -1,7 +1,6 @@
 <?php
-
 /**
- * @file
+ * @file admin.inc
  * Provides the Views' administrative interface.
  */
 
@@ -400,11 +399,11 @@ function views_ui_add_form($form, &$form_state) {
 /**
  * Helper form element validator: integer.
  *
+ * @see _element_validate_integer_positive
+ *
  * The problem with this is that the function is private so it's not guaranteed
  * that it might not be renamed/changed. In the future field.module or something else
  * should provide a public validate function.
- *
- * @see _element_validate_integer_positive()
  */
 function views_element_validate_integer($element, &$form_state) {
   $value = $element['#value'];
@@ -967,13 +966,11 @@ function views_ui_build_preview($view, $display_id, $render = TRUE) {
  *
  * @todo Rename to views_ui_edit_view_form(). See that function for the "old"
  *   version.
- *
- * @see views_ui_ajax_get_form()
  */
 function views_ui_edit_form($form, &$form_state, $view, $display_id = NULL) {
   // Do not allow the form to be cached, because $form_state['view'] can become
   // stale between page requests.
-  // See views_ui_ajax_get_form() for how this affects #ajax.
+  // @see views_ui_ajax_get_form() for how this affects #ajax.
   // @todo To remove this and allow the form to be cacheable:
   //   - Change $form_state['view'] to $form_state['temporary']['view'].
   //   - Add a #process function to initialize $form_state['temporary']['view']
@@ -1917,7 +1914,7 @@ function views_ui_pre_render_move_argument_options($form) {
  * While doing that, create a container element underneath each option, which
  * contains the settings related to that option.
  *
- * @see form_process_radios()
+ * @see form_process_radios
  */
 function views_ui_process_container_radios($element) {
   if (count($element['#options']) > 0) {
@@ -1948,7 +1945,7 @@ function views_ui_process_container_radios($element) {
   return $element;
 }
 
-/**
+/*
  * Import a view from cut & paste.
  */
 function views_ui_import_page($form, &$form_state) {
@@ -1961,12 +1958,6 @@ function views_ui_import_page($form, &$form_state) {
   $form['name_override'] = array(
     '#type' => 'checkbox',
     '#title' => t('Replace an existing view if one exists with the same name'),
-  );
-
-  $form['bypass_validation'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Bypass view validation'),
-    '#description' => t('Bypass the validation of plugins and handlers when importing this view.'),
   );
 
   $form['view'] = array(
@@ -2039,42 +2030,38 @@ function views_ui_import_validate($form, &$form_state) {
   $view->init_display();
 
   $broken = FALSE;
+  // Make sure that all plugins and handlers needed by this view actually exist.
+  foreach ($view->display as $id => $display) {
+    if (empty($display->handler) || !empty($display->handler->broken)) {
+      drupal_set_message(t('Display plugin @plugin is not available.', array('@plugin' => $display->display_plugin)), 'error');
+      $broken = TRUE;
+      continue;
+    }
 
-  // Bypass the validation of view pluigns/handlers if option is checked.
-  if (!$form_state['values']['bypass_validation']) {
-    // Make sure that all plugins and handlers needed by this view actually exist.
-    foreach ($view->display as $id => $display) {
-      if (empty($display->handler) || !empty($display->handler->broken)) {
-        drupal_set_message(t('Display plugin @plugin is not available.', array('@plugin' => $display->display_plugin)), 'error');
-        $broken = TRUE;
-        continue;
-      }
-
-      $plugin = views_get_plugin('style', $display->handler->get_option('style_plugin'));
+    $plugin = views_get_plugin('style', $display->handler->get_option('style_plugin'));
+    if (!$plugin) {
+      drupal_set_message(t('Style plugin @plugin is not available.', array('@plugin' => $display->handler->get_option('style_plugin'))), 'error');
+      $broken = TRUE;
+    }
+    elseif ($plugin->uses_row_plugin()) {
+      $plugin = views_get_plugin('row', $display->handler->get_option('row_plugin'));
       if (!$plugin) {
-        drupal_set_message(t('Style plugin @plugin is not available.', array('@plugin' => $display->handler->get_option('style_plugin'))), 'error');
+        drupal_set_message(t('Row plugin @plugin is not available.', array('@plugin' => $display->handler->get_option('row_plugin'))), 'error');
         $broken = TRUE;
       }
-      elseif ($plugin->uses_row_plugin()) {
-        $plugin = views_get_plugin('row', $display->handler->get_option('row_plugin'));
-        if (!$plugin) {
-          drupal_set_message(t('Row plugin @plugin is not available.', array('@plugin' => $display->handler->get_option('row_plugin'))), 'error');
-          $broken = TRUE;
-        }
-      }
+    }
 
-      foreach (views_object_types() as $type => $info) {
-        $handlers = $display->handler->get_handlers($type);
-        if ($handlers) {
-          foreach ($handlers as $id => $handler) {
-            if ($handler->broken()) {
-              drupal_set_message(t('@type handler @table.@field is not available.', array(
-                '@type' => $info['stitle'],
-                '@table' => $handler->table,
-                '@field' => $handler->field,
-              )), 'error');
-              $broken = TRUE;
-            }
+    foreach (views_object_types() as $type => $info) {
+      $handlers = $display->handler->get_handlers($type);
+      if ($handlers) {
+        foreach ($handlers as $id => $handler) {
+          if ($handler->broken()) {
+            drupal_set_message(t('@type handler @table.@field is not available.', array(
+              '@type' => $info['stitle'],
+              '@table' => $handler->table,
+              '@field' => $handler->field,
+            )), 'error');
+            $broken = TRUE;
           }
         }
       }
@@ -2322,18 +2309,14 @@ function views_ui_edit_form_get_bucket($type, $view, $display) {
       continue;
     }
 
-    $field_name = check_plain($handler->ui_name(TRUE));
+    $field_name = $handler->ui_name(TRUE);
     if (!empty($field['relationship']) && !empty($relationships[$field['relationship']])) {
       $field_name = '(' . $relationships[$field['relationship']] . ') ' . $field_name;
     }
 
-    $description = filter_xss_admin($handler->admin_summary());
+    $description = $handler->admin_summary();
     $link_text = $field_name . (empty($description) ? '' : " ($description)");
-    $link_attributes = array('class' => array('views-ajax-link'));
-    if (!empty($field['exclude'])) {
-      $link_attributes['class'][] = 'views-field-excluded';
-    }
-    $build['fields'][$id]['#link'] = l($link_text, "admin/structure/views/nojs/config-item/$view->name/$display->id/$type/$id", array('attributes' => $link_attributes, 'html' => TRUE));
+    $build['fields'][$id]['#link'] = l($link_text, "admin/structure/views/nojs/config-item/$view->name/$display->id/$type/$id", array('attributes' => array('class' => array('views-ajax-link')), 'html' => TRUE));
     $build['fields'][$id]['#class'][] = drupal_clean_css_identifier($display->id . '-' . $type . '-' . $id);
     if (!empty($view->changed_sections[$display->id . '-' . $type . '-' . $id])) {
       // @TODO: #changed is no longer being used?
@@ -2847,7 +2830,7 @@ function views_ui_build_form_url($form_state) {
  * Add another form to the stack; clicking 'apply' will go to this form
  * rather than closing the ajax popup.
  */
-function views_ui_add_form_to_stack($key, &$view, $display_id, $args, $top = FALSE, $rebuild_keys = FALSE) {
+function views_ui_add_form_to_stack($key, &$view, $display_id, $args, $top = FALSE) {
   if (empty($view->stack)) {
     $view->stack = array();
   }
@@ -2877,11 +2860,6 @@ function views_ui_add_form_to_stack($key, &$view, $display_id, $args, $top = FAL
     // Now that the previously $first slot is free, move the new form into it.
     $view->stack[$first] = $stack;
     ksort($view->stack);
-
-    // Start the keys from 0 again, if requested.
-    if ($rebuild_keys) {
-      $view->stack = array_values($view->stack);
-    }
   }
 }
 
@@ -4491,8 +4469,6 @@ function views_ui_config_item_form_expose($form, &$form_state) {
 
   $form_state['view']->set_item($form_state['display_id'], $form_state['type'], $form_state['id'], $item);
 
-  views_ui_add_form_to_stack($form_state['form_key'], $form_state['view'], $form_state['display_id'], array($form_state['type'], $form_state['id']), TRUE, TRUE);
-
   views_ui_cache_set($form_state['view']);
   $form_state['rerender'] = TRUE;
   $form_state['rebuild'] = TRUE;
@@ -5002,14 +4978,7 @@ function _views_sort_types($a, $b) {
 /**
  * Fetch a list of all fields available for a given base type.
  *
- * @param (array|string) $base
- *   A list or a single base_table, for example node.
- * @param string $type
- *   The handler type, for example field or filter.
- * @param bool $grouping
- *   Should the result grouping by its 'group' label.
- *
- * @return array
+ * @return
  *   A keyed array of in the form of 'base_table' => 'Description'.
  */
 function views_fetch_fields($base, $type, $grouping = FALSE) {
@@ -5271,7 +5240,7 @@ function views_ui_default_button($element, &$form_state, $form) {
  *
  * Therefore it builds up a table of each field which is used in any view.
  *
- * @see field_ui_fields_list()
+ * @see field_ui_fields_list
  */
 function views_ui_field_list() {
   $views = views_get_all_views();

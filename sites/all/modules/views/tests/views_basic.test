@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of ViewsBasicTest.
- */
-
-/**
  * Basic test class for Views query builder tests.
  */
 class ViewsBasicTest extends ViewsSqlTest {
@@ -18,13 +13,13 @@ class ViewsBasicTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests a trivial result set.
+   * Test a trivial result set.
    */
   public function testSimpleResultSet() {
     $view = $this->getBasicView();
 
     // Execute the view.
-    $this->executeView($view);
+    $view->execute();
 
     // Verify the result.
     $this->assertEqual(5, count($view->result), t('The number of returned rows match.'));
@@ -35,7 +30,7 @@ class ViewsBasicTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests filtering of the result set.
+   * Test filtering of the result set.
    */
   public function testSimpleFiltering() {
     $view = $this->getBasicView();
@@ -63,7 +58,7 @@ class ViewsBasicTest extends ViewsSqlTest {
     ));
 
     // Execute the view.
-    $this->executeView($view);
+    $view->execute();
 
     // Build the expected result.
     $dataset = array(
@@ -93,7 +88,7 @@ class ViewsBasicTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests simple argument.
+   * Test simple argument.
    */
   public function testSimpleArgument() {
     $view = $this->getBasicView();
@@ -144,7 +139,7 @@ class ViewsBasicTest extends ViewsSqlTest {
 
     // Execute with a view
     $view->set_arguments(array(27));
-    $this->executeView($view);
+    $view->execute();
 
     // Build the expected result.
     $dataset = array(
@@ -164,7 +159,7 @@ class ViewsBasicTest extends ViewsSqlTest {
 
     // Test "show all" if no argument is present.
     $view = $saved_view;
-    $this->executeView($view);
+    $view->execute();
 
     // Build the expected result.
     $dataset = $this->dataSet();

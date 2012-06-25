@@ -2,12 +2,9 @@
 
 /**
  * @file
- * Definition of ViewsExposedFormTest.
+ * Test exposed forms.
  */
 
-/**
- * Tests exposed forms.
- */
 class ViewsExposedFormTest extends ViewsSqlTest {
   public static function getInfo() {
     return array(
@@ -57,7 +54,7 @@ class ViewsExposedFormTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the admin interface of exposed filter and sort items.
+   * Test the admin interface of exposed filter and sort items.
    */
   function testExposedAdminUi() {
     $admin_user = $this->drupalCreateUser(array('administer views', 'administer site configuration'));

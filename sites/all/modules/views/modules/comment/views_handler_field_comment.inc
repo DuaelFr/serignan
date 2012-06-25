@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_comment.
- */
-
 /**
  * Field handler to allow linking to a comment.
  *
@@ -24,8 +18,8 @@ class views_handler_field_comment extends views_handler_field {
 
   function option_definition() {
     $options = parent::option_definition();
-    $options['link_to_comment'] = array('default' => TRUE, 'bool' => TRUE);
-    $options['link_to_node'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['link_to_comment'] = array('default' => TRUE);
+    $options['link_to_node'] = array('default' => FALSE);
 
     return $options;
   }

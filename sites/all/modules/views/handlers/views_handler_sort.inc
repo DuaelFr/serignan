@@ -1,20 +1,12 @@
 <?php
-
 /**
- * @file
- * @todo.
- */
-
-/**
- * @defgroup views_sort_handlers Views sort handlers
+ * @defgroup views_sort_handlers Views' sort handlers
  * @{
- * Handlers to tell Views how to sort queries.
+ * Handlers to tell Views how to sort queries
  */
 
 /**
- * Base sort handler that has no options and performs a simple sort.
- *
- * @ingroup views_sort_handlers
+ * Base sort handler that has no options and performs a simple sort
  */
 class views_handler_sort extends views_handler {
 
@@ -36,7 +28,7 @@ class views_handler_sort extends views_handler {
     $options = parent::option_definition();
 
     $options['order'] = array('default' => 'ASC');
-    $options['exposed'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['exposed'] = array('default' => FALSE);
     $options['expose'] = array(
       'contains' => array(
         'label' => array('default' => '', 'translatable' => TRUE),

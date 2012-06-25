@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_file_extension.
- */
-
-/**
  * Returns a pure file extension of the file, for example 'module'.
  * @ingroup views_field_handlers
  */

@@ -1,21 +1,11 @@
 <?php
 
-/**
- * @file
- * Definition of views_handler_field_contextual_links.
- */
-
-/**
- * Provides a handler that adds contextual links.
- *
- * @ingroup views_field_handlers
- */
 class views_handler_field_contextual_links extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
 
     $options['fields'] = array('default' => array());
-    $options['destination'] = array('default' => TRUE, 'bool' => TRUE);
+    $options['destination'] = array('default' => 1);
 
     return $options;
   }
@@ -32,9 +22,13 @@ class views_handler_field_contextual_links extends views_handler_field {
       '#default_value' => $this->options['fields'],
     );
     $form['destination'] = array(
-      '#type' => 'checkbox',
+      '#type' => 'select',
       '#title' => t('Include destination'),
       '#description' => t('Include a "destination" parameter in the link to return the user to the original view upon completing the contextual action.'),
+      '#options' => array(
+        '0' => t('No'),
+        '1' => t('Yes'),
+      ),
       '#default_value' => $this->options['destination'],
     );
   }
@@ -56,7 +50,7 @@ class views_handler_field_contextual_links extends views_handler_field {
   function render($values) {
     $links = array();
     foreach ($this->options['fields'] as $field) {
-      if (empty($this->view->style_plugin->rendered_fields[$this->view->row_index][$field])) {
+      if (empty($this->view->field[$field]->last_render_text)) {
         continue;
       }
       $title = $this->view->field[$field]->last_render_text;
@@ -65,10 +59,6 @@ class views_handler_field_contextual_links extends views_handler_field {
         $path = $this->view->field[$field]->options['alter']['path'];
       }
       if (!empty($title)) {
-        // Make sure that tokens are replaced for this paths as well.
-        $tokens = $this->get_render_tokens(array());
-        $path = strip_tags(decode_entities(strtr($path, $tokens)));
-
         $links[$field] = array(
           'href' => $path,
           'title' => $title,
@@ -78,24 +68,19 @@ class views_handler_field_contextual_links extends views_handler_field {
         }
       }
     }
+    $build = array(
+      '#prefix' => '<div class="contextual-links-wrapper">',
+      '#suffix' => '</div>',
+      '#theme' => 'links__contextual',
+      '#links' => $links,
+      '#attributes' => array('class' => array('contextual-links')),
+      '#attached' => array(
+        'library' => array(array('contextual', 'contextual-links')),
+      ),
+      '#access' => user_access('access contextual links'),
+    );
 
-    if (!empty($links)) {
-      $build = array(
-        '#prefix' => '<div class="contextual-links-wrapper">',
-        '#suffix' => '</div>',
-        '#theme' => 'links__contextual',
-        '#links' => $links,
-        '#attributes' => array('class' => array('contextual-links')),
-        '#attached' => array(
-          'library' => array(array('contextual', 'contextual-links')),
-        ),
-        '#access' => user_access('access contextual links'),
-      );
-      return drupal_render($build);
-    }
-    else {
-      return '';
-    }
+    return drupal_render($build);
   }
 
   function query() { }

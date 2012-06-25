@@ -1,12 +1,11 @@
 <?php
-
 /**
- * @file
+ * @file view.inc
  * Provides the view object type and associated methods.
  */
 
 /**
- * @defgroup views_objects Objects that represent a View or part of a view
+ * @defgroup views_objects Objects that represent a View or part of a view.
  * @{
  * These objects are the core of Views do the bulk of the direction and
  * storing of data. All database activity is in these objects.
@@ -123,7 +122,7 @@ class view extends views_db_object {
   // Stores the next steps of form items to handle.
   // It's an array of stack items, which contain the form id, the type of form,
   // the view, the display and some additional arguments.
-  // @see views_ui_add_form_to_stack()
+  // @see views_ui_add_form_to_stack().
   // var $stack;
 
   /**
@@ -301,25 +300,14 @@ class view extends views_db_object {
    */
   function set_current_page($page) {
     $this->current_page = $page;
-
-    // If the pager is already initialized, pass it through to the pager.
-    if (!empty($this->query->pager)) {
-      return $this->query->pager->set_current_page($page);
-    }
-
   }
 
   /**
    * Get the current page from the pager.
    */
   function get_current_page() {
-    // If the pager is already initialized, pass it through to the pager.
     if (!empty($this->query->pager)) {
       return $this->query->pager->get_current_page();
-    }
-
-    if (isset($this->current_page)) {
-      return $this->current_page;
     }
   }
 
@@ -327,13 +315,8 @@ class view extends views_db_object {
    * Get the items per page from the pager.
    */
   function get_items_per_page() {
-    // If the pager is already initialized, pass it through to the pager.
     if (!empty($this->query->pager)) {
       return $this->query->pager->get_items_per_page();
-    }
-
-    if (isset($this->items_per_page)) {
-      return $this->items_per_page;
     }
   }
 
@@ -353,13 +336,8 @@ class view extends views_db_object {
    * Get the pager offset from the pager.
    */
   function get_offset() {
-    // If the pager is already initialized, pass it through to the pager.
     if (!empty($this->query->pager)) {
       return $this->query->pager->get_offset();
-    }
-
-    if (isset($this->offset)) {
-      return $this->offset;
     }
   }
 
@@ -1057,10 +1035,6 @@ class view extends views_db_object {
 
   /**
    * Internal method to build an individual set of handlers.
-   *
-   * @param string $key
-   *    The type of handlers (filter etc.) which should be iterated over to
-   *    build the relationship and query information.
    */
   function _build($key) {
     $handlers = &$this->$key;
@@ -1082,13 +1056,6 @@ class view extends views_db_object {
 
   /**
    * Execute the view's query.
-   *
-   * @param string $display_id
-   *   The machine name of the display, which should be executed.
-   *
-   * @return bool
-   *   Return whether the executing was successful, for example an argument
-   *   could stop the process.
    */
   function execute($display_id = NULL) {
     if (empty($this->built)) {
@@ -1145,25 +1112,13 @@ class view extends views_db_object {
   }
 
   /**
-   * Render this view for a certain display.
-   *
-   * Note: You should better use just the preview function if you want to
-   * render a view.
-   *
-   * @param string $display_id
-   *   The machine name of the display, which should be rendered.
-   *
-   * @return (string|NULL)
-   *   Return the output of the rendered view or NULL if something failed in the process.
+   * Render this view for display.
    */
   function render($display_id = NULL) {
     $this->execute($display_id);
 
     // Check to see if the build failed.
     if (!empty($this->build_info['fail'])) {
-      return;
-    }
-    if (!empty($this->view->build_info['denied'])) {
       return;
     }
 
@@ -1217,13 +1172,7 @@ class view extends views_db_object {
         $function($this);
       }
 
-      // Let the themes play too, because pre render is a very themey thing.
-      foreach ($GLOBALS['base_theme_info'] as $base) {
-        $function = $base->name . '_views_pre_render';
-        if (function_exists($function)) {
-          $function($this);
-        }
-      }
+      // Let the theme play too, because pre render is a very themey thing.
       $function = $GLOBALS['theme'] . '_views_pre_render';
       if (function_exists($function)) {
         $function($this);
@@ -1247,13 +1196,7 @@ class view extends views_db_object {
       $function($this, $this->display_handler->output, $cache);
     }
 
-    // Let the themes play too, because post render is a very themey thing.
-    foreach ($GLOBALS['base_theme_info'] as $base) {
-      $function = $base->name . '_views_post_render';
-      if (function_exists($function)) {
-        $function($this);
-      }
-    }
+    // Let the theme play too, because post render is a very themey thing.
     $function = $GLOBALS['theme'] . '_views_post_render';
     if (function_exists($function)) {
       $function($this, $this->display_handler->output, $cache);
@@ -1268,19 +1211,7 @@ class view extends views_db_object {
   }
 
   /**
-   * Render a specific field via the field ID and the row #
-   *
-   * Note: You might want to use views_plugin_style::render_fields as it
-   * caches the output for you.
-   *
-   * @param string $field
-   *   The id of the field to be rendered.
-   *
-   * @param int $row
-   *   The row number in the $view->result which is used for the rendering.
-   *
-   * @return string
-   *   The rendered output of the field.
+   * Render a specific field via the field ID and the row #.
    */
   function render_field($field, $row) {
     if (isset($this->field[$field]) && isset($this->result[$row])) {
@@ -1359,9 +1290,6 @@ class view extends views_db_object {
       $function = $module . '_views_pre_view';
       $function($this, $display_id, $this->args);
     }
-
-    // Allow hook_views_pre_view() to set the dom_id, then ensure it is set.
-    $this->dom_id = !empty($this->dom_id) ? $this->dom_id : md5($this->name . REQUEST_TIME . rand());
 
     // Allow the display handler to set up for execution
     $this->display_handler->pre_execute();
@@ -1643,7 +1571,7 @@ class view extends views_db_object {
           $title = t('Home');
         }
         if ($title) {
-          $breadcrumb[] = l($title, $path, array('html' => TRUE));
+          $breadcrumb[] = l($title, $path, array('html' => true));
         }
       }
 
@@ -1781,30 +1709,21 @@ class view extends views_db_object {
       $this->vid = NULL;
     }
 
-    $transaction = db_transaction();
-
-    try {
-      // If we have no vid or our vid is a string, this is a new view.
-      if (!empty($this->vid)) {
-        // remove existing table entries
-        foreach ($this->db_objects() as $key) {
-          db_delete('views_' . $key)
-            ->condition('vid', $this->vid)
-            ->execute();
-        }
-      }
-
-      $this->save_row(!empty($this->vid) ? 'vid' : FALSE);
-
-      // Save all of our subtables.
+    // If we have no vid or our vid is a string, this is a new view.
+    if (!empty($this->vid)) {
+      // remove existing table entries
       foreach ($this->db_objects() as $key) {
-        $this->_save_rows($key);
+        db_delete('views_' . $key)
+          ->condition('vid', $this->vid)
+          ->execute();
       }
     }
-    catch (Exception $e) {
-      $transaction->rollback();
-      watchdog_exception('views', $e);
-      throw $e;
+
+    $this->save_row(!empty($this->vid) ? 'vid' : FALSE);
+
+    // Save all of our subtables.
+    foreach ($this->db_objects() as $key) {
+      $this->_save_rows($key);
     }
 
     $this->save_locale_strings();
@@ -1990,16 +1909,6 @@ class view extends views_db_object {
         unset($this->$key);
       }
     }
-
-    // These keys are checked by the next init, so instead of unsetting them,
-    // just set the default values.
-    $keys = array('items_per_page', 'offset', 'current_page');
-    foreach ($keys as $key) {
-      if (isset($this->$key)) {
-        $this->$key = NULL;
-      }
-    }
-
     $this->built = $this->executed = FALSE;
     $this->build_info = array();
     $this->attachment_before = '';
@@ -2046,7 +1955,6 @@ class view extends views_db_object {
     $this->localization_plugin = views_get_plugin('localization', views_get_localization_plugin());
 
     if (empty($this->localization_plugin)) {
-      $this->localization_plugin = views_get_plugin('localization', 'none');
       return FALSE;
     }
 
@@ -2081,9 +1989,9 @@ class view extends views_db_object {
     $this->process_locale_strings('delete');
   }
 
-  /**
-   * Export localized strings.
-   */
+ /**
+  * Export localized strings.
+  */
   function export_locale_strings() {
     $this->process_locale_strings('export');
   }
@@ -2228,7 +2136,7 @@ class views_db_object {
     }
     $schema = drupal_get_schema($this->db_table);
 
-    $output = $indent . '$' . $identifier . ' = new ' . get_class($this) . "();\n";
+    $output = $indent . '$' . $identifier . ' = new ' . get_class($this) . ";\n";
     // Go through our schema and build correlations.
     foreach ($schema['fields'] as $field => $info) {
       if (!empty($info['no export'])) {
@@ -2244,7 +2152,7 @@ class views_db_object {
 
         // serialized defaults must be set as serialized.
         if (isset($info['serialize'])) {
-          $this->$field = unserialize($this->$field);
+          $this->$field = unserialize(db_decode_blob($this->$field));
         }
       }
       $value = $this->$field;

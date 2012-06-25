@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_user_roles.
- */
-
 /**
  * Field handler to provide a list of roles.
  *
@@ -49,9 +43,7 @@ class views_handler_field_user_roles extends views_handler_field_prerender_list 
   }
 
   function add_self_tokens(&$tokens, $item) {
-    if (!empty($item['role'])) {
-      $tokens['[' . $this->options['id'] . '-role' . ']'] = $item['role'];
-      $tokens['[' . $this->options['id'] . '-rid' . ']'] = $item['rid'];
-    }
+    $tokens['[' . $this->options['id'] . '-role' . ']'] = $item['role'];
+    $tokens['[' . $this->options['id'] . '-rid' . ']'] = $item['rid'];
   }
 }

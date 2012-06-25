@@ -1,14 +1,19 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for system.module.
  *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for system tables that are not represented by
+ * their own module.
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_system_module system.module handlers
+ *
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function system_views_data() {
   $data = array();
@@ -29,6 +34,11 @@ function system_views_data() {
     ),
   );
   $data['file_managed']['table']['entity type'] = 'file';
+
+
+  // The file table does not inherently join to the node table,
+  // but may things (such as upload.module) can add relationships
+  // that allow file fields to be used.
 
   // fid
   $data['file_managed']['fid'] = array(
@@ -243,7 +253,7 @@ function system_views_data() {
       'base' => 'node',
       'base field' => 'nid',
       'relationship field' => 'id',
-      'extra' => array(array('table' => 'file_usage', 'field' => 'type', 'operator' => '=', 'value' => 'node')),
+      'extra' => array(array('field' => 'type', 'value' => 'node')),
     ),
   );
   $data['file_usage']['node_to_file'] = array(
@@ -421,23 +431,6 @@ function system_views_data() {
       'handler' => 'views_handler_sort',
     ),
   );
-  $data['file_usage']['id'] = array(
-    'title' => t('Entity ID'),
-    'help' => t('The ID of the entity that is related to the file.'),
-    'field' => array(
-      'handler' => 'views_handler_field_numeric',
-      'click sortable' => TRUE,
-    ),
-    'argument' => array(
-      'handler' => 'views_handler_argument_numeric',
-    ),
-    'filter' => array(
-      'handler' => 'views_handler_filter_numeric',
-    ),
-    'sort' => array(
-      'handler' => 'views_handler_sort',
-    ),
-  );
   $data['file_usage']['count'] = array(
     'title' => t('Use count'),
     'help' => t('The number of times the file is used by this entity.'),
@@ -576,3 +569,7 @@ function _views_file_status($choice = NULL) {
 
   return $status;
 }
+
+/**
+ * @}
+ */
