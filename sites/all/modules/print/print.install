@@ -13,7 +13,7 @@
 function print_install() {
   $t = get_t();
   drupal_set_message($t('Printer-friendly Page settings are available under !link',
-    array( '!link' => l($t('Administration > Configuration > User interface > Printer, email and PDF versions'),  'admin/config/user-interface/print' ) )
+    array('!link' => l($t('Administration > Configuration > User interface > Printer, email and PDF versions'), 'admin/config/user-interface/print'))
   ));
 }
 
@@ -21,8 +21,6 @@ function print_install() {
  * Implements hook_enable().
  */
 function print_enable() {
-  $t = get_t();
-
   // Module weight
   db_update('system')
     ->fields(array(
@@ -169,15 +167,7 @@ function print_update_7000(&$sandbox) {
 }
 
 /**
- * Update permissions to new spellings
+ * Empty update
  */
 function print_update_7100(&$sandbox) {
-  db_update('role_permission')
-    ->fields(array('permission' => 'access send by email'))
-    ->condition('permission', 'access send to friend')
-    ->execute();
-  db_update('role_permission')
-    ->fields(array('permission' => 'send unlimited emails'))
-    ->condition('permission', 'send unlimited e-mails')
-    ->execute();
 }
