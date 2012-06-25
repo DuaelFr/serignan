@@ -406,22 +406,24 @@ color:#666;
 }
 
 /*CKEDITOR*/
-#block-system-main address{
+h5.texte_intro{
 color:#666;
 font-size:15px;
+font-weight:normal;
+margin-bottom:15px;
 }
-#block-system-main h2{
+h2.titre_bleu{
 color:#003366;
 font-size:18px;
 text-transform:uppercase;
 font-weight:bold;
 }
-#block-system-main h3{
+h3.titre_vert{
 color:#99cc33;
 font-size:18px;
 font-weight:bold;
 }
-#block-system-main h4{
+h4.titre_gris{
 color:#333;
 font-size:14px;
 font-weight:bold;
@@ -612,10 +614,12 @@ padding-left: 10px;
 .view-id-news.view-display-id-page_list .field-name-body p,
 .view-id-events.view-display-id-page_list .field-name-body p,
 .block-views-sections-content-block-list .field-name-body p,
-.block-views-sections-content-block-list .field-name-body address{
+.block-views-sections-content-block-list .field-name-body h5.texte_intro{
 margin:0;
 padding-left: 10px;
 line-height:14px;
+font-size:12px;
+margin-bottom:0;
 }
 .view-id-events.view-display-id-page_list .field-name-body p{
 clear:left;
