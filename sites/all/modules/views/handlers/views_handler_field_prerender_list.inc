@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_prerender_list.
- */
-
-/**
  * Field handler to provide a list of items.
  *
  * The items are expected to be loaded by a child object during pre_render,
@@ -89,7 +84,7 @@ class views_handler_field_prerender_list extends views_handler_field {
   function render_items($items) {
     if (!empty($items)) {
       if ($this->options['type'] == 'separator') {
-        return implode($this->sanitize_value($this->options['separator'], 'xss_admin'), $items);
+        return implode($this->sanitize_value($this->options['separator']), $items);
       }
       else {
         return theme('item_list',

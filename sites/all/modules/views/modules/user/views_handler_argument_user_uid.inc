@@ -1,8 +1,7 @@
 <?php
-
 /**
  * @file
- * Definition of views_handler_argument_user_uid.
+ * Provide user uid argument handler.
  */
 
 /**

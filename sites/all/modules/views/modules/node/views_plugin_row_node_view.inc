@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the node view row style plugin.
@@ -36,8 +35,8 @@ class views_plugin_row_node_view extends views_plugin_row {
     $options = parent::option_definition();
 
     $options['view_mode'] = array('default' => 'teaser');
-    $options['links'] = array('default' => TRUE, 'bool' => TRUE);
-    $options['comments'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['links'] = array('default' => TRUE);
+    $options['comments'] = array('default' => FALSE);
 
     return $options;
   }

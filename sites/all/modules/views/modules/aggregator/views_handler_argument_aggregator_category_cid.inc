@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_argument_aggregator_category_cid.
- */
-
-/**
  * Argument handler to accept an aggregator category id.
  *
  * @ingroup views_argument_handlers

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file
+ * @file views-ui-display-tab-bucket.tpl.php
  * Template for each "box" on the display query edit screen.
  */
 ?>

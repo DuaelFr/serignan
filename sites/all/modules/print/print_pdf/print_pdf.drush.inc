@@ -169,8 +169,9 @@ function _drush_print_pdf_download_extract($filename) {
 }
 
 /**
- * Download a file using wget or curl.
- * Adapted from a function in drush/includes/drush.inc to support 302 redirects
+ * Download a file using wget or curl
+ *
+ * Adapted from a function in drush/includes/drush.inc to support 302 redirects.
  *
  * @param string $download_url
  *   The path to the file to download

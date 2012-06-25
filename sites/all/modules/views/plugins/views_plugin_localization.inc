@@ -6,15 +6,9 @@
  */
 
 /**
- * @defgroup views_localization_plugins Views localization plugins
- * @{
- * @todo.
- *
- * @see hook_views_plugins()
- */
-
-/**
  * The base plugin to handle localization of Views strings.
+ *
+ * @ingroup views_localization_plugins
  */
 class views_plugin_localization extends views_plugin {
   // Store for exported strings
@@ -165,7 +159,3 @@ class views_plugin_localization extends views_plugin {
     }
   }
 }
-
-/**
- * @}
- */

@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_node_new_comments.
- */
-
-/**
  * Field handler to display the number of new comments.
  *
  * @ingroup views_field_handlers
@@ -31,7 +26,7 @@ class views_handler_field_node_new_comments extends views_handler_field_numeric 
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['link_to_comment'] = array('default' => TRUE, 'bool' => TRUE);
+    $options['link_to_comment'] = array('default' => TRUE);
 
     return $options;
   }

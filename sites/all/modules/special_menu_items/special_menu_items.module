@@ -53,7 +53,7 @@ function special_menu_items_link(array $variables) {
     return special_menu_items_render_menu_item($tag, $value, $variables['options']['attributes']);
   }
   // Call the original theme function for normal menu link.
-  return theme('link_default',$variables);
+  return theme('special_menu_items_link_default',$variables);
 }
 
 /**
@@ -76,7 +76,7 @@ function special_menu_items_menu_link(array $variables) {
       case '<nolink>':
         $tag = variable_get('special_menu_items_nolink_tag', '<span>');
         $title = strip_tags(l($element['#title'], $element['#href'], $element['#localized_options']));
-        $attrs = $element['#original_link']['options']['attributes'] ? $element['#original_link']['options']['attributes'] : array();
+        $attrs = isset($element['#original_link']['options']['attributes']) ? $element['#original_link']['options']['attributes'] : array();
         // Set a class if the link is in the active trail.
         if (!empty($element['#original_link']['in_active_trail'])) {
           $attrs['class'][] = 'active-trail';
@@ -95,7 +95,7 @@ function special_menu_items_menu_link(array $variables) {
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
   }
   // Call the original theme function for normal menu link.
-  return theme('menu_link_default',$variables);
+  return theme('special_menu_items_menu_link_default',$variables);
 }
 
 
@@ -126,7 +126,7 @@ function special_menu_items_preprocess_page(&$vars, $hook) {
           case '<nolink>':
             $tag = variable_get('special_menu_items_nolink_tag', '<span>');
             $title = $vars[$menu][$key]['title'];
-            $attrs = $vars[$menu][$key]['attributes'] ? $vars[$menu][$key]['attributes'] : array();
+            $attrs = isset($vars[$menu][$key]['attributes']) ? $vars[$menu][$key]['attributes'] : array();
             $vars[$menu][$key]['title'] = special_menu_items_render_menu_item($tag, $title, $attrs);
             $vars[$menu][$key]['attributes']['class'][] = 'nolink';
             break;
@@ -154,10 +154,10 @@ function special_menu_items_preprocess_page(&$vars, $hook) {
  */
 function special_menu_items_theme_registry_alter(&$registry) {
   // Save previous value from registry in case another theme overwrites menu_item_link
-  $registry['menu_link_default'] = $registry['menu_link'];
+  $registry['special_menu_items_menu_link_default'] = $registry['menu_link'];
   $registry['menu_link']['function'] = 'special_menu_items_menu_link';
   
-  $registry['link_default'] = $registry['link'];
+  $registry['special_menu_items_link_default'] = $registry['link'];
   $registry['link']['function'] = 'special_menu_items_link';
 }
 
@@ -166,16 +166,18 @@ function special_menu_items_theme_registry_alter(&$registry) {
  * Description changed, added nolink and separator as path types.
  */
 function special_menu_items_form_menu_edit_item_alter(&$form, &$form_state) {
-  $default_value = $form['link_path']['#default_value'];
+  if ($form['link_path']['#type'] == 'textfield') {
+    $default_value = $form['link_path']['#default_value'];
 
-  if (preg_match('/^<nolink>\/[0-9]+$/', $default_value)) {
-    $default_value = '<nolink>';
-  } elseif (preg_match('/^<separator>\/[0-9]+$/', $default_value)) {
-    $default_value = '<separator>';
+    if (preg_match('/^<nolink>\/[0-9]+$/', $default_value)) {
+      $default_value = '<nolink>';
+    } elseif (preg_match('/^<separator>\/[0-9]+$/', $default_value)) {
+      $default_value = '<separator>';
+    }
+
+    $form['link_path']['#default_value'] = $default_value;
+    $form['link_path']['#description'] .=  ' ' . t('Enter "%nolink" to generate non-linkable item, enter "%separator" to generate separator item.', array('%nolink' => '<nolink>', '%separator' => '<separator>'));
   }
-
-  $form['link_path']['#default_value'] = $default_value;
-  $form['link_path']['#description'] .=  ' ' . t('Enter "%nolink" to generate non-linkable item, enter "%separator" to generate separator item.', array('%nolink' => '<nolink>', '%separator' => '<separator>'));
 }
 
 /**

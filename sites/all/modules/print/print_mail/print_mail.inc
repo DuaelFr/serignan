@@ -281,7 +281,7 @@ function print_mail_form_submit($form, &$form_state) {
 
     // Spaces in img URLs must be replaced with %20
     $pattern = '!<(img\s[^>]*?)>!is';
-    $print['content'] = preg_replace_callback($pattern, '_print_mail_encode_urls', $print['content']);
+    $print['content'] = preg_replace_callback($pattern, '_print_replace_spaces', $print['content']);
 
     if ($print !== FALSE) {
       $print_mail_send_option_default = variable_get('print_mail_send_option_default', PRINT_MAIL_SEND_OPTION_DEFAULT);
@@ -295,37 +295,33 @@ function print_mail_form_submit($form, &$form_state) {
       $node = $print['node'];
       $params['body'] = theme('print', array('print' => $print, 'type' => PRINT_MAIL_FORMAT, 'node' => $node));
 
+      // Img elements must be set to absolute
+      $pattern = '!<(img\s[^>]*?)>!is';
+      $params['body'] = preg_replace_callback($pattern, '_print_rewrite_urls', $params['body']);
+
+      // Convert the a href elements, to make sure no relative links remain
+      $pattern = '!<(a\s[^>]*?)>!is';
+      $params['body'] = preg_replace_callback($pattern, '_print_rewrite_urls', $params['body']);
+
       $ok = FALSE;
-      if (function_exists('job_queue_add') && variable_get('print_mail_job_queue', PRINT_MAIL_JOB_QUEUE_DEFAULT)) {
-        $use_job_queue = TRUE;
-        $this_file = drupal_get_path('module', 'print_mail') . '/print_mail.inc';
-      }
-      else {
-        $use_job_queue = FALSE;
+      $use_job_queue = variable_get('print_mail_job_queue', PRINT_MAIL_JOB_QUEUE_DEFAULT);
+      if ($use_job_queue) {
+        $queue = DrupalQueue::get('print_mail_send');
       }
 
       $addresses = explode(', ', $form_state['values']['txt_to_addrs']);
       foreach ($addresses as $to) {
-        // Call to hook_print_mail_before_send in order to know if the mail can be sent
-        // Handlers must return TRUE or FALSE
-        $can_send = module_invoke_all('print_mail_before_send', $node, $to, $from, $params);
-
-        if (!in_array(FALSE, $can_send)) {
-          if ($use_job_queue) {
-            // Use job queue to send mails during cron runs
-            job_queue_add('drupal_mail', t('print_mail: From %from', array('%from' => $from)), array('print_mail', $print_mail_send_option_default, $to, language_default(), $params, $from, TRUE), $this_file, TRUE);
-          }
-          else {
-            // Send mail immediately using Drupal's mail handler
-            $ret = drupal_mail('print_mail', $print_mail_send_option_default, $to, language_default(), $params, $from, TRUE);
-          }
-          if ($ret['result'] || $use_job_queue) {
-            // Call to hook_print_mail_after_send in order to provide information to other modules.
-            module_invoke_all('print_mail_after_send', $node, $to, $from, $params);
-
-            flood_register_event('print_mail');
-            $ok = TRUE;
-          }
+        if ($use_job_queue) {
+          // Use job queue to send mails during cron runs
+          $queue->createItem(array('module' => 'print_mail', 'key' => $print_mail_send_option_default, 'to' => $to, 'language' => language_default(), 'params' => $params, 'from' => $from));
+        }
+        else {
+          // Send mail immediately using Drupal's mail handler
+          $ret = drupal_mail('print_mail', $print_mail_send_option_default, $to, language_default(), $params, $from);
+        }
+        if ($use_job_queue || $ret['result']) {
+          flood_register_event('print_mail');
+          $ok = TRUE;
         }
       }
       if ($ok) {
@@ -348,95 +344,4 @@ function print_mail_form_submit($form, &$form_state) {
   }
 
   $form_state['redirect'] = preg_replace('!^book/export/html/!', 'node/', $form_state['values']['path']);
-}
-
-/**
- * Implements hook_mail().
- */
-function print_mail_mail($key, &$message, $params) {
-  $message['subject'] = $params['subject'];
-
-  switch ($key) {
-    case 'sendpage':
-      $message['body'][] = check_plain($params['body']);
-      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
-      break;
-    case 'sendlink':
-      // Generate plain-text and html versions of message with link
-      $sendlink_plain = $params['message'] . '\n\n' . $params['link'];
-      $sendlink_html = $params['message'] . '<br/><br/>' . l($params['title'], $params['link']);
-
-      // Send HTML-only version if MIME library not present
-      if (!class_exists('Mail_mime')) {
-        $message['body'][] = check_plain($sendlink_html);
-        $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
-        break;
-      }
-      // no break on purpose
-    case 'plain-attachment':
-    case 'inline-attachment':
-      // Configure new MIME object
-      $mime = new Mail_mime("\n");
-      $mime_params['html_encoding'] = '7bit';
-
-      // Pass message contents into MIME object
-      switch ($key) {
-        case 'sendlink':
-          $mime->setTxtBody($sendlink_plain);
-          $mime->setHTMLBody($sendlink_html);
-          break;
-        case 'inline-attachment':
-          $mime->setHTMLBody($params['body']);
-          // no break on purpose
-        case 'plain-attachment':
-          $mime->setTxtBody($params['message']);
-          $mime->addAttachment($params['body'], 'text/html', 'Attachment.html', FALSE);
-          break;
-      }
-
-      // Store MIME message output in message array
-      $message['body'][] = check_plain($mime->get($mime_params));
-      $message['headers'] = $mime->headers($message['headers']);
-
-      // Strip special characters from Content-Type header
-      // Required to prevent mime_header_encode() from disrupting Content-Type header
-      $message['headers']['Content-Type'] = preg_replace('/[^\x20-\x7E]/', '', $message['headers']['Content-Type']);
-      break;
-  }
-}
-
-/**
- * Callback function for the preg_replace_callback replacing spaces with %20
- *
- * Replace spaces in URLs with %20
- *
- * @param $matches
- *   array with the matched tag patterns, usually <a...>+text+</a>
- * @return
- *   tag with re-written URL
- */
-function _print_mail_encode_urls($matches) {
-  // first, split the html into the different tag attributes
-  $pattern = '!\s*(\w+\s*=\s*"(?:\\\"|[^"])*")\s*|\s*(\w+\s*=\s*\'(?:\\\\\'|[^\'])*\')\s*|\s*(\w+\s*=\s*\w+)\s*|\s+!';
-  $attribs = preg_split($pattern, $matches[1], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-  foreach ($attribs as $key => $value) {
-    $attribs[$key] = preg_replace('!(\w)\s*=\s*(.*)!', '$1=$2', $value);
-  }
-
-  $size = count($attribs);
-  for ($i=1; $i < $size; $i++) {
-    // If the attribute is href or src, we may need to rewrite the URL in the value
-    if (preg_match('!^(?:href|src)\s*?=(.*)!i', $attribs[$i], $urls) > 0) {
-      $url = trim($urls[1], " \t\n\r\0\x0B\"'");
-      $new_url = str_replace(' ', '%20', $url);
-      $matches[1] = str_replace($url, $new_url, $matches[1]);
-    }
-  }
-
-  $ret = '<' . $matches[1] . '>';
-  if (count($matches) == 4) {
-    $ret .= $matches[2] . $matches[3];
-  }
-
-  return $ret;
 }

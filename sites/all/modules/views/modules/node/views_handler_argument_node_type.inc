@@ -1,14 +1,8 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_argument_node_type.
- */
-
 /**
  * Argument handler to accept a node type.
  */
-class views_handler_argument_node_type extends views_handler_argument_string {
+class views_handler_argument_node_type extends views_handler_argument {
   function construct() {
     parent::construct('type');
   }

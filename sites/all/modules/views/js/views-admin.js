@@ -1,7 +1,3 @@
-/**
- * @file
- * Some basic behaviors and utility functions for Views UI.
- */
 Drupal.viewsUi = {};
 
 Drupal.behaviors.viewsUiEditView = {};
@@ -774,14 +770,6 @@ Drupal.behaviors.viewsFilterConfigSelectAll.attach = function(context) {
     // Update all checkbox beside the select all checkbox.
     $(this).parents('.form-checkboxes').find('input[type=checkbox]').each(function() {
       $(this).attr('checked', checked);
-    });
-  });
-  // Uncheck the select all checkbox if any of the others are unchecked.
-  $('#views-ui-config-item-form div.form-type-checkbox').not($('.form-item-options-value-all')).find('input[type=checkbox]').each(function() {
-    $(this).click(function() {
-      if ($(this).is('checked') == 0) {
-        $('#edit-options-value-all').removeAttr('checked');
-      }
     });
   });
 };

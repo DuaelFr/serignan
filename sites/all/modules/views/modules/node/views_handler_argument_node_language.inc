@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_argument_node_language.
- */
-
 /**
  * Argument handler to accept a language.
  */

@@ -2,13 +2,10 @@
 
 /**
  * @file
- * Definition of ViewsPagerTest.
- */
-
-/**
  * Tests the pluggable pager system.
  */
-class ViewsPagerTest extends ViewsSqlTest {
+
+class ViewsPagerTest extends DrupalWebTestCase {
   public static function getInfo() {
     return array(
       'name' => 'Pager',
@@ -117,7 +114,7 @@ class ViewsPagerTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the none-pager-query.
+   * Test the none-pager-query.
    */
   public function testNoLimit() {
     // Create 11 nodes and make sure that everyone is returned.
@@ -127,7 +124,8 @@ class ViewsPagerTest extends ViewsSqlTest {
     }
     $view = $this->viewsPagerNoLimit();
     $view->set_display('default');
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
     $this->assertEqual(count($view->result), 11, 'Make sure that every item is returned in the result');
 
     $view->destroy();
@@ -143,7 +141,8 @@ class ViewsPagerTest extends ViewsSqlTest {
       ),
     );
     $view->display_handler->set_option('pager', $pager);
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
 
     $this->assertEqual(count($view->result), 8, 'Make sure that every item beside the first three is returned in the result');
 
@@ -175,27 +174,8 @@ class ViewsPagerTest extends ViewsSqlTest {
     return $view;
   }
 
-  public function testViewTotalRowsWithoutPager() {
-    $this->createNodes(23);
-
-    $view = $this->viewsPagerNoLimit();
-    $view->get_total_rows = TRUE;
-    $view->set_display('default');
-    $this->executeView($view);
-
-    $this->assertEqual($view->total_rows, 23, "'total_rows' is calculated when pager type is 'none' and 'get_total_rows' is TRUE.");
-  }
-
-  public function createNodes($count) {
-    if ($count >= 0) {
-      for ($i = 0; $i < $count; $i++) {
-        $this->drupalCreateNode();
-      }
-    }
-  }
-
   /**
-   * Tests the some pager plugin.
+   * Test the some pager plugin.
    */
   public function testLimit() {
     // Create 11 nodes and make sure that everyone is returned.
@@ -205,7 +185,7 @@ class ViewsPagerTest extends ViewsSqlTest {
     }
     $view = $this->viewsPagerLimit();
     $view->set_display('default');
-    $this->executeView($view);
+    $view->execute();
     $this->assertEqual(count($view->result), 5, 'Make sure that only a certain count of items is returned');
     $view->destroy();
 
@@ -221,7 +201,8 @@ class ViewsPagerTest extends ViewsSqlTest {
       ),
     );
     $view->display_handler->set_option('pager', $pager);
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
     $this->assertEqual(count($view->result), 3, 'Make sure that only a certain count of items is returned');
 
     // Check some public functions.
@@ -254,7 +235,7 @@ class ViewsPagerTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the normal pager.
+   * Test the normal pager.
    */
   public function testNormalPager() {
     // Create 11 nodes and make sure that everyone is returned.
@@ -264,7 +245,8 @@ class ViewsPagerTest extends ViewsSqlTest {
     }
     $view = $this->viewsPagerFull();
     $view->set_display('default');
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
     $this->assertEqual(count($view->result), 5, 'Make sure that only a certain count of items is returned');
     $view->destroy();
 
@@ -280,13 +262,15 @@ class ViewsPagerTest extends ViewsSqlTest {
       ),
     );
     $view->display_handler->set_option('pager', $pager);
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
     $this->assertEqual(count($view->result), 3, 'Make sure that only a certain count of items is returned');
 
     // Test items per page = 0
     $view = $this->viewPagerFullZeroItemsPerPage();
     $view->set_display('default');
-    $this->executeView($view);
+    $view->pre_execute();
+    $view->execute();
 
     $this->assertEqual(count($view->result), 11, 'All items are return');
 
@@ -308,7 +292,7 @@ class ViewsPagerTest extends ViewsSqlTest {
     );
 
     $view->display_handler->set_option('pager', $pager);
-    $this->executeView($view);
+    $view->execute();
     $this->assertEqual($view->query->pager->get_items_per_page(), 0);
     $this->assertEqual(count($view->result), 11);
   }
@@ -418,14 +402,14 @@ class ViewsPagerTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the minipager.
+   * Test the minipager.
    */
   public function testMiniPager() {
     // the functionality is the same as the normal pager, so i don't know what to test here.
   }
 
   /**
-   * Tests rendering with NULL pager.
+   * Test rendering with NULL pager.
    */
   public function testRenderNullPager() {
     // Create 11 nodes and make sure that everyone is returned.
@@ -435,62 +419,10 @@ class ViewsPagerTest extends ViewsSqlTest {
     }
     $view = $this->viewsPagerFullFields();
     $view->set_display('default');
-    $this->executeView($view);
+    $view->execute();
     $view->use_ajax = TRUE; // force the value again here
     $view->query->pager = NULL;
     $output = $view->render();
     $this->assertEqual(preg_match('/<ul class="pager">/', $output), 0, t('The pager is not rendered.'));
-  }
-
-  /**
-   * Test the api functions on the view object.
-   */
-  function testPagerApi() {
-    $view = $this->viewsPagerFull();
-    // On the first round don't initialize the pager.
-
-    $this->assertEqual($view->get_items_per_page(), NULL, 'If the pager is not initialized and no manual override there is no items per page.');
-    $rand_number = rand(1, 5);
-    $view->set_items_per_page($rand_number);
-    $this->assertEqual($view->get_items_per_page(), $rand_number, 'Make sure get_items_per_page uses the settings of set_items_per_page.');
-
-    $this->assertEqual($view->get_offset(), NULL, 'If the pager is not initialized and no manual override there is no offset.');
-    $rand_number = rand(1, 5);
-    $view->set_offset($rand_number);
-    $this->assertEqual($view->get_offset(), $rand_number, 'Make sure get_offset uses the settings of set_offset.');
-
-    $this->assertEqual($view->get_current_page(), NULL, 'If the pager is not initialized and no manual override there is no current page.');
-    $rand_number = rand(1, 5);
-    $view->set_current_page($rand_number);
-    $this->assertEqual($view->get_current_page(), $rand_number, 'Make sure get_current_page uses the settings of set_current_page.');
-
-    $view->destroy();
-
-    // On this round enable the pager.
-    $view->init_display();
-    $view->init_query();
-    $view->init_pager();
-
-    $this->assertEqual($view->get_items_per_page(), 5, 'Per default the view has 5 items per page.');
-    $rand_number = rand(1, 5);
-    $view->set_items_per_page($rand_number);
-    $rand_number = rand(6, 11);
-    $view->query->pager->set_items_per_page($rand_number);
-    $this->assertEqual($view->get_items_per_page(), $rand_number, 'Make sure get_items_per_page uses the settings of set_items_per_page.');
-
-    $this->assertEqual($view->get_offset(), 0, 'Per default a view has a 0 offset.');
-    $rand_number = rand(1, 5);
-    $view->set_offset($rand_number);
-    $rand_number = rand(6, 11);
-    $view->query->pager->set_offset($rand_number);
-    $this->assertEqual($view->get_offset(), $rand_number, 'Make sure get_offset uses the settings of set_offset.');
-
-    $this->assertEqual($view->get_current_page(), 0, 'Per default the current page is 0.');
-    $rand_number = rand(1, 5);
-    $view->set_current_page($rand_number);
-    $rand_number = rand(6, 11);
-    $view->query->pager->set_current_page($rand_number);
-    $this->assertEqual($view->get_current_page(), $rand_number, 'Make sure get_current_page uses the settings of set_current_page.');
-
   }
 }

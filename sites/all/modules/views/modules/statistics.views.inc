@@ -1,14 +1,18 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for statistics.module.
- *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for statistics.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_statistics_module statistics.module handlers
+ *
+ * Includes the ability to create views of just the statistics table.
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function statistics_views_data() {
   // Basic table information.
@@ -261,3 +265,7 @@ function statistics_views_data() {
 
   return $data;
 }
+
+/**
+ * @}
+ */

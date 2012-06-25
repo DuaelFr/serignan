@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_filter_profile_selection.
- */
-
-/**
  * Filter by a selection widget in the profile.
  *
  * @ingroup views_filter_handlers

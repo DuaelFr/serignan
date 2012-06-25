@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_boolean.
- */
-
-/**
  * A handler to provide proper displays for booleans.
  *
  * Allows for display of true/false, yes/no, on/off, enabled/disabled.

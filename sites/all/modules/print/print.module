@@ -146,11 +146,10 @@ function print_preprocess_print(&$variables) {
 
   $variables['page']['#show_messages'] = FALSE;
 
-  //Stolen from theme() so that ALL preprocess functions are called
+  // Stolen from theme() so that ALL preprocess functions are called
   $hook = 'page';
   $info = $hooks[$hook];
   if (isset($info['preprocess functions']) || isset($info['process functions'])) {
-    $variables['theme_hook_suggestions'] = array();
     foreach (array('preprocess functions', 'process functions') as $phase) {
       if (!empty($info[$phase])) {
         foreach ($info[$phase] as $processor_function) {
@@ -168,6 +167,7 @@ function print_preprocess_print(&$variables) {
   $type = (isset($variables['node']->type)) ? $variables['node']->type : '';
   $nid = (isset($variables['node']->nid)) ? $variables['node']->nid : '';
 
+  $variables['theme_hook_suggestions'] = array();
   $variables['theme_hook_suggestions'][] = "print__node__{$type}";
   $variables['theme_hook_suggestions'][] = "print__node__{$type}__{$nid}";
   $variables['theme_hook_suggestions'][] = "print__{$format}";
@@ -211,6 +211,7 @@ function print_menu() {
   );
   $items['admin/config/user-interface/print/html/strings'] = array(
     'title' => 'Text strings',
+    'description' => 'Override the user-facing strings used in the printer-friendly version.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('print_html_strings_settings'),
     'access arguments'  => array('administer print'),
@@ -220,6 +221,7 @@ function print_menu() {
   );
   $items['admin/config/user-interface/print/common'] = array(
     'title' => 'Settings',
+    'description' => 'Settings for the common functionalities for all the print sub-modules.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('print_main_settings'),
     'access arguments'  => array('administer print'),
@@ -234,6 +236,7 @@ function print_menu() {
   );
   $items['admin/config/user-interface/print/common/strings'] = array(
     'title' => 'Text strings',
+    'description' => 'Override the user-facing strings used by the print module.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('print_main_strings_settings'),
     'access arguments'  => array('administer print'),
@@ -274,13 +277,18 @@ function print_block_view($delta = '') {
       else {
         $node = NULL;
       }
-      $funcs = get_defined_functions();
       $block['content'] = '';
-      foreach ($funcs['user'] as $func) {
-        if (preg_match('!^print.*?_insert_link$!', $func)) {
-          $link = $func(NULL, $node);
-          if (!empty($link)) {
-            $block['content'] .= $link;
+      foreach (array('html' => 'print', 'mail' => 'print_mail', 'pdf' => 'print_pdf') as $format => $module) {
+        $link_pos = variable_get('print_' . $format . '_link_pos', array(PRINT_HTML_LINK_POS_DEFAULT => PRINT_HTML_LINK_POS_DEFAULT));
+
+        if (!(empty($link_pos['block']))) {
+          $func = $module . '_insert_link';
+
+          if (function_exists($func)) {
+            $links = $func(NULL, $node);
+            if (!empty($links)) {
+              $block['content'] .= $links;
+            }
           }
         }
       }
@@ -320,7 +328,7 @@ function print_node_view_alter(&$build) {
             break;
           case 2:
             $print_html_link_use_alias = variable_get('print_html_link_use_alias', PRINT_HTML_LINK_USE_ALIAS_DEFAULT);
-            $path = ($print_html_link_use_alias) ? drupal_get_path_alias('node/' . $build['#node']->nid) : $build['#node']->nid;
+            $path = ($print_html_link_use_alias && ($alias = drupal_lookup_path('alias', 'node/' . $build['#node']->nid))) ? $alias : $build['#node']->nid;
             break;
         }
 
@@ -348,8 +356,7 @@ function print_help($path, $arg) {
       return _filter_autop(file_get_contents(drupal_get_path('module', 'print') . '/README.txt'));
   }
 
-  $print_html_link_pos = variable_get('print_html_link_pos', array(PRINT_HTML_LINK_POS_DEFAULT => PRINT_HTML_LINK_POS_DEFAULT));
-  if (($path !== 'node/%') && !(empty($print_html_link_pos['link']) && empty($print_html_link_pos['corner']))) {
+  if ($path !== 'node/%') {
     static $output = FALSE;
 
     if ($output === FALSE) {
@@ -367,42 +374,44 @@ function print_help($path, $arg) {
  * Implements hook_node_view().
  */
 function print_node_view($node, $view_mode) {
-  $type = 'node';
   $print_html_link_pos = variable_get('print_html_link_pos', array(PRINT_HTML_LINK_POS_DEFAULT => PRINT_HTML_LINK_POS_DEFAULT));
   $print_html_link_use_alias = variable_get('print_html_link_use_alias', PRINT_HTML_LINK_USE_ALIAS_DEFAULT);
-  $allowed_type = print_link_allowed(array('type' => $type, 'node' => $node, 'view_mode' => $view_mode));
-  if (($allowed_type === PRINT_ALLOW_NORMAL_LINK) && !isset($node->book) && !empty($print_html_link_pos['link'])) {
-    drupal_add_css(drupal_get_path('module', 'print') . '/css/printlinks.css');
-    $links = array();
-    $format = theme('print_format_link');
 
-    $query_arr = $_GET;
-    if ($type == 'comment') {
-      $query_arr['comment'] = $node->cid;
+  foreach (array('node', 'comment') as $type) {
+    $allowed_type = print_link_allowed(array('type' => $type, 'node' => $node, 'view_mode' => $view_mode));
+    if (($allowed_type === PRINT_ALLOW_NORMAL_LINK) && !isset($node->book) && !empty($print_html_link_pos['link'])) {
+      drupal_add_css(drupal_get_path('module', 'print') . '/css/printlinks.css');
+      $links = array();
+      $format = theme('print_format_link');
+
+      $path = (($print_html_link_use_alias) && ($alias = drupal_lookup_path('alias', 'node/' . $node->nid))) ? $alias : $node->nid;
+
+      $links['print_html'] = array(
+        'href' => PRINT_PATH . '/' . $path,
+        'title' => $format['text'],
+        'attributes' => $format['attributes'],
+        'html' => $format['html'],
+        'query' => print_query_string_encode($_GET, array('q')),
+      );
+
+      $link_content = array(
+        '#theme' => 'links',
+        '#links' => $links,
+        '#attributes' => array('class' => array('links', 'inline')),
+      );
+
+      if ($type == 'node') {
+        $node->content['links']['print_html'] = $link_content;
+      }
+      elseif (($type == 'comment') && isset($node->content['comments']['comments'])) {
+        foreach ($node->content['comments']['comments'] as $cid => $comment) {
+          if (is_numeric($cid)) {
+            $link_content['#links']['print_html']['query']['comment'] = $cid;
+            $node->content['comments']['comments'][$cid]['links']['print_html'] = $link_content;
+          }
+        }
+      }
     }
-    $query = print_query_string_encode($query_arr, array('q'));
-    if (empty($query)) $query = NULL;
-
-    if (($print_html_link_use_alias) && ($alias = drupal_lookup_path('alias', 'node/' . $node->nid))) {
-      $path = $alias;
-    }
-    else {
-      $path = $node->nid;
-    }
-
-    $links['print_html'] = array(
-      'href' => PRINT_PATH . '/' . $path,
-      'title' => $format['text'],
-      'attributes' => $format['attributes'],
-      'html' => $format['html'],
-      'query' => $query,
-    );
-
-    $node->content['links']['print_html'] = array(
-      '#theme' => 'links',
-      '#links' => $links,
-      '#attributes' => array('class' => array('links', 'inline')),
-    );
   }
 
   if ($view_mode == 'full') {
@@ -559,7 +568,9 @@ function _print_get_title($path) {
 }
 
 /**
- * Update the print_node_conf table to reflect the given attributes
+ * Modify the print_node_conf_table
+ *
+ * Update the print_node_conf table to reflect the given attributes.
  * If updating to the default values, delete the record.
  *
  * @param $nid
@@ -702,7 +713,7 @@ function print_insert_link($path = NULL, $node = NULL) {
   }
   else {
     if ($path === NULL) {
-      $nid = preg_replace('!^node/!', '', $_GET['q']);
+      $nid = preg_replace('!^node/([\d]+)!', '$1', $_GET['q']);
       $path = $_GET['q'];
     }
     else {
@@ -717,8 +728,8 @@ function print_insert_link($path = NULL, $node = NULL) {
         $path = 'book/export/html/' . $nid;
       }
       else {
-        if (variable_get('print_html_link_use_alias', PRINT_HTML_LINK_USE_ALIAS_DEFAULT)) {
-          $path = drupal_get_path_alias($path);
+        if (variable_get('print_html_link_use_alias', PRINT_HTML_LINK_USE_ALIAS_DEFAULT) && ($alias = drupal_lookup_path('alias', $path))) {
+          $path = $alias;
         }
         else {
           $path = $nid;
@@ -726,9 +737,6 @@ function print_insert_link($path = NULL, $node = NULL) {
       }
       $path = PRINT_PATH . '/' . $path;
       $query = print_query_string_encode($_GET, array('q'));
-      if (empty($query)) {
-        $query = NULL;
-      }
     }
     else {
       $query = NULL;
@@ -743,7 +751,7 @@ function print_insert_link($path = NULL, $node = NULL) {
 }
 
 /**
- * Determine if the provided page is enabled according to the visibility settings
+ * Check if the provided page is enabled according to the visibility settings
  *
  * @param $visibility
  *   current visibility settings:
@@ -778,7 +786,7 @@ function _print_page_match($visibility, $path, $pages) {
 }
 
 /**
- * Determine a the link to the PF version is allowed depending on all possible settings
+ * Check if the link to the PF version is allowed depending on the settings
  *
  * @param $args
  *   array containing the possible parameters:
@@ -821,10 +829,9 @@ function print_link_allowed($args) {
       // Cache this statically to avoid duplicate queries for every comment.
       static $res = array();
       if (!isset($res[$node->nid])) {
-        $res[$node->nid] = db_query("SELECT comments FROM {print_node_conf} WHERE nid = :nid", array(':nid' => $node->nid))
-                                    ->fetch();
+        $res[$node->nid] = db_query("SELECT comments FROM {print_node_conf} WHERE nid = :nid", array(':nid' => $node->nid))->fetchField();
       }
-      $print_display_comment = $res ? intval($res[$node->nid]->comments) : variable_get('print_display_comment_' . $node_type, PRINT_TYPE_COMMENT_LINK_DEFAULT);
+      $print_display_comment = ($res && ($res[$node->nid] !== FALSE)) ? $res[$node->nid] : variable_get('print_display_comment_' . $node_type, PRINT_TYPE_COMMENT_LINK_DEFAULT);
       if ($print_display_comment) {
         return PRINT_ALLOW_NORMAL_LINK;
       }
@@ -865,6 +872,7 @@ function print_link_allowed($args) {
 
 /**
  * Parse an array into a valid urlencoded query string.
+ *
  * Modified from drupal_query_string_encode to prevent re-encoding of
  * encoded original. (see #301192)
  *
@@ -878,29 +886,74 @@ function print_link_allowed($args) {
 function print_query_string_encode($query, $exclude = array(), $parent = '') {
   $params = array();
   foreach ($query as $key => $value) {
-    if ($parent) {
-      $key = $parent . '[' . $key . ']';
-    }
-
     if (in_array($key, $exclude)) {
       continue;
     }
 
     if (is_array($value)) {
-      $params[] = print_query_string_encode($value, $exclude, $key);
+      $params[$key] = print_query_string_encode($value, $exclude, $key);
     }
     else {
       $params[$key] = $value;
     }
   }
 
-  return $params;
+  return empty($params) ? NULL : $params;
 }
 
 /**
  * Implements hook_contextual_links_view_alter().
  */
 function print_contextual_links_view_alter(&$element, $items) {
-  // Hide contextual links, always
-  $element['#attributes']['class'][] = 'element-hidden';
+  // Hide all contextual links
+  if (preg_match('!^print!', $_GET['q'])) {
+    unset($element['#links']);
+  }
+}
+
+/**
+ * Callback function for the preg_replace_callback replacing spaces with %20
+ *
+ * Replace spaces in URLs with %20
+ *
+ * @param array $matches
+ *   array with the matched tag patterns, usually <a...>+text+</a>
+ *
+ * @return string
+ *   tag with re-written URL
+ */
+function _print_replace_spaces($matches) {
+  // first, split the html into the different tag attributes
+  $pattern = '!\s*(\w+\s*=\s*"(?:\\\"|[^"])*")\s*|\s*(\w+\s*=\s*\'(?:\\\\\'|[^\'])*\')\s*|\s*(\w+\s*=\s*\w+)\s*|\s+!';
+  $attribs = preg_split($pattern, $matches[1], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+  foreach ($attribs as $key => $value) {
+    $attribs[$key] = preg_replace('!(\w)\s*=\s*(.*)!', '$1=$2', $value);
+  }
+
+  $size = count($attribs);
+  for ($i=1; $i < $size; $i++) {
+    // If the attribute is href or src, we may need to rewrite the URL in the value
+    if (preg_match('!^(?:href|src)\s*?=(.*)!i', $attribs[$i], $urls) > 0) {
+      $url = trim($urls[1], " \t\n\r\0\x0B\"'");
+      $new_url = str_replace(' ', '%20', $url);
+      $matches[1] = str_replace($url, $new_url, $matches[1]);
+    }
+  }
+
+  $ret = '<' . $matches[1] . '>';
+  if (count($matches) == 4) {
+    $ret .= $matches[2] . $matches[3];
+  }
+
+  return $ret;
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function print_views_api() {
+  return array(
+    'api' => 2.0,
+    'path' => drupal_get_path('module', 'print'),
+  );
 }

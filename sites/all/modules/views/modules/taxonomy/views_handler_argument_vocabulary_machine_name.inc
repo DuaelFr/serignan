@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_argument_vocabulary_machine_name.
- */
-
-/**
  * Argument handler to accept a vocabulary machine name.
  *
  * @ingroup views_argument_handlers

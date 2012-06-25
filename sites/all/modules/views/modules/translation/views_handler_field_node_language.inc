@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_node_language.
- */
-
-/**
  * Field handler to translate a language into its readable form.
  *
  * @ingroup views_field_handlers
@@ -13,7 +8,7 @@
 class views_handler_field_node_language extends views_handler_field_node {
   function option_definition() {
     $options = parent::option_definition();
-    $options['native_language'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['native_language'] = array('default' => FALSE);
 
     return $options;
   }

@@ -1,14 +1,18 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for poll.module.
- *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for poll.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_poll_module poll.module handlers
+ *
+ * Includes only the core 'poll' table for now.
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function poll_views_data() {
   // Basic table information.
@@ -45,3 +49,7 @@ function poll_views_data() {
 
   return $data;
 }
+
+/**
+ * @}
+ */

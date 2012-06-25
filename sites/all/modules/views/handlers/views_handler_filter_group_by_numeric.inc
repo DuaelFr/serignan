@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_filter_group_by_numeric.
- */
-
-/**
  * Simple filter to handle greater than/less than filters
  *
  * @ingroup views_filter_handlers

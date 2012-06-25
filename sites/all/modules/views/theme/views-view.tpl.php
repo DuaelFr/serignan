@@ -1,8 +1,7 @@
 <?php
-
 /**
- * @file
- * Main view template.
+ * @file views-view.tpl.php
+ * Main view template
  *
  * Variables available:
  * - $classes_array: An array of classes determined in

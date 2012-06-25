@@ -6,11 +6,13 @@ files[] = print.module
 files[] = print.admin.inc
 files[] = print.pages.inc
 files[] = print.install
+files[] = print.views.inc
+files[] = print_join_page_counter.inc
 configure = admin/config/user-interface/print
 
-; Information added by drupal.org packaging script on 2012-04-04
-version = "7.x-1.0"
+; Information added by drupal.org packaging script on 2012-05-24
+version = "7.x-1.1"
 core = "7.x"
 project = "print"
-datestamp = "1333551370"
+datestamp = "1337901689"
 

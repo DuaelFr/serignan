@@ -81,7 +81,7 @@ function print_controller($path, $cid = NULL, $format = PRINT_HTML_FORMAT, $teas
     $path = $alias;
   }
   $parts = explode('/', $path);
-  if (($parts[0] == 'node') && (count($parts) > 1)) {
+  if (($parts[0] == 'node') && (count($parts) > 1) && ctype_digit($parts[1])) {
     array_shift($parts);
     $path = implode('/', $parts);
   }
@@ -214,7 +214,7 @@ function _print_var_generator($node, $message = NULL, $cid = NULL) {
   }
 
   $window_close = ($print_html_new_window && $print_html_windowclose) ? 'window.close();' : '';
-  $print['sendtoprinter'] = $print_html_sendtoprinter ? "<script type='text/javascript'>(function ($) { Drupal.behaviors.print = { attach: function(context) {window.print();$window_close}};}(jQuery));</script>" : '';
+  $print['sendtoprinter'] = $print_html_sendtoprinter ? '<script type="text/javascript">(function ($) { Drupal.behaviors.print = {attach: function(context) {$(window).load(function() {window.print();' . $window_close . '})}}})(jQuery);</script>' : '';
 
   switch ($print_logo_options) {
     case 0: // none
@@ -228,7 +228,7 @@ function _print_var_generator($node, $message = NULL, $cid = NULL) {
       break;
   }
   $site_name = variable_get('site_name', 'Drupal');
-  $print['logo'] = $logo_url ? "<img class='print-logo' src='" . check_url($logo_url) . "' alt='$site_name' id='logo' />\n" : '';
+  $print['logo'] = $logo_url ? theme('image', array('path' => $logo_url, 'alt' => $site_name, 'attributes' => array('class' => 'print-logo', 'id' => 'logo'))) : '';
 
   switch ($print_footer_options) {
     case 0: // none
@@ -263,7 +263,7 @@ function _print_var_generator($node, $message = NULL, $cid = NULL) {
       $url = $base_url . '/' . (((bool)variable_get('clean_url', '0')) ? '' : '?q=') . $path;
     }
     if (is_int($cid)) {
-      $url .= '#comment-$cid';
+      $url .= "#comment-$cid";
     }
     $retrieved_date = format_date(REQUEST_TIME, 'short');
     $print_text_retrieved = filter_xss(variable_get('print_text_retrieved', t('retrieved on %date')));
@@ -340,9 +340,25 @@ function _print_rewrite_urls($matches) {
     if (preg_match('!^(?:href|src)\s*?=(.*)!i', $attribs[$i], $urls) > 0) {
       $url = trim($urls[1], " \t\n\r\0\x0B\"'");
 
-      if (strpos(html_entity_decode($url), '://') || preg_match('!^mailto:.*?@.*?\..*?$!iu', html_entity_decode($url))) {
+      if (empty($url)) {
+        // If URL is empty, use current_url
+        $path = explode('/', $_GET['q']);
+        unset($path[0]);
+        $path = implode('/', $path);
+        if (ctype_digit($path)) {
+          $path = "node/$path";
+        }
+        // Printer-friendly URLs is on, so we need to make it absolute
+        $newurl = url($path, array('fragment' => drupal_substr($url, 1), 'absolute' => TRUE));
+      }
+      elseif (strpos(html_entity_decode($url), '://') || preg_match('!^mailto:.*?@.*?\..*?$!iu', html_entity_decode($url))) {
         // URL is absolute, do nothing
         $newurl = $url;
+      }
+      elseif (strpos(html_entity_decode($url), '//') === 0) {
+        // URL is 'almost absolute', but it does not contain protocol; replace with base_path protocol
+        $newurl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . ":" . $url;
+        $matches[1] = str_replace($url, $newurl, $matches[1]);
       }
       else {
         if ($url[0] == '#') {
@@ -402,7 +418,7 @@ function _print_rewrite_urls($matches) {
  */
 function _print_friendly_urls($url = 0) {
   static $urls = array();
-  if ($url) {
+  if ($url !== 0) {
     $url_idx = array_search($url, $urls);
     if ($url_idx !== FALSE) {
       return ($url_idx + 1);
@@ -513,7 +529,7 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
 
   if ($cid === NULL) {
     // Adapted (simplified) version of node_view
-    //Render the node content
+    // Render the node content
     node_build_content($node, $view_mode);
 
     // Disable the links area
@@ -530,15 +546,24 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
   $print_comments = variable_get('print_comments', PRINT_COMMENTS_DEFAULT);
 
   if (function_exists('comment_node_page_additions') && (($cid != NULL) || ($print_comments))) {
-    //Print only the requested comment (or if $cid is NULL, all of them)
+    // Print only the requested comment (or if $cid is NULL, all of them)
 
     $comments = comment_node_page_additions($node);
-    unset($comments['comment_form']);
-    foreach ($comments['comments'] as &$comment) {
-      unset($comment['links']);
-    }
+    if (!empty($comments)) {
+      unset($comments['comment_form']);
+      foreach ($comments['comments'] as $key => &$comment) {
+        if (is_numeric($key)) {
+          if (($cid != NULL) && ($key != $cid)) {
+            unset($comments['comments'][$key]);
+          }
+          else {
+            unset($comment['links']);
+          }
+        }
+      }
 
-    $build['comments'] = $comments;
+      $build['comments'] = $comments;
+    }
   }
 
   $build += array(
@@ -554,7 +579,7 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
 
   $content = render($build);
 
-  //Get rid of any links before the content
+  // Get rid of any links before the content
   $parts = explode('<div class="content', $content, 2);
   if (count($parts) == 2) {
     $pattern = '!(.*?)<a [^>]*?>(.*?)</a>(.*?)!mis';
@@ -562,7 +587,7 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
     $content = implode('<div class="content', $parts);
   }
 
-  //Check URL list settings
+  // Check URL list settings
   $_print_urls = _print_url_list_enabled($node, $format);
 
   // Convert the a href elements
@@ -628,7 +653,7 @@ function _print_generate_path($path, $format = PRINT_HTML_FORMAT, $teaser = FALS
   // Delete any links area
   $node->body = preg_replace('!\s*<div class="links">.*?</div>!sim', '', $node->body);
 
-  //Check URL list settings
+  // Check URL list settings
   $_print_urls = _print_url_list_enabled($node, $format);
 
   // Convert the a href elements
@@ -674,7 +699,7 @@ function _print_generate_book($nid, $format = PRINT_HTML_FORMAT, $teaser = FALSE
   $tree = book_menu_subtree_data($node->book);
   $node->body = book_export_traverse($tree, 'book_node_export');
 
-  //Check URL list settings
+  // Check URL list settings
   $_print_urls = _print_url_list_enabled($node, $format);
 
   // Convert the a href elements

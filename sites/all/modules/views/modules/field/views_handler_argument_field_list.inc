@@ -1,21 +1,18 @@
 <?php
-
 /**
  * @file
- * Definition of views_handler_argument_field_list.
+ * Contains views_handler_argument_field_list handler
  */
 
 /**
- * Argument handler for list field to show the human readable name in the
- * summary.
+ * Argument handler for list field to show the human readable name in the summary.
  *
  * @ingroup views_argument_handlers
  */
 class views_handler_argument_field_list extends views_handler_argument_numeric {
   /**
-   * Stores the allowed values of this field.
-   *
    * @var array
+   * Stores the allowed values of this field.
    */
   var $allowed_values = NULL;
 
@@ -27,7 +24,7 @@ class views_handler_argument_field_list extends views_handler_argument_numeric {
 
   function option_definition() {
     $options = parent::option_definition();
-    $options['summary']['contains']['human'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['summary']['contains']['human'] = array('default' => FALSE);
 
     return $options;
   }
@@ -38,7 +35,7 @@ class views_handler_argument_field_list extends views_handler_argument_numeric {
     $form['summary']['human'] = array(
       '#title' => t('Display list value as human readable'),
       '#type' => 'checkbox',
-      '#default_value' => $this->options['summary']['human'],
+      '#default_value' => $this->options['summary']['human'],#
       '#dependency' => array('radio:options[default_action]' => array('summary')),
     );
   }
@@ -56,3 +53,4 @@ class views_handler_argument_field_list extends views_handler_argument_numeric {
     }
   }
 }
+

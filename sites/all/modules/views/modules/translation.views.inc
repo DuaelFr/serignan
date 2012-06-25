@@ -2,9 +2,14 @@
 
 /**
  * @file
- * Provide views data and handlers for translation.module.
  *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for translation.module
+ */
+
+/**
+ * @defgroup views_translation_module translation.module handlers
+ *
+ * @{
  */
 
 /**
@@ -18,6 +23,26 @@ function translation_views_data_alter(&$data) {
   $data['node']['table']['join']['node'] = array(
     'left_field' => 'tnid',
     'field' => 'tnid',
+  );
+
+  // Language field
+  $data['node']['language'] = array(
+    'group' => t('Content translation'),
+    'title' => t('Language'),
+    'help' => t('The language the content is in.'),
+    'field' => array(
+      'handler' => 'views_handler_field_node_language',
+      'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_node_language',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_node_language',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
   );
 
   // The translation ID (nid of the "source" translation)
@@ -119,3 +144,7 @@ function translation_views_data_alter(&$data) {
 
 
 }
+
+/**
+ * @}
+ */

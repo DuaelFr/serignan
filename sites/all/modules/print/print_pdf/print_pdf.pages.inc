@@ -40,20 +40,27 @@ function print_pdf_controller() {
 
     $pdf_filename = variable_get('print_pdf_filename', PRINT_PDF_FILENAME_DEFAULT);
     if (!empty($pdf_filename) && !empty($node)) {
-      $pdf_filename = token_replace($pdf_filename, array('node' => $node)) . '.pdf';
+      $pdf_filename = token_replace($pdf_filename, array('node' => $node));
     }
     else {
-      $pdf_filename = str_replace('/', '_', $path) . '.pdf';
+      $pdf_filename = token_replace($pdf_filename, array('site'));
+      if (empty($pdf_filename) || count(token_scan($pdf_filename))) {
+        // If there are still tokens, use a fallback solution
+        $pdf_filename = str_replace('/', '_', $path);
+      }
     }
   }
   else {
-    $pdf_filename = 'page.pdf';
+    $pdf_filename = 'page';
   }
+
   if (function_exists('transliteration_clean_filename')) {
     $pdf_filename = transliteration_clean_filename($pdf_filename, language_default('language'));
   }
 
-  $pdf = print_pdf_generate_path($path, $cid, $pdf_filename);
+  drupal_alter('print_pdf_filename', $pdf_filename, $path);
+
+  $pdf = print_pdf_generate_path($path, $cid, $pdf_filename . '.pdf');
   if ($pdf == NULL) {
     drupal_goto($path);
     exit;
@@ -135,20 +142,8 @@ function _print_pdf_file_access_images($html) {
   global $base_url, $language;
   $print_pdf_images_via_file = variable_get('print_pdf_images_via_file', PRINT_PDF_IMAGES_VIA_FILE_DEFAULT);
 
-  // TODO: This needs to be rewritten from scratch for Drupal 7
-  $lang = '';
-/*
-  TODO
-  switch (variable_get('language_negotiation', LANGUAGE_NEGOTIATION_NONE)) {
-    case LANGUAGE_NEGOTIATION_PATH_DEFAULT:
-    case LANGUAGE_NEGOTIATION_PATH:
-      $lang = $language->language;
-      break;
-    default:
-      $lang = '';
-      break;
-  }
- */
+  $lang = (function_exists('language_negotiation_get_any') && language_negotiation_get_any('locale-url')) ? $language->language : '';
+
   // Always convert private to local paths
   $pattern = "!(<img\s[^>]*?src\s*?=\s*?['\"]?)${base_url}/(?:(?:index.php)?\?q=)?(?:${lang}/)?system/files/([^>]*?>)!is";
   $replacement = '$1file://' . realpath(variable_get('file_private_path', '')) . '/$2';
@@ -192,6 +187,10 @@ function _print_pdf_dompdf($print, $html, $filename = NULL) {
   // Try to use local file access for image files
   $html = _print_pdf_file_access_images($html);
 
+  // Spaces in img URLs must be replaced with %20
+  $pattern = '!<(img\s[^>]*?)>!is';
+  $html = preg_replace_callback($pattern, '_print_replace_spaces', $html);
+
   // dompdf seems to have problems with something in system.css so let's not use it
   $html = preg_replace('!<link.*?modules/system/system.css.*?/>!', '', $html);
 
@@ -232,7 +231,7 @@ function _print_pdf_dompdf($print, $html, $filename = NULL) {
   $html = htmlspecialchars_decode(htmlentities($html, ENT_NOQUOTES, 'ISO-8859-1'), ENT_NOQUOTES);
   }
 
-  //must get rid of tbody (dompdf goes into recursion)
+  // Must get rid of tbody (dompdf goes into recursion)
   $html = preg_replace('!<tbody[^>]*?>|</tbody>!i', '', $html);
 
   $dompdf->load_html($html);
@@ -310,7 +309,7 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
   $pdf->SetCreator(variable_get('site_name', 'Drupal'));
   $pdf->SetTitle(html_entity_decode($print['title'], ENT_QUOTES, 'UTF-8'));
   $pdf->setPDFVersion('1.6');
-  $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', FALSE));
+  $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', PRINT_PDF_FONT_SUBSETTING_DEFAULT));
 
   if ($language->direction == LANGUAGE_RTL) {
     $pdf->setRTL(TRUE);
@@ -332,7 +331,7 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
   ob_clean();
 
   if ($filename) {
-    //Close and output PDF document
+    // Close and output PDF document
     $output_dest = ($print_pdf_content_disposition == 2) ? 'D' : 'I';
     $pdf->Output($filename, $output_dest);
     return TRUE;
@@ -405,7 +404,7 @@ function _print_pdf_wkhtmltopdf($print, $html, $filename = NULL) {
   if (!empty($pdf)) {
     if ($filename) {
       if (headers_sent()) {
-        die("Unable to stream pdf: headers already sent");
+        exit("Unable to stream pdf: headers already sent");
       }
       header("Cache-Control: private");
       header("Content-Type: application/pdf");
@@ -489,10 +488,12 @@ function theme_print_pdf_tcpdf_header($vars) {
 
   $ratio = 0;
   $logo = '';
-  if (preg_match('!src\s*=\s*(?:\'(.*?)\'|"(.*?)"|([^\s]*))!i', $tpl_logo[1], $logo_url)) {
+  if (isset($tpl_logo[1]) && preg_match('!src\s*=\s*(?:"(.*?)"|\'(.*?)\'|([^\s]*))!i', $tpl_logo[1], $logo_url)) {
     $logo = $logo_url[1];
-    $size = getimagesize($logo);
-    $ratio = $size ? ($size[0] / $size[1]) : 0;
+    if (!empty($logo)) {
+      $size = getimagesize($logo);
+      $ratio = $size ? ($size[0] / $size[1]) : 0;
+    }
   }
 
   // set header font
@@ -600,12 +601,12 @@ function theme_print_pdf_tcpdf_footer($vars) {
  */
 function theme_print_pdf_tcpdf_footer2($vars) {
   $pdf = $vars['pdf'];
-  //Position at 1.5 cm from bottom
+  // Position at 1.5 cm from bottom
   $pdf->writeHTMLCell(0, 15, 15, $pdf->getPageHeight()-15, $pdf->footer);
 
   $ormargins = $pdf->getOriginalMargins();
   $pagenumtxt = t('Page !n of !total', array('!n' => $pdf->PageNo(), '!total' => $pdf->getAliasNbPages()));
-  //Print page number
+  // Print page number
   if ($pdf->getRTL()) {
     $pdf->SetX($ormargins['right']);
     $pdf->Cell(0, 10, $pagenumtxt, 'T', 0, 'L');

@@ -1,12 +1,7 @@
 <?php
 
 /**
- * @file
- * Definition of ViewsViewTest.
- */
-
-/**
- * Views class tests.
+ * Test the view class.
  */
 class ViewsViewTest extends ViewsSqlTest {
   public static function getInfo() {
@@ -18,7 +13,7 @@ class ViewsViewTest extends ViewsSqlTest {
   }
 
   /**
-   * Tests the deconstructor to be sure that every kind of heavy objects are removed.
+   * Test the deconstructor to be sure that every kind of heavy objects are removed.
    */
   function testDestroy() {
     $view = $this->view_test_destroy();

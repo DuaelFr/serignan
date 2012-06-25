@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Contains the grid style plugin.
@@ -19,7 +18,7 @@ class views_plugin_style_grid extends views_plugin_style {
 
     $options['columns'] = array('default' => '4');
     $options['alignment'] = array('default' => 'horizontal');
-    $options['fill_single_line'] = array('default' => TRUE, 'bool' => TRUE);
+    $options['fill_single_line'] = array('default' => TRUE);
     $options['summary'] = array('default' => '');
 
     return $options;

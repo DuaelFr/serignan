@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_field_markup.
- */
-
-/**
  * A handler to run a field through check_markup, using a companion
  * format field.
  *

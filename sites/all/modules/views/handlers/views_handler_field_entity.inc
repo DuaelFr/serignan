@@ -1,10 +1,4 @@
 <?php
-
-/**
- * @file
- * Definition of views_handler_field_entity.
- */
-
 /**
  * A handler to display data from entity objects.
  *

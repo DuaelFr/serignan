@@ -2,21 +2,20 @@
 
 /**
  * @file
- * Definition of views_handler_area_text.
+ * Contains views_handler_area_text handler.
  */
 
 /**
  * Views area text handler.
- *
- * @ingroup views_area_handlers
- */
+ * @ingroup views_area_handlers Views' area handlers
+*/
 class views_handler_area_text extends views_handler_area {
 
   function option_definition() {
     $options = parent::option_definition();
     $options['content'] = array('default' => '', 'translatable' => TRUE, 'format_key' => 'format');
     $options['format'] = array('default' => NULL);
-    $options['tokenize'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['tokenize'] = array('default' => FALSE);
     return $options;
   }
 
@@ -51,7 +50,7 @@ class views_handler_area_text extends views_handler_area {
     }
 
     if (!empty($options)) {
-      $output = '<p>' . t('The following tokens are available. If you would like to have the characters \'[\' and \']\' please use the html entity codes \'%5B\' or  \'%5D\' or they will get replaced with empty space.' . '</p>');
+      $output = '<p>' . t('The following tokens are available. If you would like to have the characters %5B and %5D please use the html entity codes \'%5B\' or  \'%5D\' or they will get replaced with empty space.)' . '</p>');
       foreach (array_keys($options) as $type) {
         if (!empty($options[$type])) {
           $items = array();
@@ -107,4 +106,5 @@ class views_handler_area_text extends views_handler_area {
       return check_markup($value, $format, '', FALSE);
     }
   }
+
 }

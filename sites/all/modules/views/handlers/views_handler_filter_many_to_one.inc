@@ -1,11 +1,6 @@
 <?php
 
 /**
- * @file
- * Definition of views_handler_filter_many_to_one.
- */
-
-/**
  * Complex filter to handle filtering for many to one relationships,
  * such as terms (many terms per node) or roles (many roles per user).
  *

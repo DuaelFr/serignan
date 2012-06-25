@@ -1,12 +1,6 @@
 <?php
-
 /**
- * @file
- * @todo.
- */
-
-/**
- * @defgroup views_filter_handlers Views filter handlers
+ * @defgroup views_filter_handlers Views' filter handlers
  * @{
  * Handlers to tell Views how to filter queries.
  *
@@ -28,8 +22,6 @@
 
 /**
  * Base class for filters.
- *
- * @ingroup views_filter_handlers
  */
 class views_handler_filter extends views_handler {
   /**
@@ -98,17 +90,17 @@ class views_handler_filter extends views_handler {
     $options['operator'] = array('default' => '=');
     $options['value'] = array('default' => '');
     $options['group'] = array('default' => '1');
-    $options['exposed'] = array('default' => FALSE, 'bool' => TRUE);
+    $options['exposed'] = array('default' => FALSE);
     $options['expose'] = array(
       'contains' => array(
         'operator_id' => array('default' => FALSE),
         'label' => array('default' => '', 'translatable' => TRUE),
-        'use_operator' => array('default' => FALSE, 'bool' => TRUE),
+        'use_operator' => array('default' => 0),
         'operator' => array('default' => ''),
         'identifier' => array('default' => ''),
-        'required' => array('default' => FALSE, 'bool' => TRUE),
-        'remember' => array('default' => FALSE, 'bool' => TRUE),
-        'multiple' => array('default' => FALSE, 'bool' => TRUE),
+        'required' => array('default' => 0),
+        'remember' => array('default' => 0),
+        'multiple' => array('default' => 0),
       ),
     );
 
@@ -192,7 +184,7 @@ class views_handler_filter extends views_handler {
    * This may be overridden by child classes, and it must
    * define $form['operator'];
    *
-   * @see options_form()
+   * @see options_form().
    */
   function operator_form(&$form, &$form_state) {
     $options = $this->operator_options();
@@ -240,7 +232,7 @@ class views_handler_filter extends views_handler {
    * This should be overridden by all child classes and it must
    * define $form['value']
    *
-   * @see options_form()
+   * @see options_form().
    */
   function value_form(&$form, &$form_state) { $form['value'] = array(); }
 
@@ -307,7 +299,7 @@ class views_handler_filter extends views_handler {
   /**
    * Options form subform for exposed filter options.
    *
-   * @see options_form()
+   * @see options_form().
    */
   function expose_form(&$form, &$form_state) {
     $form['#theme'] = 'views_ui_expose_filter_form';
@@ -504,11 +496,6 @@ class views_handler_filter extends views_handler {
       $form['#size'] = NULL;
     }
 
-    // Cleanup in case the translated element's (radios or checkboxes) display value contains html.
-    if ($form['#type'] == 'select') {
-      $this->prepare_filter_select_options($form['#options']);
-    }
-
     if ($type == 'value' && empty($this->always_required) && empty($this->options['expose']['required']) && $form['#type'] == 'select' && empty($form['#multiple'])) {
       $any_label = variable_get('views_exposed_filter_any_label', 'new_any') == 'old_any' ? t('<Any>') : t('- Any -');
       $form['#options'] = array('All' => $any_label) + $form['#options'];
@@ -517,30 +504,6 @@ class views_handler_filter extends views_handler {
 
     if (!empty($this->options['expose']['required'])) {
       $form['#required'] = TRUE;
-    }
-  }
-
-
-
-  /**
-   * Sanitizes the HTML select element's options.
-   *
-   * The function is recursive to support optgroups.
-   */
-  function prepare_filter_select_options(&$options) {
-    foreach ($options as $value => $label) {
-      // Recurse for optgroups.
-      if (is_array($label)) {
-        $this->prepare_filter_select_options($options[$value]);
-      }
-      // FAPI has some special value to allow hierarchy.
-      // @see _form_options_flatten
-      elseif (is_object($label)) {
-        $this->prepare_filter_select_options($options[$value]->option);
-      }
-      else {
-        $options[$value] = strip_tags(decode_entities($label));
-      }
     }
   }
 

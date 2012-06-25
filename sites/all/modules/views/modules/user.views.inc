@@ -1,14 +1,17 @@
 <?php
-
 /**
  * @file
- * Provide views data and handlers for user.module.
- *
- * @ingroup views_module_handlers
+ * Provide views data and handlers for user.module
  */
 
 /**
- * Implements hook_views_data().
+ * @defgroup views_user_module user.module handlers
+ *
+ * @{
+ */
+
+/**
+ * Implements hook_views_data()
  */
 function user_views_data() {
   // ----------------------------------------------------------------
@@ -69,16 +72,6 @@ function user_views_data() {
       'base field' => 'uid',
       'field' => 'uid',
       'label' => t('nodes'),
-    ),
-  );
-
-  // uid_raw
-  $data['users']['uid_raw'] = array(
-    'help' => t('The raw numeric user ID.'),
-    'real field' => 'uid',
-    'filter' => array(
-      'title' => t('The user ID'),
-      'handler' => 'views_handler_filter_numeric',
     ),
   );
 
@@ -528,7 +521,7 @@ function user_views_data() {
 }
 
 /**
- * Implements hook_views_plugins().
+ * Implements hook_views_plugins
  */
 function user_views_plugins() {
   return array(
@@ -573,3 +566,7 @@ function user_views_query_substitutions($view) {
   global $user;
   return array('***CURRENT_USER***' => intval($user->uid));
 }
+
+/**
+ * @}
+ */

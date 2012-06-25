@@ -209,10 +209,12 @@ function crumbs_admin_form_submit($form, &$form_state) {
     if (isset($available_keys[$key])) {
       $weights[$key] = $weight;
       ++$weight;
-    } else if (preg_match('/^-/', $line)) {
+    }
+    elseif (preg_match('/^-/', $line)) {
       if ($weight !== FALSE) {
         $weight = FALSE;
-      } else {
+      }
+      else {
         break;
       }
     }

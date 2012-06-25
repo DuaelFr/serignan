@@ -1,7 +1,6 @@
 <?php
-
 /**
- * @file
+ * @file views-ui-edit-view.tpl.php
  * Template for the primary view editing window.
  */
 ?>
