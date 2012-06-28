@@ -46,6 +46,36 @@ function serignan_news_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_content|node|news|list';
+  $field_group->group_name = 'group_content';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'news';
+  $field_group->mode = 'list';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => '',
+    'weight' => '1',
+    'children' => array(
+      0 => 'body',
+      1 => 'field_news_categories',
+      2 => 'title',
+      3 => 'node_link',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => '',
+      'instance_settings' => array(
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_content|node|news|list'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_content|node|news|sidebar';
   $field_group->group_name = 'group_content';
   $field_group->entity_type = 'node';
@@ -121,11 +151,7 @@ function serignan_news_field_group_info() {
   $field_group->data = array(
     'label' => 'Data',
     'weight' => '2',
-    'children' => array(
-      0 => 'body',
-      1 => 'title',
-      2 => 'node_link',
-    ),
+    'children' => array(),
     'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Data',

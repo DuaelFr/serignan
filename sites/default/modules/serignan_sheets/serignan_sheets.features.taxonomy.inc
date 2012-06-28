@@ -13,7 +13,7 @@ function serignan_sheets_taxonomy_default_vocabularies() {
       'name' => 'Catégorie de fiches type',
       'machine_name' => 'sheets_category',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => '1',
       'module' => 'taxonomy',
       'weight' => '0',
       'metatags' => array(),

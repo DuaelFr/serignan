@@ -25,13 +25,13 @@ function serignan_contact_uuid_features_default_content() {
   'tnid' => '0',
   'translate' => '0',
   'uuid' => '4045c45f-1b50-4d8e-91d7-e25f4a2cc359',
-  'revision_uid' => '1',
+  'revision_uid' => '0',
   'body' => array(),
-  'field_sections' => array(),
   'field_picture' => array(),
+  'field_sections' => array(),
   'metatags' => array(),
   'webform' => array(
-    'nid' => '398',
+    'nid' => '1',
     'confirmation' => '',
     'confirmation_format' => 'full_html',
     'redirect_url' => '<confirmation>',
@@ -53,7 +53,7 @@ function serignan_contact_uuid_features_default_content() {
     ),
     'emails' => array(
       1 => array(
-        'nid' => '398',
+        'nid' => '1',
         'eid' => '1',
         'email' => 'e.cunibil@duael.fr',
         'subject' => 'Formulaire de contact du site de la ville de Sérignan',
@@ -67,7 +67,7 @@ function serignan_contact_uuid_features_default_content() {
     ),
     'components' => array(
       1 => array(
-        'nid' => 398,
+        'nid' => 1,
         'cid' => '1',
         'pid' => '0',
         'form_key' => 'email',
@@ -91,7 +91,7 @@ function serignan_contact_uuid_features_default_content() {
         'page_num' => 1,
       ),
       2 => array(
-        'nid' => 398,
+        'nid' => 1,
         'cid' => '2',
         'pid' => '0',
         'form_key' => 'subject',
@@ -118,7 +118,7 @@ function serignan_contact_uuid_features_default_content() {
         'page_num' => 1,
       ),
       3 => array(
-        'nid' => 398,
+        'nid' => 1,
         'cid' => '3',
         'pid' => '0',
         'form_key' => 'content',
@@ -144,18 +144,18 @@ function serignan_contact_uuid_features_default_content() {
       ),
     ),
   ),
-  'print_display' => 0,
+  'print_display' => 1,
   'print_display_comment' => 0,
-  'print_display_urllist' => 0,
+  'print_display_urllist' => 1,
   'name' => 'superadmin',
   'picture' => '0',
   'data' => 'b:0;',
   'print_mail_display' => 1,
   'print_mail_display_comment' => 0,
   'print_mail_display_urllist' => 1,
-  'print_pdf_display' => 0,
+  'print_pdf_display' => 1,
   'print_pdf_display_comment' => 0,
-  'print_pdf_display_urllist' => 0,
+  'print_pdf_display_urllist' => 1,
   'date' => '2012-05-30 01:46:37 +0200',
 );
   return $nodes;

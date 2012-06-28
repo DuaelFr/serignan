@@ -49,16 +49,16 @@ function serignan_zoom_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => '1',
         ),
         'home' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'trim_length' => '280',
+            'trim_length' => '240',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -149,14 +149,14 @@ function serignan_zoom_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'large',
           ),
           'type' => 'image',
-          'weight' => '1',
+          'weight' => '2',
         ),
         'home' => array(
           'label' => 'hidden',
@@ -179,7 +179,7 @@ function serignan_zoom_field_default_fields() {
           'weight' => '1',
         ),
         'sidebar' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => 'content',
@@ -284,18 +284,17 @@ function serignan_zoom_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '2',
-        ),
-        'home' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '0',
+        ),
+        'home' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'list' => array(
           'label' => 'above',

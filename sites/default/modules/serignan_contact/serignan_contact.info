@@ -2,6 +2,7 @@ name = Serignan Contact
 description = Formulaire de contact
 core = 7.x
 package = Serignan
+php = 5.2.4
 version = 7.x-1.0-alpha1
 project = serignan_contact
 dependencies[] = serignan_sections

@@ -24,7 +24,7 @@ function serignan_zoom_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Zoom sur';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['use_more_text'] = 'Lire la suite';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -165,7 +165,7 @@ function serignan_zoom_views_default_views() {
   $translatables['zoom'] = array(
     t('Master'),
     t('Zoom sur'),
-    t('plus'),
+    t('Lire la suite'),
     t('Appliquer'),
     t('Réinitialiser'),
     t('Trier par'),
@@ -179,6 +179,7 @@ function serignan_zoom_views_default_views() {
     t('suivant ›'),
     t('dernier »'),
     t('Home (Block)'),
+    t('plus'),
     t('Sidebar (Block)'),
   );
   $export['zoom'] = $view;

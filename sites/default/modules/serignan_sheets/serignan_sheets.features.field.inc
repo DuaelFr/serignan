@@ -46,8 +46,9 @@ function serignan_sheets_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'hidden',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'text_default',
           'weight' => '5',
         ),
         'list' => array(
@@ -125,9 +126,10 @@ function serignan_sheets_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '10',
+          'type' => 'text_default',
+          'weight' => '2',
         ),
         'list' => array(
           'label' => 'above',
@@ -194,9 +196,15 @@ function serignan_sheets_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '11',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => '3',
         ),
         'list' => array(
           'label' => 'above',
@@ -506,10 +514,29 @@ function serignan_sheets_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '9',
+          'label' => 'hidden',
+          'module' => 'geofield_map',
+          'settings' => array(
+            'geofield_map_baselayers_hybrid' => 1,
+            'geofield_map_baselayers_map' => 1,
+            'geofield_map_baselayers_physical' => 0,
+            'geofield_map_baselayers_satellite' => 1,
+            'geofield_map_controltype' => 'default',
+            'geofield_map_draggable' => 0,
+            'geofield_map_height' => '210px',
+            'geofield_map_maptype' => 'map',
+            'geofield_map_mtc' => 'standard',
+            'geofield_map_overview' => 0,
+            'geofield_map_overview_opened' => 0,
+            'geofield_map_pancontrol' => 1,
+            'geofield_map_scale' => 0,
+            'geofield_map_scrollwheel' => 0,
+            'geofield_map_streetview_show' => 0,
+            'geofield_map_width' => '340px',
+            'geofield_map_zoom' => '8',
+          ),
+          'type' => 'geofield_map_map',
+          'weight' => '0',
         ),
         'list' => array(
           'label' => 'above',
@@ -566,7 +593,7 @@ function serignan_sheets_field_default_fields() {
   $fields['node-sheet-field_pictures'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_pictures',
@@ -597,10 +624,10 @@ function serignan_sheets_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '8',
+          'weight' => '5',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -622,7 +649,7 @@ function serignan_sheets_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_pictures',
       'label' => 'Images',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'alt_field' => 1,
         'default_image' => 0,
@@ -706,7 +733,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '7',
         ),
         'list' => array(
           'label' => 'above',
@@ -791,7 +818,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '6',
         ),
         'list' => array(
           'label' => 'above',
@@ -815,10 +842,143 @@ function serignan_sheets_field_default_fields() {
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
+        'module' => 'term_reference_tree',
+        'settings' => array(
+          'cascading_selection' => 0,
+          'filter_view' => '',
+          'leaves_only' => 0,
+          'max_depth' => '',
+          'parent_term_id' => '',
+          'select_parents' => 1,
+          'start_minimized' => 1,
+          'token_display' => '',
+          'track_list' => 0,
+        ),
+        'type' => 'term_reference_tree',
         'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-sheet-field_slideshow'
+  $fields['node-sheet-field_slideshow'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '6',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_slideshow',
+      'foreign keys' => array(
+        'fid' => array(
+          'columns' => array(
+            'fid' => 'fid',
+          ),
+          'table' => 'file_managed',
+        ),
+      ),
+      'indexes' => array(
+        'fid' => array(
+          0 => 'fid',
+        ),
+      ),
+      'module' => 'image',
+      'settings' => array(
+        'default_image' => 0,
+        'uri_scheme' => 'public',
+      ),
+      'translatable' => '0',
+      'type' => 'image',
+    ),
+    'field_instance' => array(
+      'bundle' => 'sheet',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'field_slideshow',
+          'settings' => array(
+            'slideshow_caption' => '',
+            'slideshow_caption_link' => '',
+            'slideshow_carousel_circular' => 1,
+            'slideshow_carousel_image_style' => 'thumbnail',
+            'slideshow_carousel_scroll' => '1',
+            'slideshow_carousel_speed' => '500',
+            'slideshow_carousel_vertical' => 0,
+            'slideshow_carousel_visible' => '4',
+            'slideshow_colorbox_image_style' => 'large',
+            'slideshow_colorbox_slideshow' => 'manual',
+            'slideshow_colorbox_slideshow_speed' => '4000',
+            'slideshow_colorbox_speed' => '350',
+            'slideshow_colorbox_transition' => 'elastic',
+            'slideshow_controls' => 0,
+            'slideshow_field_collection_image' => '',
+            'slideshow_fx' => 'scrollRight',
+            'slideshow_image_style' => 'medium',
+            'slideshow_link' => 'colorbox',
+            'slideshow_order' => '',
+            'slideshow_pager' => 'number',
+            'slideshow_pager_image_style' => '',
+            'slideshow_pause' => 0,
+            'slideshow_speed' => '1000',
+            'slideshow_timeout' => '4000',
+          ),
+          'type' => 'slideshow',
+          'weight' => '4',
+        ),
+        'list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_slideshow',
+      'label' => 'slideshow',
+      'required' => 0,
+      'settings' => array(
+        'alt_field' => 0,
+        'default_image' => 0,
+        'file_directory' => '',
+        'file_extensions' => 'png gif jpg jpeg',
+        'max_filesize' => '',
+        'max_resolution' => '',
+        'min_resolution' => '',
+        'title_field' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'image',
+        'settings' => array(
+          'filefield_sources' => array(
+            'filefield_sources' => array(
+              'attach' => 0,
+              'imce' => 0,
+              'reference' => 0,
+              'remote' => 0,
+            ),
+            'source_attach' => array(
+              'absolute' => '0',
+              'attach_mode' => 'copy',
+              'path' => 'file_attach',
+            ),
+            'source_reference' => array(
+              'autocomplete' => '0',
+            ),
+          ),
+          'preview_image_style' => 'thumbnail',
+          'progress_indicator' => 'throbber',
+        ),
+        'type' => 'image_image',
+        'weight' => '11',
       ),
     ),
   );
@@ -832,6 +992,7 @@ function serignan_sheets_field_default_fields() {
   t('Images');
   t('Informations pratiques');
   t('Rubrique');
+  t('slideshow');
 
   return $fields;
 }

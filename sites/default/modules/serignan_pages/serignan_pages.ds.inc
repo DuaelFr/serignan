@@ -31,6 +31,11 @@ function serignan_pages_ds_field_settings_info() {
       'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'link text' => '[+] en savoir plus',
+        'wrapper' => '',
+        'class' => '',
+      ),
     ),
   );
   $export['node|page|list'] = $ds_fieldsetting;
