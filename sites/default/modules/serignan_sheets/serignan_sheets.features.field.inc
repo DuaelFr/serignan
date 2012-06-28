@@ -10,7 +10,7 @@
 function serignan_sheets_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-sheet-body'
+  // Exported field: 'node-sheet-body'.
   $fields['node-sheet-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -92,7 +93,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_add_infos'
+  // Exported field: 'node-sheet-field_add_infos'.
   $fields['node-sheet-field_add_infos'] = array(
     'field_config' => array(
       'active' => '1',
@@ -113,6 +114,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -164,7 +166,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_address'
+  // Exported field: 'node-sheet-field_address'.
   $fields['node-sheet-field_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -174,6 +176,7 @@ function serignan_sheets_field_default_fields() {
       'field_name' => 'field_address',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(),
       'translatable' => '0',
@@ -492,7 +495,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_geoloc'
+  // Exported field: 'node-sheet-field_geoloc'.
   $fields['node-sheet-field_geoloc'] = array(
     'field_config' => array(
       'active' => '1',
@@ -502,6 +505,7 @@ function serignan_sheets_field_default_fields() {
       'field_name' => 'field_geoloc',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'geofield',
       'settings' => array(),
       'translatable' => '0',
@@ -589,7 +593,73 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_pictures'
+  // Exported field: 'node-sheet-field_phone'.
+  $fields['node-sheet-field_phone'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '2',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_phone',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'phone',
+      'settings' => array(
+        'country' => 'fr',
+      ),
+      'translatable' => '0',
+      'type' => 'phone',
+    ),
+    'field_instance' => array(
+      'bundle' => 'sheet',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'phone',
+          'settings' => array(),
+          'type' => 'phone',
+          'weight' => 13,
+        ),
+        'list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_phone',
+      'label' => 'Téléphone',
+      'required' => 0,
+      'settings' => array(
+        'ca_phone_parentheses' => 1,
+        'ca_phone_separator' => '-',
+        'phone_country_code' => 0,
+        'phone_default_country_code' => '1',
+        'phone_int_max_length' => 15,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'phone',
+        'settings' => array(),
+        'type' => 'phone_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-sheet-field_pictures'.
   $fields['node-sheet-field_pictures'] = array(
     'field_config' => array(
       'active' => '1',
@@ -610,6 +680,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -690,7 +761,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_sections'
+  // Exported field: 'node-sheet-field_sections'.
   $fields['node-sheet-field_sections'] = array(
     'field_config' => array(
       'active' => '1',
@@ -711,6 +782,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -775,7 +847,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_sheet_category'
+  // Exported field: 'node-sheet-field_sheet_category'.
   $fields['node-sheet-field_sheet_category'] = array(
     'field_config' => array(
       'active' => '1',
@@ -796,6 +868,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -860,7 +933,7 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sheet-field_slideshow'
+  // Exported field: 'node-sheet-field_slideshow'.
   $fields['node-sheet-field_slideshow'] = array(
     'field_config' => array(
       'active' => '1',
@@ -881,6 +954,7 @@ function serignan_sheets_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -992,6 +1066,7 @@ function serignan_sheets_field_default_fields() {
   t('Images');
   t('Informations pratiques');
   t('Rubrique');
+  t('Téléphone');
   t('slideshow');
 
   return $fields;

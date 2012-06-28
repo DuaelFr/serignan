@@ -28,7 +28,7 @@ function serignan_sheets_ctools_plugin_api() {
 function serignan_sheets_image_default_styles() {
   $styles = array();
 
-  // Exported image style: sheet_list
+  // Exported image style: sheet_list.
   $styles['sheet_list'] = array(
     'name' => 'sheet_list',
     'effects' => array(
