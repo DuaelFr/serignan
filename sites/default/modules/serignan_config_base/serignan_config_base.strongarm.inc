@@ -46,7 +46,7 @@ function serignan_config_base_strongarm() {
     'domain' => '',
     'prefix' => 'fr',
     'weight' => '-10',
-    'javascript' => '5wq6uqrfONjhCcY_5d8QaieI1T5u-qbpG1DitQje5b0',
+    'javascript' => 'OqXz8ulABxGqnn4DKnIsCEhhbznHTlrJrBrbDZR7LgE',
   );
   $export['language_default'] = $strongarm;
 
