@@ -21,7 +21,7 @@ function serignan_sections_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'taxonomy_menu_rebuild_section';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['taxonomy_menu_rebuild_section'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -35,7 +35,7 @@ function serignan_sections_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'taxonomy_menu_vocab_parent_section';
-  $strongarm->value = '0';
+  $strongarm->value = 'main-menu:0';
   $export['taxonomy_menu_vocab_parent_section'] = $strongarm;
 
   return $export;
