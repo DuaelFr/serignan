@@ -42,7 +42,6 @@ function serignan_config_editors_wysiwyg_default_profiles() {
           'Copy' => 1,
           'Paste' => 1,
           'RemoveFormat' => 1,
-          'Format' => 1,
           'Styles' => 1,
           'Table' => 1,
           'Find' => 1,
@@ -67,11 +66,15 @@ function serignan_config_editors_wysiwyg_default_profiles() {
       'remove_linebreaks' => 1,
       'apply_source_formatting' => 0,
       'paste_auto_cleanup_on_paste' => 1,
-      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+      'block_formats' => 'p,address,h2,h3,h4',
       'css_setting' => 'theme',
       'css_path' => '',
-      'css_classes' => '',
+      'css_classes' => 'texte intro=h5.texte_intro
+titre bleu=h2.titre_bleu
+titre vert=h3.titre_vert
+titre gris=h4.titre_gris',
     ),
+    'metatags' => array(),
   );
 
   return $profiles;
