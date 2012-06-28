@@ -28,7 +28,7 @@ function serignan_zoom_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '4',
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -118,15 +118,13 @@ function serignan_zoom_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'field_picture',
         1 => 'title',
-        2 => 'field_subtitle',
-        3 => 'body',
-        4 => 'node_link',
+        2 => 'body',
+        3 => 'node_link',
       ),
     ),
     'fields' => array(
       'field_picture' => 'ds_content',
       'title' => 'ds_content',
-      'field_subtitle' => 'ds_content',
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),
