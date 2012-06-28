@@ -24,7 +24,7 @@ function serignan_events_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Agenda';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['use_more_text'] = 'Tout l\'agenda';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -113,7 +113,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '160',
   );
-  /* Champ: Contenu : Lien */
+  /* Champ: Nœud : Lien */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
@@ -156,8 +156,6 @@ function serignan_events_views_default_views() {
   $handler = $view->new_display('block', 'Home (Block)', 'block_home');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'Tout l\'agenda';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -258,8 +256,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
   $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_date_end_value']['granularity'] = 'minute';
-  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
   /* Critère de filtrage: Contenu : Langue */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
@@ -276,8 +272,6 @@ function serignan_events_views_default_views() {
   $handler = $view->new_display('block', 'Sidebar (Block)', 'block_sidebar');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'Tout l\'agenda';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
@@ -323,8 +317,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
   $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>';
   $handler->display->display_options['filters']['field_date_end_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_date_end_value']['granularity'] = 'minute';
-  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
   /* Critère de filtrage: Contenu : Langue */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
@@ -336,7 +328,7 @@ function serignan_events_views_default_views() {
   $translatables['events'] = array(
     t('Master'),
     t('Agenda'),
-    t('plus'),
+    t('Tout l\'agenda'),
     t('Appliquer'),
     t('Réinitialiser'),
     t('Trier par'),
@@ -353,8 +345,8 @@ function serignan_events_views_default_views() {
     t('au'),
     t('[+]'),
     t('Home (Block)'),
-    t('Tout l\'agenda'),
     t('List (Page)'),
+    t('plus'),
     t('Sidebar (Block)'),
   );
   $export['events'] = $view;
