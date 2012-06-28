@@ -2,6 +2,7 @@ name = Serignan Downloads
 description = Gestion des téléchargements
 core = 7.x
 package = Serignan
+php = 5.2.4
 version = 7.x-1.0-alpha1
 project = serignan_downloads
 dependencies[] = features
