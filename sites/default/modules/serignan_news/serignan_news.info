@@ -32,6 +32,7 @@ features[field][] = node-news-body
 features[field][] = node-news-field_news_categories
 features[field][] = node-news-field_picture
 features[field_group][] = group_content|node|news|home
+features[field_group][] = group_content|node|news|list
 features[field_group][] = group_content|node|news|sidebar
 features[field_group][] = group_content|node|news|slideshow
 features[field_group][] = group_data|node|news|home

@@ -49,7 +49,7 @@ function serignan_news_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '0',
+          'weight' => '2',
         ),
         'home' => array(
           'label' => 'hidden',
@@ -63,9 +63,11 @@ function serignan_news_field_default_fields() {
         'list' => array(
           'label' => 'hidden',
           'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '0',
+          'settings' => array(
+            'trim_length' => '200',
+          ),
+          'type' => 'text_summary_or_trimmed',
+          'weight' => '4',
         ),
         'sidebar' => array(
           'label' => 'hidden',
@@ -154,11 +156,11 @@ function serignan_news_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'home' => array(
           'label' => 'above',
@@ -167,11 +169,11 @@ function serignan_news_field_default_fields() {
           'weight' => '8',
         ),
         'list' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'sidebar' => array(
           'label' => 'above',
@@ -244,14 +246,14 @@ function serignan_news_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
             'image_link' => '',
-            'image_style' => '',
+            'image_style' => 'image_fiche',
           ),
           'type' => 'image',
-          'weight' => '1',
+          'weight' => '0',
         ),
         'home' => array(
           'label' => 'hidden',
@@ -264,14 +266,14 @@ function serignan_news_field_default_fields() {
           'weight' => '0',
         ),
         'list' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'image_link' => '',
-            'image_style' => '',
+            'image_link' => 'content',
+            'image_style' => 'sheet_list',
           ),
           'type' => 'image',
-          'weight' => '1',
+          'weight' => '0',
         ),
         'sidebar' => array(
           'label' => 'hidden',

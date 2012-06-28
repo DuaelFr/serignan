@@ -24,7 +24,7 @@ function serignan_news_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Actualités';
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'plus';
+  $handler->display->display_options['use_more_text'] = 'Toutes les actualités';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -86,8 +86,6 @@ function serignan_news_views_default_views() {
   $handler = $view->new_display('block', 'Home (Block)', 'block_home');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'Toutes les actualités';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
@@ -137,8 +135,6 @@ function serignan_news_views_default_views() {
   $handler = $view->new_display('block', 'Sidebar (Block)', 'block_sidebar');
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
-  $handler->display->display_options['use_more_always'] = TRUE;
-  $handler->display->display_options['use_more_text'] = 'Toutes les actualités';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
@@ -179,7 +175,7 @@ function serignan_news_views_default_views() {
   $translatables['news'] = array(
     t('Master'),
     t('Actualités'),
-    t('plus'),
+    t('Toutes les actualités'),
     t('Appliquer'),
     t('Réinitialiser'),
     t('Trier par'),
@@ -193,8 +189,8 @@ function serignan_news_views_default_views() {
     t('suivant ›'),
     t('dernier »'),
     t('Home (Block)'),
-    t('Toutes les actualités'),
     t('List (Page)'),
+    t('plus'),
     t('Sidebar (Block)'),
   );
   $export['news'] = $view;
