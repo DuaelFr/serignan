@@ -622,7 +622,7 @@ function serignan_sheets_field_default_fields() {
           'module' => 'phone',
           'settings' => array(),
           'type' => 'phone',
-          'weight' => 13,
+          'weight' => '13',
         ),
         'list' => array(
           'label' => 'above',
