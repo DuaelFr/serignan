@@ -537,7 +537,7 @@ function serignan_sheets_field_default_fields() {
             'geofield_map_scrollwheel' => 0,
             'geofield_map_streetview_show' => 0,
             'geofield_map_width' => '340px',
-            'geofield_map_zoom' => '8',
+            'geofield_map_zoom' => '16',
           ),
           'type' => 'geofield_map_map',
           'weight' => '0',
@@ -631,7 +631,7 @@ function serignan_sheets_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 14,
+          'weight' => '14',
         ),
         'list' => array(
           'label' => 'above',
