@@ -10,7 +10,7 @@
 function serignan_sections_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'taxonomy_term-section-field_description'
+  // Exported field: 'taxonomy_term-section-field_description'.
   $fields['taxonomy_term-section-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -31,6 +31,7 @@ function serignan_sections_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -81,7 +82,7 @@ function serignan_sections_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-section-field_picture'
+  // Exported field: 'taxonomy_term-section-field_picture'.
   $fields['taxonomy_term-section-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -102,6 +103,7 @@ function serignan_sections_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
