@@ -35,7 +35,7 @@ function serignan_news_views_api() {
 function serignan_news_image_default_styles() {
   $styles = array();
 
-  // Exported image style: news_home
+  // Exported image style: news_home.
   $styles['news_home'] = array(
     'name' => 'news_home',
     'effects' => array(
@@ -57,7 +57,7 @@ function serignan_news_image_default_styles() {
     ),
   );
 
-  // Exported image style: news_sidebar
+  // Exported image style: news_sidebar.
   $styles['news_sidebar'] = array(
     'name' => 'news_sidebar',
     'effects' => array(

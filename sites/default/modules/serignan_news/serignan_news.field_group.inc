@@ -58,8 +58,9 @@ function serignan_news_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_news_categories',
-      2 => 'title',
-      3 => 'node_link',
+      2 => 'field_news_date',
+      3 => 'title',
+      4 => 'node_link',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

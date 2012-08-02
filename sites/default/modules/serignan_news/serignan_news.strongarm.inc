@@ -78,6 +78,12 @@ function serignan_news_strongarm() {
         'title' => array(
           'weight' => '0',
         ),
+        'metatags' => array(
+          'weight' => '5',
+        ),
+        'path' => array(
+          'weight' => '6',
+        ),
       ),
       'display' => array(),
     ),
