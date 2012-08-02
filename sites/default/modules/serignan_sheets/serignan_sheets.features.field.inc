@@ -842,7 +842,7 @@ function serignan_sheets_field_default_fields() {
   $fields['node-sheet-field_sections'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_sections',
@@ -910,8 +910,9 @@ function serignan_sheets_field_default_fields() {
         'settings' => array(
           'cascading_selection' => 0,
           'filter_view' => '',
-          'leaves_only' => 1,
+          'leaves_only' => 0,
           'max_depth' => '',
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'parent_term_id' => '',
           'select_parents' => 0,
           'start_minimized' => 1,
@@ -920,92 +921,6 @@ function serignan_sheets_field_default_fields() {
         ),
         'type' => 'term_reference_tree',
         'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-sheet-field_sheet_category'.
-  $fields['node-sheet-field_sheet_category'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_sheet_category',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'sheets_category',
-            'parent' => '0',
-          ),
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'sheet',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '6',
-        ),
-        'list' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '9',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_sheet_category',
-      'label' => 'Catégories',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'term_reference_tree',
-        'settings' => array(
-          'cascading_selection' => 0,
-          'filter_view' => '',
-          'leaves_only' => 0,
-          'max_depth' => '',
-          'parent_term_id' => '',
-          'select_parents' => 1,
-          'start_minimized' => 1,
-          'token_display' => '',
-          'track_list' => 0,
-        ),
-        'type' => 'term_reference_tree',
-        'weight' => '1',
       ),
     ),
   );
@@ -1136,7 +1051,6 @@ function serignan_sheets_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Catégories');
   t('Contenu');
   t('Coordonnées');
   t('Géolocalisation');
