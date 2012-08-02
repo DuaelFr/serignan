@@ -79,10 +79,10 @@ function serignan_pages_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '8',
         ),
         'metatags' => array(
-          'weight' => '6',
+          'weight' => '9',
         ),
       ),
       'display' => array(),
