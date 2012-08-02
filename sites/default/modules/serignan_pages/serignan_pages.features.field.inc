@@ -10,7 +10,7 @@
 function serignan_pages_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-page-body'
+  // Exported field: 'node-page-body'.
   $fields['node-page-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function serignan_pages_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -87,12 +88,89 @@ function serignan_pages_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-page-field_introduction'.
+  $fields['node-page-field_introduction'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_introduction',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'page',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 3,
+        ),
+        'list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_introduction',
+      'label' => 'Introduction',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'maxlength_js' => '250',
+          'maxlength_js_enforce' => 0,
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_truncate_html' => 0,
+          'rows' => '5',
+        ),
+        'type' => 'text_textarea',
         'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-page-field_picture'
+  // Exported field: 'node-page-field_picture'.
   $fields['node-page-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -113,6 +191,7 @@ function serignan_pages_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -197,7 +276,7 @@ function serignan_pages_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-page-field_sections'
+  // Exported field: 'node-page-field_sections'.
   $fields['node-page-field_sections'] = array(
     'field_config' => array(
       'active' => '1',
@@ -218,6 +297,7 @@ function serignan_pages_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -286,6 +366,7 @@ function serignan_pages_field_default_fields() {
   // Included for use with string extractors like potx.
   t('Contenu');
   t('Image');
+  t('Introduction');
   t('Rubrique');
 
   return $fields;

@@ -28,7 +28,7 @@ function serignan_pages_ctools_plugin_api() {
 function serignan_pages_image_default_styles() {
   $styles = array();
 
-  // Exported image style: page_list
+  // Exported image style: page_list.
   $styles['page_list'] = array(
     'name' => 'page_list',
     'effects' => array(
