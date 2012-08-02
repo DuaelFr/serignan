@@ -10,7 +10,7 @@
 function serignan_contact_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-webform-body'
+  // Exported field: 'node-webform-body'.
   $fields['node-webform-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function serignan_contact_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -83,7 +84,7 @@ function serignan_contact_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-webform-field_picture'
+  // Exported field: 'node-webform-field_picture'.
   $fields['node-webform-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -104,6 +105,7 @@ function serignan_contact_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -178,11 +180,11 @@ function serignan_contact_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-webform-field_sections'
+  // Exported field: 'node-webform-field_sections'.
   $fields['node-webform-field_sections'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_sections',
@@ -199,6 +201,7 @@ function serignan_contact_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
