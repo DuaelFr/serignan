@@ -68,14 +68,12 @@ function serignan_events_views_default_views() {
     'image_style' => 'event_home',
     'image_link' => 'content',
   );
-  /* Champ: Contenu : Catégories */
+  /* Champ: Gestionnaire défectueux/manquant */
   $handler->display->display_options['fields']['field_event_categories']['id'] = 'field_event_categories';
   $handler->display->display_options['fields']['field_event_categories']['table'] = 'field_data_field_event_categories';
   $handler->display->display_options['fields']['field_event_categories']['field'] = 'field_event_categories';
   $handler->display->display_options['fields']['field_event_categories']['label'] = '';
   $handler->display->display_options['fields']['field_event_categories']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_event_categories']['type'] = 'taxonomy_term_reference_plain';
-  $handler->display->display_options['fields']['field_event_categories']['delta_offset'] = '0';
   /* Champ: Contenu : Du */
   $handler->display->display_options['fields']['field_date_start']['id'] = 'field_date_start';
   $handler->display->display_options['fields']['field_date_start']['table'] = 'field_data_field_date_start';

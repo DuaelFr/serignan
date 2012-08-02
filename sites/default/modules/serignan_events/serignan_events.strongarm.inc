@@ -78,6 +78,12 @@ function serignan_events_strongarm() {
         'title' => array(
           'weight' => '0',
         ),
+        'metatags' => array(
+          'weight' => '6',
+        ),
+        'path' => array(
+          'weight' => '7',
+        ),
       ),
       'display' => array(),
     ),
