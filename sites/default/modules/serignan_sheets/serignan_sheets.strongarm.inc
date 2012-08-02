@@ -82,10 +82,10 @@ function serignan_sheets_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
         'metatags' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
       ),
       'display' => array(),
