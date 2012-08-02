@@ -510,13 +510,6 @@ function serignan_config_seo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_events_category_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_events_category_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_galleries_category_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_galleries_category_pattern'] = $strongarm;
@@ -531,13 +524,6 @@ function serignan_config_seo_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_news_category_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_news_category_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_taxonomy_term_pattern';
   $strongarm->value = '';
   $export['pathauto_taxonomy_term_pattern'] = $strongarm;
@@ -548,13 +534,6 @@ function serignan_config_seo_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_section_pattern';
   $strongarm->value = '[term:parents:join-path]/[term:name]';
   $export['pathauto_taxonomy_term_section_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_taxonomy_term_sheets_category_pattern';
-  $strongarm->value = '';
-  $export['pathauto_taxonomy_term_sheets_category_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
