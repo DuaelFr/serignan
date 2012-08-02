@@ -35,7 +35,7 @@ function serignan_events_views_api() {
 function serignan_events_image_default_styles() {
   $styles = array();
 
-  // Exported image style: event_home
+  // Exported image style: event_home.
   $styles['event_home'] = array(
     'name' => 'event_home',
     'effects' => array(

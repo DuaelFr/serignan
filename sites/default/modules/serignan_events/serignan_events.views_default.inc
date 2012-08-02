@@ -10,7 +10,7 @@
 function serignan_events_views_default_views() {
   $export = array();
 
-  $view = new view();
+  $view = new view;
   $view->name = 'events';
   $view->description = '';
   $view->tag = 'default';
@@ -28,6 +28,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
@@ -35,10 +36,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
-  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
-  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
-  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
-  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'list';
@@ -113,7 +110,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '160',
   );
-  /* Champ: Nœud : Lien */
+  /* Champ: Contenu : Lien */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
@@ -144,7 +141,7 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
-  /* Critère de filtrage: Contenu : Langue */
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -230,7 +227,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -256,7 +252,9 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
   $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>';
-  /* Critère de filtrage: Contenu : Langue */
+  $handler->display->display_options['filters']['field_date_end_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -294,7 +292,6 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['sorts']['field_date_end_value']['id'] = 'field_date_end_value';
   $handler->display->display_options['sorts']['field_date_end_value']['table'] = 'field_data_field_date_end';
   $handler->display->display_options['sorts']['field_date_end_value']['field'] = 'field_date_end_value';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -317,7 +314,9 @@ function serignan_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
   $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>';
   $handler->display->display_options['filters']['field_date_end_value']['group'] = 1;
-  /* Critère de filtrage: Contenu : Langue */
+  $handler->display->display_options['filters']['field_date_end_value']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
+  /* Critère de filtrage: Gestionnaire défectueux/manquant */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
   $handler->display->display_options['filters']['language']['field'] = 'language';
@@ -337,10 +336,6 @@ function serignan_events_views_default_views() {
     t('Éléments par page'),
     t('- Tout -'),
     t('Décalage'),
-    t('« premier'),
-    t('‹ précédent'),
-    t('suivant ›'),
-    t('dernier »'),
     t('Du'),
     t('au'),
     t('[+]'),

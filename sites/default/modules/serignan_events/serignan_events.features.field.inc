@@ -10,7 +10,7 @@
 function serignan_events_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-event-body'
+  // Exported field: 'node-event-body'.
   $fields['node-event-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function serignan_events_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -116,7 +117,7 @@ function serignan_events_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-event-field_date_end'
+  // Exported field: 'node-event-field_date_end'.
   $fields['node-event-field_date_end'] = array(
     'field_config' => array(
       'active' => '1',
@@ -126,6 +127,7 @@ function serignan_events_field_default_fields() {
       'field_name' => 'field_date_end',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -243,7 +245,7 @@ function serignan_events_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-event-field_date_start'
+  // Exported field: 'node-event-field_date_start'.
   $fields['node-event-field_date_start'] = array(
     'field_config' => array(
       'active' => '1',
@@ -253,6 +255,7 @@ function serignan_events_field_default_fields() {
       'field_name' => 'field_date_start',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
         'cache_count' => '4',
@@ -370,7 +373,7 @@ function serignan_events_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-event-field_event_categories'
+  // Exported field: 'node-event-field_event_categories'.
   $fields['node-event-field_event_categories'] = array(
     'field_config' => array(
       'active' => '1',
@@ -391,6 +394,7 @@ function serignan_events_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -491,7 +495,7 @@ function serignan_events_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-event-field_picture'
+  // Exported field: 'node-event-field_picture'.
   $fields['node-event-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -512,6 +516,7 @@ function serignan_events_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
