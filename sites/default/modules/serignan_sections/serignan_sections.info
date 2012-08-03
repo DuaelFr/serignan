@@ -14,6 +14,7 @@ dependencies[] = filefield_sources
 dependencies[] = image
 dependencies[] = strongarm
 dependencies[] = taxonomy
+dependencies[] = taxonomy_manager
 dependencies[] = taxonomy_menu
 dependencies[] = uuid_features
 dependencies[] = views
