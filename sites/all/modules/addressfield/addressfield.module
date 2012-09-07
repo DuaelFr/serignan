@@ -300,7 +300,9 @@ function addressfield_field_info() {
   $fields['addressfield'] = array(
     'label' => t('Postal address'),
     'description' => t('A field type used for storing postal addresses according the xNAL standard.'),
-    'settings' => array(),
+    'settings' => array(
+      'non_empty_fields' => array('country' => 'country'),
+    ),
     'instance_settings' => array(),
     'default_widget' => 'addressfield_standard',
     'default_formatter' => 'addressfield_default',
@@ -309,6 +311,26 @@ function addressfield_field_info() {
   );
 
   return $fields;
+}
+
+/**
+ * Implements hook_field_settings_form().
+ */
+function addressfield_field_settings_form($field, $instance, $has_data) {
+  $form = array();
+  $options = array();
+  foreach($field['columns'] as $name => $info) {
+    $options[$name] = $info['description'];
+  }
+  $form['non_empty_fields'] = array(
+    '#title' => t('Required fields for non-empty address'),
+    '#description' => t('Select the fields that trigger a value to be considered as not empty. If any of the selected fields has a value, the address is considered non-empty, i.e. the address will be stored and displayed.'),
+    '#options' => $options,
+    '#type' => 'checkboxes',
+    '#default_value' => !empty($field['settings']['non_empty_fields']) ? $field['settings']['non_empty_fields'] : array('country'),
+    '#required' => TRUE,
+  );
+  return $form;
 }
 
 /**
@@ -348,9 +370,9 @@ function addressfield_default_values($available_countries = NULL) {
  * Implements hook_field_is_empty().
  */
 function addressfield_field_is_empty($item, $field) {
-  // Every address field must have at least a country value or it is considered
-  // empty, even if it has name information.
-  return empty($item['country']);
+  $non_empty_fields = !empty($field['settings']['non_empty_fields']) ? array_filter($field['settings']['non_empty_fields']) : array('country' => 'country');
+  $filtered_item = array_filter(array_intersect_key($item, $non_empty_fields));
+  return empty($filtered_item);
 }
 
 /**
