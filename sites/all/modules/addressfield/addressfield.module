@@ -302,6 +302,7 @@ function addressfield_field_info() {
     'description' => t('A field type used for storing postal addresses according the xNAL standard.'),
     'settings' => array(
       'non_empty_fields' => array('country' => 'country'),
+      'non_empty_fields_op' => 'or',
     ),
     'instance_settings' => array(),
     'default_widget' => 'addressfield_standard',
@@ -324,10 +325,17 @@ function addressfield_field_settings_form($field, $instance, $has_data) {
   }
   $form['non_empty_fields'] = array(
     '#title' => t('Required fields for non-empty address'),
-    '#description' => t('Select the fields that trigger a value to be considered as not empty. If any of the selected fields has a value, the address is considered non-empty, i.e. the address will be stored and displayed.'),
+    '#description' => t('Select the fields that trigger a value to be considered as not empty. The value of the operator field below will define if any or all of this fields must have a value, for the address to be considered non-empty, i.e. the address will be stored and displayed.'),
     '#options' => $options,
     '#type' => 'checkboxes',
     '#default_value' => !empty($field['settings']['non_empty_fields']) ? $field['settings']['non_empty_fields'] : array('country'),
+    '#required' => TRUE,
+  );
+  $form['non_empty_fields_op'] = array(
+    '#title' => t('Operator'),
+    '#options' => array('and' => 'All', 'or' => 'Any'),
+    '#type' => 'radios',
+    '#default_value' => !empty($field['settings']['non_empty_fields_op']) ? $field['settings']['non_empty_fields_op'] : 'any',
     '#required' => TRUE,
   );
   return $form;
@@ -371,8 +379,15 @@ function addressfield_default_values($available_countries = NULL) {
  */
 function addressfield_field_is_empty($item, $field) {
   $non_empty_fields = !empty($field['settings']['non_empty_fields']) ? array_filter($field['settings']['non_empty_fields']) : array('country' => 'country');
+  $non_empty_fields_op = !empty($field['settings']['non_empty_fields_op']) ? $field['settings']['non_empty_fields_op'] : 'or';
   $filtered_item = array_filter(array_intersect_key($item, $non_empty_fields));
-  return empty($filtered_item);
+  if ($non_empty_fields_op == 'or') {
+    $result = empty($filtered_item);
+  }
+  else {
+    $result = count($filtered_item) != count($non_empty_fields);
+  }
+  return $result;
 }
 
 /**
