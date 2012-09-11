@@ -5,9 +5,9 @@ dependencies[] = menu
 
 configure = admin/config/system/special_menu_items
 
-; Information added by drupal.org packaging script on 2012-06-24
-version = "7.x-1.0+8-dev"
+; Information added by drupal.org packaging script on 2012-08-30
+version = "7.x-1.1-rc1"
 core = "7.x"
 project = "special_menu_items"
-datestamp = "1340541818"
+datestamp = "1346316218"
 
