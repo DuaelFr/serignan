@@ -65,10 +65,10 @@ function serignan_events_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'trim_length' => '200',
+            'trim_length' => '150',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'sidebar' => array(
           'label' => 'hidden',
@@ -156,14 +156,14 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'long',
+            'format_type' => 'format_serignan',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '4',
+          'weight' => '7',
         ),
         'home' => array(
           'label' => 'inline',
@@ -182,14 +182,14 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'long',
+            'format_type' => 'short',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => '2',
         ),
         'sidebar' => array(
           'label' => 'inline',
@@ -284,14 +284,14 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'long',
+            'format_type' => 'format_serignan',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '3',
+          'weight' => '6',
         ),
         'home' => array(
           'label' => 'inline',
@@ -310,14 +310,14 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'long',
+            'format_type' => 'short',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
             'multiple_to' => '',
           ),
           'type' => 'date_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'sidebar' => array(
           'label' => 'inline',
@@ -546,11 +546,11 @@ function serignan_events_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 6,
+          'weight' => '5',
         ),
         'home' => array(
           'label' => 'above',
@@ -562,7 +562,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'sidebar' => array(
           'label' => 'above',
