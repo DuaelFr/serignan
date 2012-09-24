@@ -1,13 +1,12 @@
-; $Id$
 name = Geocoder
 description = An API and widget to geocode various known data into other GIS data types.
 core = 7.x
 dependencies[] = geophp
 dependencies[] = ctools
 
-; Information added by drupal.org packaging script on 2012-08-22
-version = "7.x-1.1+22-dev"
+; Information added by drupal.org packaging script on 2012-09-12
+version = "7.x-1.2+1-dev"
 core = "7.x"
 project = "geocoder"
-datestamp = "1345595369"
+datestamp = "1347409926"
 
