@@ -322,6 +322,7 @@ text-decoration:underline;
 
 /*PHOTOS BANDEAUX PAGES INTERNES*/
 .node-type-page .block-header-decorator,
+.context-associations .block-header-decorator,
 .context-autres-festivites .block-header-decorator,
 .context-content .block-header-decorator,
 .context-actualites .block-header-decorator,
@@ -359,8 +360,11 @@ margin-top: 30px;
 }
 #block-text-resize-0{
 float: right;
-margin-right: 0px;
+margin-right: 30px;
 margin-top: 30px;
+}
+.front #block-text-resize-0{
+margin-right: 50px;
 }
 #block-text-resize-0 #text_resize_decrease{
 background: url("../images/icon_dezoom.png") no-repeat;
@@ -493,7 +497,8 @@ margin-top: 20px;
 .context-sortir-decouvrir h1.title,
 .context-mairie-services h1.title,
 .context-zoom h1.title,
-.context-vivre-serignan h1.title{
+.context-vivre-serignan h1.title,
+.context-associations h1.title{
 background: url("../images/picto_titre_vivre.jpg") no-repeat left;
 padding-left:40px;
 line-height: 25px;
@@ -628,7 +633,7 @@ margin-right:5px;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-body .field-item,
 .context-actualites-agenda #node_news_list_group_content .field-name-body .field-item,
-.block-views-sections-content-block-list .field-name-body h5.texte_intro{
+.block-views-sections-content-block-list .field-name-field-introduction{
 margin:0;
 padding-left: 10px;
 line-height:14px;
@@ -636,9 +641,6 @@ font-size:12px;
 margin-bottom:0;
 clear:left;
 float:left;
-}
-.block-views-sections-content-block-list .field-name-body p{
-margin-bottom:0;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-body .field-item,
 .context-actualites-agenda #node_news_list_group_content .field-name-body .field-item{
@@ -764,6 +766,9 @@ padding:15px;
 .node-type-sheet .field-name-field-geoloc{
 float:left;
 }
+.node-type-page .field-name-field-geoloc{
+clear: left;
+}
 .node-type-page .field-name-field-address,
 .node-type-sheet .group-infos{
 background-color:#888;
@@ -872,6 +877,8 @@ background:url("../images/titre_zoom_home.png") no-repeat;
 .block-news-block-home .content{
 background:url("../images/bg_actu_home.png") no-repeat;
 height:325px;
+width:300px;
+float:left;
 }
 .block-events-block-home .field-name-field-picture,
 .block-news-block-home .field-name-field-picture{
@@ -933,10 +940,12 @@ color:#666;
 /*Bloc agenda home*/
 #views_slideshow_cycle_main_events-block_home{
 margin-left:10px;
+margin-bottom: 20px;
 }
 .block-events-block-home .views-slideshow-controls-top{
 float:right;
 margin:10px;
+z-index: 10;
 }
 .block-events-block-home .views-slideshow-pager-counter-item{
 background-color:#3399cc;
@@ -954,7 +963,6 @@ color:#3399cc;
 .block-events-block-home .field-name-title{
 line-height:14px;
 margin-bottom:10px;
-margin-top:40px!important;
 }
 .block-events-block-home .field-name-title a:link,
 .block-events-block-home .field-name-title a:visited,
