@@ -51,15 +51,18 @@ function special_menu_items_link(array $variables) {
       case '<nolink>':
         $tag = variable_get('special_menu_items_nolink_tag', '<span>');
         $title = $variables['options']['html'] ? $variables['text'] : check_plain($variables['text']);
+        $variables['options']['attributes']['class'][] = 'nolink';
         break;
 
       case '<separator>':
         $tag = variable_get('special_menu_items_separator_tag', '<span>');
         $title = variable_get('special_menu_items_separator_value', '<hr>');
+        $variables['options']['attributes']['class'][] = 'separator';
         break;
     }
 
     $attributes = drupal_attributes($variables['options']['attributes']);
+
     if ($tag != '<a>') {
       // <a> tags can have these but a <span> cannot, so we remove them.
       foreach (array('accesskey', 'target', 'rel', 'name') as $attribute) {
@@ -86,46 +89,15 @@ function special_menu_items_render_menu_item($tag, $value, $attrs = array()) {
   if ($tag[0] == '<' && $tag[$length - 1] == '>') {
     $tag = substr($tag, 1, $length-2);
   }
-  $closingtag = preg_replace('#^(\w+)#', '</$1>', $tag);
+  $closingtag = explode(' ', $tag,2);
+  $closingtag = '</' . $closingtag[0] . '>';
   $tag = '<' . $tag . $attrs . '>';
 
   return $tag . $value . $closingtag;
 }
 
 
-/**
- * Alter the theme's primary and secondary links.
- *
- */
-function special_menu_items_preprocess_page(&$vars, $hook) {
-  foreach (array('main_menu', 'secondary_menu') as $menu) {
-    foreach (array_keys($vars[$menu]) as $key) {
-      if (in_array($vars[$menu][$key]['href'], array('<nolink>', '<separator>'))) {
-        switch ($vars[$menu][$key]['href']) {
-          case '<nolink>':
-            $tag = variable_get('special_menu_items_nolink_tag', '<span>');
-            $title = $vars[$menu][$key]['title'];
-            $attrs = isset($vars[$menu][$key]['attributes']) ? $vars[$menu][$key]['attributes'] : array();
-            $vars[$menu][$key]['title'] = special_menu_items_render_menu_item($tag, $title, $attrs);
-            $vars[$menu][$key]['attributes']['class'][] = 'nolink';
-            break;
 
-          case '<separator>':
-            $vars[$menu][$key]['title'] = variable_get('special_menu_items_separator_value', '<hr>');
-            $vars[$menu][$key]['attributes']['class'][] = 'separator';
-
-            break;
-        }
-        //render in HTML
-        $vars[$menu][$key]['html'] = TRUE;
-        unset($vars[$menu][$key]['attributes']['title']);
-        unset($vars[$menu][$key]['href']);
-      }
-        //unset($vars[$menu][$key]['attributes']['title']);
-
-    }
-  }
-}
 
 /**
  * Implementation of hook_theme_registry_alter()
