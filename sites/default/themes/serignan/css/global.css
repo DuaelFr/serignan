@@ -321,6 +321,8 @@ text-decoration:underline;
 }
 
 /*PHOTOS BANDEAUX PAGES INTERNES*/
+.node-type-page .block-header-decorator,
+.context-autres-festivites .block-header-decorator,
 .context-content .block-header-decorator,
 .context-actualites .block-header-decorator,
 .context-agenda .block-header-decorator,
@@ -357,7 +359,7 @@ margin-top: 30px;
 }
 #block-text-resize-0{
 float: right;
-margin-right: 50px;
+margin-right: 0px;
 margin-top: 30px;
 }
 #block-text-resize-0 #text_resize_decrease{
@@ -374,18 +376,42 @@ height:25px;
 }
 /*PRINT*/
 .block-print-links{
-float:left;
+float: right;
+margin-top: 30px;
+margin-right: 40px;
 }
 div#block-print-print-links span{
 display: inline;
 }
-.print_html{
-text-indent:-9999px;
+.print_html,
+.print_pdf,
+.print_mail{
+float:left;
+margin-left: 0.5em;
 }
 .print_html a{
 background: url("../images/icon_imp.png") no-repeat;
 width:25px;
 height:25px;
+text-indent: -9999px;
+position: relative;
+float:left;
+}
+.print_pdf a{
+background: url("../images/icon_pdf.png") no-repeat;
+width:25px;
+height:25px;
+text-indent: -9999px;
+position: relative;
+float:left;
+}
+.print_mail a{
+background: url("../images/icon_mail.png") no-repeat;
+width:25px;
+height:25px;
+text-indent: -9999px;
+position: relative;
+float:left;
 }
 /*BREADCRUMB*/
 .breadcrumb {

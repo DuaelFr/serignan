@@ -10,7 +10,7 @@
 function serignan_sections_views_default_views() {
   $export = array();
 
-  $view = new view;
+  $view = new view();
   $view->name = 'sections';
   $view->description = '';
   $view->tag = 'default';
@@ -30,6 +30,7 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'none';
@@ -75,6 +76,7 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['parent']['table'] = 'taxonomy_term_hierarchy';
   $handler->display->display_options['arguments']['parent']['field'] = 'parent';
   $handler->display->display_options['arguments']['parent']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['parent']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['parent']['title_enable'] = TRUE;
   $handler->display->display_options['arguments']['parent']['title'] = '%1';
   $handler->display->display_options['arguments']['parent']['default_argument_type'] = 'taxonomy_tid';
@@ -97,6 +99,7 @@ function serignan_sections_views_default_views() {
 
   /* Display: Subterms (Page) */
   $handler = $view->new_display('page', 'Subterms (Page)', 'page_subterms');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['path'] = 'taxonomy/term/%';
   $translatables['sections'] = array(
     t('Master'),
@@ -113,7 +116,7 @@ function serignan_sections_views_default_views() {
   );
   $export['sections'] = $view;
 
-  $view = new view;
+  $view = new view();
   $view->name = 'sections_content';
   $view->description = '';
   $view->tag = 'default';
@@ -131,17 +134,19 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = 0;
-  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = 1;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Éléments par page';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Tout -';
   $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Décalage';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« premier';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ précédent';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'list';
@@ -168,6 +173,7 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['tid']['field'] = 'tid';
   $handler->display->display_options['arguments']['tid']['relationship'] = 'field_sections_tid';
   $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid']['exception']['title'] = 'Tout';
   $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
@@ -187,6 +193,7 @@ function serignan_sections_views_default_views() {
 
   /* Display: List (Block) */
   $handler = $view->new_display('block', 'List (Block)', 'block_list');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $translatables['sections_content'] = array(
     t('Master'),
     t('plus'),
@@ -198,6 +205,10 @@ function serignan_sections_views_default_views() {
     t('Éléments par page'),
     t('- Tout -'),
     t('Décalage'),
+    t('« premier'),
+    t('‹ précédent'),
+    t('suivant ›'),
+    t('dernier »'),
     t('terme à partir de field_sections'),
     t('Tout'),
     t('List (Block)'),

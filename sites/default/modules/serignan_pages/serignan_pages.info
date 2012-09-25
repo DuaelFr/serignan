@@ -11,6 +11,7 @@ dependencies[] = file
 dependencies[] = filefield_sources
 dependencies[] = geocoder
 dependencies[] = geofield
+dependencies[] = geofield_map
 dependencies[] = image
 dependencies[] = maxlength
 dependencies[] = phone

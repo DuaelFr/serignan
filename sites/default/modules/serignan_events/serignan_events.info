@@ -17,7 +17,6 @@ dependencies[] = image
 dependencies[] = scheduler
 dependencies[] = serignan_sections
 dependencies[] = smartcrop
-dependencies[] = serignan_sections
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = term_reference_tree
