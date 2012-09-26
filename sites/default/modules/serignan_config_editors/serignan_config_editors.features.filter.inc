@@ -10,7 +10,7 @@
 function serignan_config_editors_filter_default_formats() {
   $formats = array();
 
-  // Exported format: Full HTML
+  // Exported format: Full HTML.
   $formats['full_html'] = array(
     'format' => 'full_html',
     'name' => 'Full HTML',

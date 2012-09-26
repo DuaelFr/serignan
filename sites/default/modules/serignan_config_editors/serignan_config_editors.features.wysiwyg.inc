@@ -52,6 +52,9 @@ function serignan_config_editors_wysiwyg_default_profiles() {
         'imce' => array(
           'imce' => 1,
         ),
+        'MediaEmbed' => array(
+          'MediaEmbed' => 1,
+        ),
         'drupal' => array(
           'break' => 1,
         ),
