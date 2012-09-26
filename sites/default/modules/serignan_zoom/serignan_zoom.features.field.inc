@@ -10,7 +10,7 @@
 function serignan_zoom_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-zoom-body'
+  // Exported field: 'node-zoom-body'.
   $fields['node-zoom-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function serignan_zoom_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -114,7 +115,7 @@ function serignan_zoom_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-zoom-field_picture'
+  // Exported field: 'node-zoom-field_picture'.
   $fields['node-zoom-field_picture'] = array(
     'field_config' => array(
       'active' => '1',
@@ -135,6 +136,7 @@ function serignan_zoom_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -249,7 +251,7 @@ function serignan_zoom_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-zoom-field_subtitle'
+  // Exported field: 'node-zoom-field_subtitle'.
   $fields['node-zoom-field_subtitle'] = array(
     'field_config' => array(
       'active' => '1',
@@ -270,6 +272,7 @@ function serignan_zoom_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',

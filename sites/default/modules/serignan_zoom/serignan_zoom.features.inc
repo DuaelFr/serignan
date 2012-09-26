@@ -35,7 +35,7 @@ function serignan_zoom_views_api() {
 function serignan_zoom_image_default_styles() {
   $styles = array();
 
-  // Exported image style: zoom_home
+  // Exported image style: zoom_home.
   $styles['zoom_home'] = array(
     'name' => 'zoom_home',
     'effects' => array(
@@ -57,7 +57,7 @@ function serignan_zoom_image_default_styles() {
     ),
   );
 
-  // Exported image style: zoom_sidebar
+  // Exported image style: zoom_sidebar.
   $styles['zoom_sidebar'] = array(
     'name' => 'zoom_sidebar',
     'effects' => array(

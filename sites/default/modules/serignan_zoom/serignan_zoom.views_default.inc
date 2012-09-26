@@ -29,6 +29,7 @@ function serignan_zoom_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'full';
@@ -82,6 +83,7 @@ function serignan_zoom_views_default_views() {
 
   /* Display: Home (Block) */
   $handler = $view->new_display('block', 'Home (Block)', 'block_home');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
@@ -95,6 +97,11 @@ function serignan_zoom_views_default_views() {
   $handler->display->display_options['row_options']['links'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Publié */
   $handler->display->display_options['filters']['status']['id'] = 'status';
@@ -103,6 +110,12 @@ function serignan_zoom_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Promu en page d'accueil */
+  $handler->display->display_options['filters']['promote']['id'] = 'promote';
+  $handler->display->display_options['filters']['promote']['table'] = 'node';
+  $handler->display->display_options['filters']['promote']['field'] = 'promote';
+  $handler->display->display_options['filters']['promote']['value'] = '1';
+  $handler->display->display_options['filters']['promote']['group'] = 1;
   /* Critère de filtrage: Contenu : Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -110,11 +123,7 @@ function serignan_zoom_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'zoom' => 'zoom',
   );
-  /* Critère de filtrage: Contenu : Promu en page d'accueil */
-  $handler->display->display_options['filters']['promote']['id'] = 'promote';
-  $handler->display->display_options['filters']['promote']['table'] = 'node';
-  $handler->display->display_options['filters']['promote']['field'] = 'promote';
-  $handler->display->display_options['filters']['promote']['value'] = '1';
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Critère de filtrage: Contenu : Langue */
   $handler->display->display_options['filters']['language']['id'] = 'language';
   $handler->display->display_options['filters']['language']['table'] = 'node';
@@ -122,9 +131,45 @@ function serignan_zoom_views_default_views() {
   $handler->display->display_options['filters']['language']['value'] = array(
     '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
   );
+  $handler->display->display_options['filters']['language']['group'] = 1;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 2;
+  /* Critère de filtrage: Contenu : Promu en page d'accueil */
+  $handler->display->display_options['filters']['promote_1']['id'] = 'promote_1';
+  $handler->display->display_options['filters']['promote_1']['table'] = 'node';
+  $handler->display->display_options['filters']['promote_1']['field'] = 'promote';
+  $handler->display->display_options['filters']['promote_1']['value'] = '1';
+  $handler->display->display_options['filters']['promote_1']['group'] = 2;
+  /* Critère de filtrage: Sondage : Actif */
+  $handler->display->display_options['filters']['active']['id'] = 'active';
+  $handler->display->display_options['filters']['active']['table'] = 'poll';
+  $handler->display->display_options['filters']['active']['field'] = 'active';
+  $handler->display->display_options['filters']['active']['value'] = '1';
+  $handler->display->display_options['filters']['active']['group'] = 2;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'poll' => 'poll',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
+  /* Critère de filtrage: Contenu : Langue */
+  $handler->display->display_options['filters']['language_1']['id'] = 'language_1';
+  $handler->display->display_options['filters']['language_1']['table'] = 'node';
+  $handler->display->display_options['filters']['language_1']['field'] = 'language';
+  $handler->display->display_options['filters']['language_1']['value'] = array(
+    '***CURRENT_LANGUAGE***' => '***CURRENT_LANGUAGE***',
+  );
+  $handler->display->display_options['filters']['language_1']['group'] = 2;
 
   /* Display: Sidebar (Block) */
   $handler = $view->new_display('block', 'Sidebar (Block)', 'block_sidebar');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
