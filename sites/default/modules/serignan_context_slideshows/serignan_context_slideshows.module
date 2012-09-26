@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Context Slideshows feature.
+ */
+
+include_once 'serignan_context_slideshows.features.inc';

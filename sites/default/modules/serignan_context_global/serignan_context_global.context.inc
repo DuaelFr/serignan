@@ -175,12 +175,6 @@ function serignan_context_global_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-7',
         ),
-        'serignan_blocks-header_decorator' => array(
-          'module' => 'serignan_blocks',
-          'delta' => 'header_decorator',
-          'region' => 'header_first',
-          'weight' => '-10',
-        ),
       ),
     ),
   );

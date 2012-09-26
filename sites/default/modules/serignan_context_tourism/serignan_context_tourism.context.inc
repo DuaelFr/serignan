@@ -38,12 +38,6 @@ function serignan_context_tourism_context_default_contexts() {
           'region' => 'sidebar_second',
           'weight' => '-9',
         ),
-        'views-slideshow_tourism-block' => array(
-          'module' => 'views',
-          'delta' => 'slideshow_tourism-block',
-          'region' => 'header_first',
-          'weight' => '-10',
-        ),
       ),
     ),
     'theme_html' => array(
@@ -85,12 +79,6 @@ function serignan_context_tourism_context_default_contexts() {
           'delta' => 'sidebar_links_special',
           'region' => 'sidebar_second',
           'weight' => '-9',
-        ),
-        'serignan_blocks-header_decorator' => array(
-          'module' => 'serignan_blocks',
-          'delta' => 'header_decorator',
-          'region' => 'header_first',
-          'weight' => '-10',
         ),
       ),
     ),
