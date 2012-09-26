@@ -50,6 +50,12 @@ function serignan_blocks_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
   
+  // Specific
+  $blocks['agenda_associations'] = array(
+    'info' => 'Sérignan: Lien agenda associations',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
   return $blocks;
 }
 
@@ -116,6 +122,11 @@ function serignan_blocks_theme() {
   ) + $base;
   $theme['serignan_blocks_home_col3'] = array(
     'template' => 'serignan-blocks-home-col3',
+  ) + $base;
+  
+  // Specific
+  $theme['serignan_blocks_agenda_associations'] = array(
+    'template' => 'serignan-blocks-agenda-associations',
   ) + $base;
   
   return $theme;
