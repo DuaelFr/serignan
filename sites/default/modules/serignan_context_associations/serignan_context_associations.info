@@ -1,0 +1,11 @@
+name = Serignan Context Associations
+core = 7.x
+package = Serignan
+version = 7.x-1.0
+project = serignan_context_associations
+dependencies[] = context
+dependencies[] = ctools
+dependencies[] = serignan_blocks
+features[context][] = associations
+features[ctools][] = context:context:3
+features[features_api][] = api:1
