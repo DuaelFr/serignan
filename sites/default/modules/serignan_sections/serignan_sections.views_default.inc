@@ -54,11 +54,6 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['row_options']['alternating_fieldset']['item_7'] = 'full';
   $handler->display->display_options['row_options']['alternating_fieldset']['item_8'] = 'full';
   $handler->display->display_options['row_options']['alternating_fieldset']['item_9'] = 'full';
-  /* Relation: Terme de taxonomie : Contenu utilisant Rubrique */
-  $handler->display->display_options['relationships']['reverse_field_sections_node']['id'] = 'reverse_field_sections_node';
-  $handler->display->display_options['relationships']['reverse_field_sections_node']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['relationships']['reverse_field_sections_node']['field'] = 'reverse_field_sections_node';
-  $handler->display->display_options['relationships']['reverse_field_sections_node']['required'] = TRUE;
   /* Champ: Terme de taxonomie : Nom */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
@@ -109,7 +104,6 @@ function serignan_sections_views_default_views() {
     t('Trier par'),
     t('Asc'),
     t('Desc'),
-    t('field_sections'),
     t('Tout'),
     t('%1'),
     t('Subterms (Page)'),
