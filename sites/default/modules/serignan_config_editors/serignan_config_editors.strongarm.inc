@@ -86,10 +86,10 @@ function serignan_config_editors_strongarm() {
     2 => array(
       'name' => 'Default',
       'usertab' => 0,
-      'filesize' => '8',
+      'filesize' => '0',
       'quota' => '0',
       'tuquota' => '0',
-      'extensions' => 'gif png jpg jpeg pdf txt xls doc xlsx docx ppt pptx odt ods odp',
+      'extensions' => 'gif png jpg jpeg pdf txt xls doc xlsx docx ppt pptx odt ods odp mov',
       'dimensions' => '0',
       'filenum' => '1',
       'directories' => array(
