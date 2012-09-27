@@ -12,6 +12,10 @@ function serignan_context_slideshows_ctools_plugin_api() {
   if ($module == "context" && $api == "context") {
     return array("version" => "3");
   }
+  list($module, $api) = func_get_args();
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
 }
 
 /**
@@ -81,7 +85,7 @@ function serignan_context_slideshows_fe_nodequeue_export_fields() {
 
   // Exported nodequeues: slideshow_news_events
   $nodequeues['slideshow_news_events'] = array(
-    'qid' => '5',
+    'qid' => '4',
     'name' => 'slideshow_news_events',
     'title' => 'Slideshow News-Events',
     'subqueue_title' => '',
@@ -107,7 +111,7 @@ function serignan_context_slideshows_fe_nodequeue_export_fields() {
 
   // Exported nodequeues: slideshow_services
   $nodequeues['slideshow_services'] = array(
-    'qid' => '4',
+    'qid' => '5',
     'name' => 'slideshow_services',
     'title' => 'Slideshow Services',
     'subqueue_title' => '',
