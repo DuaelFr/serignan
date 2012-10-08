@@ -23,7 +23,7 @@ function serignan_pages_field_group_info() {
     'label' => 'Content',
     'weight' => '1',
     'children' => array(
-      0 => 'body',
+      0 => 'field_introduction',
       1 => 'title',
       2 => 'node_link',
     ),

@@ -28,7 +28,7 @@ function serignan_pages_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -64,7 +64,7 @@ function serignan_pages_ds_layout_settings_info() {
         0 => 'field_picture',
         1 => 'group_content',
         2 => 'title',
-        3 => 'body',
+        3 => 'field_introduction',
         4 => 'node_link',
       ),
     ),
@@ -72,7 +72,7 @@ function serignan_pages_ds_layout_settings_info() {
       'field_picture' => 'ds_content',
       'group_content' => 'ds_content',
       'title' => 'ds_content',
-      'body' => 'ds_content',
+      'field_introduction' => 'ds_content',
       'node_link' => 'ds_content',
     ),
     'classes' => array(),
