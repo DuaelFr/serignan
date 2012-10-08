@@ -2,7 +2,7 @@
 /**
  * Taxonomy Manager Tree formating
  */
- 
+
 #taxonomy-manager-double-tree-form,
 #taxonomy-manager-form {
   line-height: 120%;
@@ -26,12 +26,12 @@
 
 #taxonomy-manager-double-tree-form .left,
 #taxonomy-manager-form .left {
-  margin-left: 0; 
+  margin-left: 0;
 }
 
 #taxonomy2-manager-tree-outer-div,
 #taxonomy-manager-tree-outer-div {
-  height: 550px;	
+  height: 550px;
   overflow: auto;
   width: 46%;
 }
@@ -40,7 +40,7 @@
 #taxonomy-manager-tree-outer-div fieldset {
   margin: 0;
   padding: 0 5px;
-} 
+}
 
 .taxonomy-manager-tree-size {
   padding: 0px;
@@ -60,8 +60,8 @@
 }
 
 /* address .treeview additional with #taxonomy-manager to make it compatible with the admin module */
-#taxonomy-manager .treeview, 
-.treeview, 
+#taxonomy-manager .treeview,
+.treeview,
 .treeview ul {
   padding: 0;
   margin: 0;
@@ -76,11 +76,11 @@
 }
 
 #taxonomy-manager .treeview li,
-.treeview li { 
+.treeview li {
   margin: 0;
   padding: 0 0 0 15px;
 }
-	
+
 #taxonomy-manager .hitArea,
 .hitArea {
   float: left;
@@ -94,28 +94,28 @@
 }
 
 #taxonomy-manager .treeview li,
-.treeview li { 
-  background: url(../images/tv-item.gif) 0 0 no-repeat; 
+.treeview li {
+  background: url(../images/tv-item.gif) 0 0 no-repeat;
 }
 #taxonomy-manager .treeview .collapsable,
-.treeview .collapsable { 
-  background-image: url(../images/tv-collapsable.gif); 
+.treeview .collapsable {
+  background-image: url(../images/tv-collapsable.gif);
 }
 #taxonomy-manager .treeview .expandable,
-.treeview .expandable { 
-  background-image: url(../images/tv-expandable.gif); 
+.treeview .expandable {
+  background-image: url(../images/tv-expandable.gif);
 }
 #taxonomy-manager .treeview .last,
-.treeview .last { 
-  background-image: url(../images/tv-item-last.gif); 
+.treeview .last {
+  background-image: url(../images/tv-item-last.gif);
 }
 #taxonomy-manager .treeview .lastCollapsable,
-.treeview .lastCollapsable { 
-  background-image: url(../images/tv-collapsable-last.gif); 
+.treeview .lastCollapsable {
+  background-image: url(../images/tv-collapsable-last.gif);
 }
 #taxonomy-manager .treeview .lastExpandable,
-.treeview .lastExpandable { 
-  background-image: url(../images/tv-expandable-last.gif); 
+.treeview .lastExpandable {
+  background-image: url(../images/tv-expandable-last.gif);
 }
 
 .term-line {
@@ -185,21 +185,48 @@ div.highlightActiveTerm div.form-item {
   font-weight: bold;
 }
 
-#edit-taxonomy2-manager-top-language-wrapper,
-#edit-taxonomy-manager-top-language-wrapper {
-  padding: 0;
+span.taxonomy-manager-select-helpers {
+  padding-left: 5px;
+}
+span.taxonomy-manager-select-helpers span {
+  padding-right: 2px;
+  cursor: pointer;
+}
+span.taxonomy-manager-select-helpers span.select-all-children {
+  text-decoration: none;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-image: url(../images/select-all-children-bw.png);
+}
+span.taxonomy-manager-select-helpers span.select-all-children:hover {
+  background-image: url(../images/select-all-children.png);
+}
+span.taxonomy-manager-select-helpers span.unselect-all-children {
+  text-decoration: none;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-image: url(../images/unselect-all-children-bw.png);
+}
+span.taxonomy-manager-select-helpers span.unselect-all-children:hover {
+  background-image: url(../images/unselect-all-children.png);
+}
+
+div.form-item-taxonomy-manager-top-language,
+div.form-item-taxonomy2-manager-top-language {
   padding-right: 0.5em;
-  margin: 0; 
   text-align: right;
   display: inline;
 }
-#edit-taxonomy2-manager-top-language-wrapper label,
-#edit-taxonomy-manager-top-language-wrapper label {
+div.form-item-taxonomy-manager-top-language label,
+div.form-item-taxonomy2-manager-top-language label {
   display: inline;
 }
 
 .taxonomy-manager-tree-top {
   text-align: right;
+  padding-top: 0.5em;
 }
 
 #taxonomy-manager-double-tree-operations {
@@ -212,7 +239,7 @@ div.highlightActiveTerm div.form-item {
 
 .taxonomy-manager-double-tree-operations-buttons input {
   padding: 0;
-  margin: 0; 
+  margin: 0;
 }
 
 #double-tree-msg {
@@ -258,7 +285,7 @@ div.highlightActiveTerm div.form-item {
   padding-top: 0px;
   height: 30px;
   margin-bottom:0px;
-  
+
   background-repeat: no-repeat;
   background-position:6px;
   background-color: #F0EFEF;
@@ -328,7 +355,7 @@ input#edit-weight-down {
 }
 
 
-/** 
+/**
  * fixing position of autocomplete in seven theme
  */
 fieldset#edit-search,
@@ -358,15 +385,15 @@ fieldset#edit-term-merge {
 
 .term-data-overlay {
   position: absolute;
-  left: 280px; 
-  top: 100px; 
-  width: 400px; 
+  left: 280px;
+  top: 100px;
+  width: 500px;
   z-index: 100;
   background: #FFFFFF;
 }
 
 .term-data-overlay fieldset {
-  border-width: 2px;
+  border-width: 5px;
 }
 
 .term-data-overlay legend span{
@@ -381,9 +408,9 @@ fieldset#edit-term-merge {
 #term-data-close {
   padding-top: 8px;
   margin: 0;
-  text-align: right; 
+  text-align: right;
   line-height: 100%;
-  
+
 }
 
 #term-data-close span {
@@ -401,7 +428,7 @@ fieldset#edit-term-merge {
 
 td.term-data-autocomplete-add,
 td.taxonomy-term-data-operations {
-  text-align: center; 
+  text-align: center;
 }
 
 /*.term-data-autocomplete-add span {
@@ -431,7 +458,7 @@ td.taxonomy-term-data-operations {
 }*/
 
 #taxonomy-term-data #edit-term-data-name-wrapper {
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 #taxonomy-term-data .resizable-textarea {
@@ -444,7 +471,7 @@ td.taxonomy-term-data-operations {
 }
 
 #taxonomy-manager .messages {
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
@@ -506,7 +533,7 @@ td.taxonomy-term-data-operations {
 
 
 #taxonomy-term-data table .form-item {
-  margin-bottom: 0.2em; 
+  margin-bottom: 0.2em;
 }
 
 #taxonomy-term-data table {
@@ -522,12 +549,16 @@ td.taxonomy-term-data-operations {
 }
 
 #edit-term-data-save {
-  margin: 0.5em 0; 
+  margin: 0.5em 0;
 }
 
 .clear {
   clear: both;
-}	
+}
+
+span.taxonomy-manager-message-close {
+  float:right;
+}
 
 /**
  overwrites some css settings from the admin module, which break the layout of the taxonomy manager
@@ -538,3 +569,4 @@ td.taxonomy-term-data-operations {
 #taxonomy-manager .clear-block:after {
   display: inline;
 }
+
