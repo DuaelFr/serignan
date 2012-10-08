@@ -24,10 +24,9 @@ function serignan_events_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'body',
-      1 => 'field_event_categories',
+      1 => 'field_date_end',
       2 => 'field_date_start',
-      3 => 'field_date_end',
-      4 => 'node_link',
+      3 => 'node_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -124,7 +123,6 @@ function serignan_events_field_group_info() {
     'children' => array(
       0 => 'field_date_end',
       1 => 'field_date_start',
-      2 => 'field_sections',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
