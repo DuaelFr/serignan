@@ -5,8 +5,21 @@
  *
  *
  */
+
+// Should fix issue #1502772
+// @todo: find a nicer way to fix this
+if (!isset($controls_position)) {
+  $controls_position = "after";
+}
+if (!isset($pager_position)) {
+  $pager_position = "after";
+}
 ?>
 <div id="field-slideshow-<?php print $id; ?>-wrapper" class="field-slideshow-wrapper">
+
+  <?php if ($controls_position == "before")  print(render($controls)); ?>
+
+  <?php if ($pager_position == "before")  print(render($pager)); ?>
 
   <div class="<?php print $classes; ?>" style="width:<?php print $slides_max_width; ?>px; height:<?php print $slides_max_height; ?>px">
     <?php foreach ($items as $num => $item) : ?>
@@ -21,37 +34,8 @@
     <?php endforeach; ?>
   </div>
 
-  <?php if (!empty($controls)) : ?>
-    <div id="field-slideshow-<?php print $id; ?>-controls" class="field-slideshow-controls">
-      <a href="#" class="prev"><?php print t('Prev'); ?></a>
-      <a href="#" class="next"><?php print t('Next'); ?></a>
-    </div>
-  <?php endif; ?>
+  <?php if ($controls_position != "before") print(render($controls)); ?>
 
-  <?php if (isset($pager) && $pager != '') : ?>
-
-    <?php if ($pager == 'number') : ?>
-
-      <div id="field-slideshow-<?php print $id; ?>-pager" class="field-slideshow-pager slides-<?php print count($items); ?>"></div>
-
-    <?php elseif ($pager == 'image' || $pager == 'carousel') : ?>
-
-      <?php if ($pager == 'carousel') : ?>
-        <div id="field-slideshow-<?php print $id; ?>-carousel-wrapper" class="field-slideshow-carousel-wrapper">
-          <a href="#" class="carousel-prev">«</a>
-          <div id="field-slideshow-<?php print $id; ?>-carousel" class="field-slideshow-carousel">
-      <?php endif; ?>
-
-      <?php print $thumbnails; ?>
-
-      <?php if ($pager == 'carousel') : ?>
-          </div>
-          <a href="#" class="carousel-next">»</a>
-        </div>
-      <?php endif; ?>
-
-    <?php endif; ?>
-
-  <?php endif; ?>
+  <?php if ($pager_position != "before") print(render($pager)); ?>
 
 </div>

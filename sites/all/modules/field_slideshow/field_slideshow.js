@@ -3,8 +3,10 @@
     attach: function(context) {
 
       for (i in Drupal.settings.field_slideshow) {
-        var settings = Drupal.settings.field_slideshow[i];
-        var slideshow = $('.' + i);
+        var settings = Drupal.settings.field_slideshow[i],
+          slideshow = $('div.' + i),
+          num_slides = slideshow.children().length,
+          $this = false;
 
         if (!slideshow.hasClass('field-slideshow-processed')) {
           slideshow.addClass('field-slideshow-processed');
@@ -37,7 +39,8 @@
             resizing: 0,
             fx: settings.fx,
             speed: settings.speed,
-            timeout: parseInt(settings.timeout)
+            timeout: parseInt(settings.timeout),
+            index: i
           }
 
           if (settings.speed == "0" && settings.timeout == "0") options.fastOnEvent = true;
@@ -48,8 +51,8 @@
           if (settings.pause) options.pause = true;
 
           if (settings.pager != '') {
-            if (settings.pager == 'number') options.pager = "#" + i + "-pager";
-            else if (settings.pager == 'image' || settings.pager == 'carousel') {
+            if (settings.pager == 'number' || settings.pager == 'image') options.pager = "#" + i + "-pager";
+            if ((settings.pager == 'image' || settings.pager == 'carousel') && num_slides > 1) {
               options.pagerAnchorBuilder = function(idx, slide) {
                 return '#' + i + '-pager li:eq(' + idx + ') a';
               };
@@ -62,6 +65,11 @@
                   animation: parseInt(settings.carousel_speed),
                   vertical: settings.carousel_vertical,
                   initCallback: function(carousel) {
+                    if (carousel.options.visible && num_slides <= carousel.options.visible) {
+                      // hide the carousel next and prev if all slide thumbs are displayed
+                      $(".carousel-prev, .carousel-next", carousel.container.parent()).addClass("hidden");
+                      return false;
+                    }
                     $(".carousel-next", carousel.container.parent()).bind('click', function() {
                       carousel.next();
                       return false;
@@ -73,27 +81,96 @@
                   }
                 };
                 if (parseInt(settings.carousel_circular)) carouselops.wrap = 'circular';
-                
+
                 $("#" + i + "-carousel").jcarousel(carouselops);
+                // the pager is the direct item's parent element
+                options.pager = "#" + i + "-carousel .field-slideshow-pager";
               }
             }
           }
 
-          // Cycle!
-          slideshow.cycle(options); 
+          // Configure the cycle.before callback, it's called each time the slide change
+          options.before = function(currSlideElement, nextSlideElement, options, forwardFlag) {
+            // The options.nextSlide sometimes starts with 1 instead of 0, this is safer
+            var nextIndex = $(nextSlideElement).index();
 
-          // After the numeric pager has been built by Cycle, add some classes for theming
-          if (settings.pager == 'number') {
-            $('.field-slideshow-pager a').each(function(){
-              $this = $(this);
-              $this.addClass('slide-' + $this.html());
-            });
+            // Add activeSlide manually for image pager
+            if (settings.pager == 'image') {
+              $('li', options.pager).removeClass("activeSlide");
+              $('li:eq(' + nextIndex + ')', options.pager).addClass("activeSlide");
+            }
+
+            // If we are using the carousel make it follow the activeSlide
+            // This will not work correctly with circular carousel until the version 0.3 of jcarousel
+            // is released so we disble this until then
+            if (settings.pager == 'carousel' && parseInt(settings.carousel_follow) && parseInt(settings.carousel_circular) == 0) {
+              var carousel = $("#" + options.index + "-carousel").data("jcarousel");
+              carousel.scroll(nextIndex, true);
+            }
           }
-          
+
+          if (num_slides > 1) {
+
+            if (settings.start_on_hover) {
+              //If start_on_hover is set, stop cycling onload, and only activate
+              //on hover
+              slideshow.cycle(options).cycle("pause").hover(function() {
+                $(this).cycle('resume');
+              },function(){
+                $(this).cycle('pause');
+              });
+            }
+            else {
+              // Cycle!
+              slideshow.cycle(options);
+            }
+
+            // After the numeric pager has been built by Cycle, add some classes for theming
+            if (settings.pager == 'number') {
+              $('.field-slideshow-pager a').each(function(){
+                $this = $(this);
+                $this.addClass('slide-' + $this.html());
+              });
+            }
+          }
 
         }
 
       }
+
+      // Recalculate height for responsive layouts
+      var rebuild_max_height = function(context) {
+        var max_height = 0;
+        var heights = $('.field-slideshow-slide',context).map(function ()
+        {
+          return $(this).height();
+        }).get(),
+        max_height = Math.max.apply(Math, heights);
+        if (max_height > 0) {
+          context.css("height", max_height);
+        }
+      };
+
+      if (jQuery.isFunction($.fn.imagesLoaded)) {
+        $('.field-slideshow').each(function() {
+          $('img',this).imagesLoaded(function($images) {
+            rebuild_max_height($images.parents('.field-slideshow'));
+          });
+        });
+      }
+      else {
+        $(window).load(function(){
+          $('.field-slideshow').each(function(){
+            rebuild_max_height($(this))
+          })
+        });
+
+      }
+      $(window).resize(function(){
+        $('.field-slideshow').each(function(){
+          rebuild_max_height($(this))
+        })
+      });
 
     }
   }
