@@ -157,10 +157,14 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Critère de tri: Contenu : Titre */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  /* Critère de tri: Menu : Poids */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'menu_links';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  /* Critère de tri: Menu : Menu link id */
+  $handler->display->display_options['sorts']['mlid']['id'] = 'mlid';
+  $handler->display->display_options['sorts']['mlid']['table'] = 'menu_links';
+  $handler->display->display_options['sorts']['mlid']['field'] = 'mlid';
   /* Filtre contextuel: Terme de taxonomie : Identifiant (ID) du terme */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
