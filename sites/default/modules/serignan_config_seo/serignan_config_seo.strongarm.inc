@@ -98,7 +98,7 @@ function serignan_config_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_event_pattern';
-  $strongarm->value = 'event/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_event_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -154,7 +154,7 @@ function serignan_config_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_news_pattern';
-  $strongarm->value = 'news/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_news_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -182,7 +182,7 @@ function serignan_config_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_page_pattern';
-  $strongarm->value = '[node:field-sections:parents:join-path]/[node:field-sections:name]/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_page_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -196,7 +196,7 @@ function serignan_config_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_pattern';
-  $strongarm->value = '';
+  $strongarm->value = '[node:field-section-main:parents:join-path]/[node:field-section-main:name]/[node:title]';
   $export['pathauto_node_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -217,7 +217,7 @@ function serignan_config_seo_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_sheet_pattern';
-  $strongarm->value = '[node:field-sections:parents:join-path]/[node:field-sections:name]/[node:title]';
+  $strongarm->value = '';
   $export['pathauto_node_sheet_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
