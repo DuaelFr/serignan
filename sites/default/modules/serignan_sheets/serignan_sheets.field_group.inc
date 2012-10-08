@@ -24,7 +24,8 @@ function serignan_sheets_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'body',
-      1 => 'field_slideshow',
+      1 => 'field_add_infos',
+      2 => 'field_slideshow',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -49,9 +50,9 @@ function serignan_sheets_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Content',
-    'weight' => '4',
+    'weight' => '1',
     'children' => array(
-      0 => 'body',
+      0 => 'field_introduction',
       1 => 'title',
       2 => 'node_link',
     ),
@@ -84,8 +85,8 @@ function serignan_sheets_field_group_info() {
     'label' => '',
     'weight' => '1',
     'children' => array(
-      0 => 'field_add_infos',
-      1 => 'field_address',
+      0 => 'field_address',
+      1 => 'field_phone',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -28,7 +28,7 @@ function serignan_sheets_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '3',
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -63,20 +63,17 @@ function serignan_sheets_ds_layout_settings_info() {
       'ds_content' => array(
         0 => 'field_pictures',
         1 => 'title',
-        2 => 'body',
-        3 => 'node_link',
-        4 => 'group_content',
+        2 => 'group_content',
+        3 => 'field_introduction',
+        4 => 'node_link',
       ),
     ),
     'fields' => array(
       'field_pictures' => 'ds_content',
       'title' => 'ds_content',
-      'body' => 'ds_content',
-      'node_link' => 'ds_content',
       'group_content' => 'ds_content',
-    ),
-    'limit' => array(
-      'field_pictures' => '1',
+      'field_introduction' => 'ds_content',
+      'node_link' => 'ds_content',
     ),
     'classes' => array(),
   );

@@ -54,11 +54,8 @@ function serignan_sheets_field_default_fields() {
         ),
         'list' => array(
           'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(
-            'trim_length' => '200',
-          ),
-          'type' => 'text_summary_or_trimmed',
+          'settings' => array(),
+          'type' => 'hidden',
           'weight' => '2',
         ),
         'teaser' => array(
@@ -131,13 +128,13 @@ function serignan_sheets_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '6',
         ),
         'list' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -216,13 +213,13 @@ function serignan_sheets_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'list' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -311,7 +308,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -394,16 +391,16 @@ function serignan_sheets_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
+          'type' => 'hidden',
           'weight' => '14',
         ),
         'list' => array(
-          'label' => 'above',
+          'label' => 'hidden',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'type' => 'text_default',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -461,17 +458,17 @@ function serignan_sheets_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'phone',
           'settings' => array(),
           'type' => 'phone',
-          'weight' => '13',
+          'weight' => '3',
         ),
         'list' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -654,7 +651,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -738,7 +735,7 @@ function serignan_sheets_field_default_fields() {
             'slideshow_carousel_speed' => '500',
             'slideshow_carousel_vertical' => 0,
             'slideshow_carousel_visible' => '4',
-            'slideshow_colorbox_image_style' => 'large',
+            'slideshow_colorbox_image_style' => '',
             'slideshow_colorbox_slideshow' => 'manual',
             'slideshow_colorbox_slideshow_speed' => '4000',
             'slideshow_colorbox_speed' => '350',
@@ -746,7 +743,7 @@ function serignan_sheets_field_default_fields() {
             'slideshow_controls' => 0,
             'slideshow_field_collection_image' => '',
             'slideshow_fx' => 'scrollRight',
-            'slideshow_image_style' => 'medium',
+            'slideshow_image_style' => 'fiche_slideshow',
             'slideshow_link' => 'colorbox',
             'slideshow_order' => '',
             'slideshow_pager' => 'number',
@@ -762,7 +759,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
