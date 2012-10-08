@@ -2,20 +2,16 @@
 /**
  * @file shows / hides form elements
  */
- 
+
 (function ($) {
 
 Drupal.behaviors.TaxonomyManagerHideForm = {
   attach: function(context, settings) {
-    if (!$('#taxonomy-manager-toolbar').hasClass('buttons-processed')) {
-      $('#taxonomy-manager-toolbar').addClass('buttons-processed')
-      settings = settings.hideForm || [];
-      if (settings instanceof Array) {
-        for (var i=0; i<settings.length; i++) {
-          Drupal.attachHideForm(settings[i].div, settings[i].show_button, settings[i].hide_button);
-        }
+    $('#taxonomy-manager-toolbar', context).once('hideForm', function() {
+      for (var key in settings.hideForm) {
+        Drupal.attachHideForm(settings.hideForm[key].div, settings.hideForm[key].show_button, settings.hideForm[key].hide_button);
       }
-    }
+    });
   }
 }
 
@@ -24,29 +20,44 @@ Drupal.behaviors.TaxonomyManagerHideForm = {
  */
 Drupal.attachHideForm = function(div, show_button, hide_button) {
   var hide = true;
-  div = $("#"+ div);
-  show_button = $("#"+ show_button);
-  hide_button = $("#"+ hide_button);
+  var div = $("#"+ div);
+  var show_button = $("#"+ show_button);
+  var hide_button = $("#"+ hide_button);
 
   // don't hide if there is an error in the form
   $(div).find("input").each(function() {
-    if($(this).hasClass("error")) {
+    if ($(this).hasClass("error")) {
       hide = false;
     }
   });
-  
-  if (!hide) { 
+
+  if (!hide) {
     $(div).show();
   }
   $(show_button).click(function() {
+    Drupal.hideOtherForms(div);
     $(div).toggle();
     return false;
   });
-  
+
   $(hide_button).click(function() {
     $(div).hide();
     return false;
   });
+}
+
+/**
+ * Helper function that hides all forms, except the current one.
+*/
+Drupal.hideOtherForms = function(currentFormDiv) {
+  var currentFormDivId = $(currentFormDiv).attr('id');
+  var settings = Drupal.settings.hideForm || [];
+  for (var key in settings) {
+    var div = settings[key].div;
+    if (div != currentFormDivId) {
+      $('#' + div).hide();
+    }
+  }
 }
 
 })(jQuery);

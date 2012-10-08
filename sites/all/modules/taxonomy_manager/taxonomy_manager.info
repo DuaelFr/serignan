@@ -4,9 +4,9 @@ core = "7.x"
 dependencies[] = taxonomy
 files[] = taxonomy_manager.admin.inc
 package = Taxonomy
-; Information added by drupal.org packaging script on 2012-06-20
-version = "7.x-1.0-beta3"
+; Information added by drupal.org packaging script on 2012-09-22
+version = "7.x-1.0-rc1"
 core = "7.x"
 project = "taxonomy_manager"
-datestamp = "1340208114"
+datestamp = "1348334950"
 
