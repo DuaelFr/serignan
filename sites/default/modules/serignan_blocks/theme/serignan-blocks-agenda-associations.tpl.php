@@ -1,4 +1,4 @@
 <div class="messages info">
-  <p>Retrouvez tous les événements organisés par nos associations sur la page de l'<a href="/actualites-agenda/agenda/associations">Agenda des associations</a>.</p>
-  <p>A MODIFIER dans <?php echo basename(__FILE__); ?></p>
+  <p>Retrouvez tous les événements organisés par 
+  </br>nos associations sur la page de <a href="/actualites-agenda/agenda/associations">l'Agenda des associations</a>.</p>
 </div>

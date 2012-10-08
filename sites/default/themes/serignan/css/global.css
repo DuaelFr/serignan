@@ -1459,7 +1459,22 @@ height:41px;
 background:url("../images/bg_titre_demarches.png") no-repeat;
 height:41px;
 }
-
+.block-agenda-associations .messages.info{
+background: url("../images/bg_bloc_agenda_assos.jpg") no-repeat;
+border: none;
+padding-left: 140px;
+padding-top:20px;
+color:white;
+font-size:16px;
+}
+.block-agenda-associations .messages.info a{
+font-weight:bold;
+text-decoration:underline;
+color:white;
+}
+.block-agenda-associations .messages.info a:hover{
+text-decoration:none;
+ }
 
 /*ZONE-POSTSCRIPT*/
 #zone-postscript{
