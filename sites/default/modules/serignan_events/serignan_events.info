@@ -37,6 +37,7 @@ features[ds_layout_settings][] = node|event|sidebar
 features[ds_layout_settings][] = node|event|slideshow
 features[features_api][] = api:1
 features[field][] = node-event-body
+features[field][] = node-event-field_date_displayed
 features[field][] = node-event-field_date_end
 features[field][] = node-event-field_date_start
 features[field][] = node-event-field_picture

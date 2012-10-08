@@ -28,7 +28,7 @@ function serignan_events_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '7',
+      'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -58,7 +58,7 @@ function serignan_events_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '5',
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -124,18 +124,16 @@ function serignan_events_ds_layout_settings_info() {
         0 => 'title',
         1 => 'field_picture',
         2 => 'group_content',
-        3 => 'field_date_start',
-        4 => 'field_date_end',
-        5 => 'body',
-        6 => 'node_link',
+        3 => 'field_date_displayed',
+        4 => 'body',
+        5 => 'node_link',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
       'field_picture' => 'ds_content',
       'group_content' => 'ds_content',
-      'field_date_start' => 'ds_content',
-      'field_date_end' => 'ds_content',
+      'field_date_displayed' => 'ds_content',
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),
@@ -156,16 +154,14 @@ function serignan_events_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
-        1 => 'field_date_start',
-        2 => 'field_date_end',
-        3 => 'body',
-        4 => 'node_link',
+        1 => 'field_date_displayed',
+        2 => 'body',
+        3 => 'node_link',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
-      'field_date_start' => 'ds_content',
-      'field_date_end' => 'ds_content',
+      'field_date_displayed' => 'ds_content',
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),

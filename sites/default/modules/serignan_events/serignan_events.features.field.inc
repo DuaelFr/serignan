@@ -59,7 +59,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '160',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -68,7 +68,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '150',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'sidebar' => array(
           'label' => 'hidden',
@@ -77,7 +77,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '140',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '4',
+          'weight' => '2',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -112,6 +112,104 @@ function serignan_events_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
+        'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-event-field_date_displayed'.
+  $fields['node-event-field_date_displayed'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_date_displayed',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'event',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Ce champ sera affiché tel quel aux visiteurs.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '8',
+        ),
+        'home' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '6',
+        ),
+        'list' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '3',
+        ),
+        'sidebar' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '1',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_date_displayed',
+      'label' => 'Date affichée',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'maxlength_js' => 0,
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
         'weight' => '5',
       ),
     ),
@@ -150,59 +248,31 @@ function serignan_events_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'event',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Cette date n\'a qu\'un intérêt technique (recherche, tri...) et ne sera pas affichée aux visiteurs.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '7',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'home' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '5',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '4',
         ),
         'list' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '2',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'sidebar' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '3',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -236,6 +306,7 @@ function serignan_events_field_default_fields() {
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
@@ -278,59 +349,31 @@ function serignan_events_field_default_fields() {
     'field_instance' => array(
       'bundle' => 'event',
       'deleted' => '0',
-      'description' => '',
+      'description' => 'Cette date n\'a qu\'un intérêt technique (recherche, tri...) et ne sera pas affichée aux visiteurs.',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '6',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'home' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '4',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'list' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '1',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'sidebar' => array(
           'label' => 'inline',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'date_court',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '2',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -364,6 +407,7 @@ function serignan_events_field_default_fields() {
           'input_format' => 'm/d/Y - H:i:s',
           'input_format_custom' => '',
           'label_position' => 'above',
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
@@ -442,7 +486,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '11',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -549,25 +593,25 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '5',
         ),
         'home' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '8',
         ),
         'list' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '5',
         ),
         'sidebar' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => '10',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -612,6 +656,9 @@ function serignan_events_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Ce champ sera affiché tel quel aux visiteurs.');
+  t('Cette date n\'a qu\'un intérêt technique (recherche, tri...) et ne sera pas affichée aux visiteurs.');
+  t('Date affichée');
   t('Description');
   t('Du');
   t('Image');
