@@ -51,6 +51,45 @@ function serignan_commons_node_update($node) {
   _serignan_commons_node_save($node);
 }
 
+/*
+ * Implements hook_date_format_types().
+ */
+function serignan_commons_date_format_types() {
+  variable_set('date_format_date_court', 'date_court'); 
+  variable_set('date_format_date_long', 'date_long'); 
+  variable_set('date_format_format_serignan', 'format_serignan'); 
+  return array(
+    'date_court' => t('Date court'), 
+    'date_long' => t('Date long'), 
+    'format_serignan' => t('Format serignan'),
+  );
+}
+
+/*
+ * Implements hook_date_formats().
+ */
+function serignan_commons_date_formats() {
+  $formats = array();
+
+  // Short date formats.
+  $formats[] = array(
+    'type' => 'date_court',
+    'format' => 'd/m/Y',
+    'locales' => array(),
+  );
+  $formats[] = array(
+    'type' => 'date_long',
+    'format' => 'l j F Y',
+    'locales' => array(),
+  );
+  $formats[] = array(
+    'type' => 'format_serignan',
+    'format' => 'l, j F, Y - H:i',
+    'locales' => array(),
+  );
+
+  return $formats;
+}
 
 // -----------------------------------------------------------------------------
 // CALLBACKS
