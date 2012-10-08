@@ -121,7 +121,7 @@ function serignan_sections_field_default_fields() {
           'label' => 'hidden',
           'module' => 'image',
           'settings' => array(
-            'image_link' => '',
+            'image_link' => 'content',
             'image_style' => 'section_list',
           ),
           'type' => 'image',

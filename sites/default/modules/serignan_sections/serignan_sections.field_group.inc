@@ -24,8 +24,7 @@ function serignan_sections_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_description',
-      1 => 'description',
-      2 => 'title',
+      1 => 'title',
     ),
     'format_type' => 'div',
     'format_settings' => array(
