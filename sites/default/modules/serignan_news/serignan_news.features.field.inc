@@ -50,7 +50,7 @@ function serignan_news_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '1',
         ),
         'home' => array(
           'label' => 'hidden',
@@ -153,17 +153,10 @@ function serignan_news_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'format_serignan',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => '3',
+          'label' => 'inline',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'home' => array(
           'label' => 'above',
@@ -175,7 +168,7 @@ function serignan_news_field_default_fields() {
           'label' => 'hidden',
           'module' => 'date',
           'settings' => array(
-            'format_type' => 'short',
+            'format_type' => 'date_court',
             'fromto' => 'both',
             'multiple_from' => '',
             'multiple_number' => '',
@@ -409,10 +402,9 @@ function serignan_news_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'home' => array(
           'label' => 'above',
@@ -424,7 +416,7 @@ function serignan_news_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'sidebar' => array(
           'label' => 'above',
