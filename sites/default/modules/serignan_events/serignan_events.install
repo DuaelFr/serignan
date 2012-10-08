@@ -1,0 +1,30 @@
+<?php
+/**
+ * @file
+ * Code for the Serignan Events feature install.
+ */
+
+/**
+ * Fill display dates.
+ */
+function serignan_events_update_7000(&$sandbox) {
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', 'event')
+    ->execute()
+    ->fetchCol();
+  $nodes = node_load_multiple($nids);
+  
+  foreach ($nodes as $node) {
+    $start = field_get_items('node', $node, 'field_date_start');
+    $end   = field_get_items('node', $node, 'field_date_end');
+    $disp  = field_get_items('node', $node, 'field_date_displayed');
+    if (empty($disp)) {
+      list($sy, $sm, $sd) = explode('-', substr($start[0]['value'], 0, 10));
+      list($ey, $em, $ed) = explode('-', substr($end[0]['value'], 0, 10));
+      $str = 'Du ' . implode('/', array($sd, $sm, $sy)) . ' au ' . implode('/', array($ed, $em, $ey));
+      $node->field_date_displayed[LANGUAGE_NONE] = array(array('value' => $str));
+      node_save($node);
+    }
+  }
+}
