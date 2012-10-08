@@ -12,6 +12,9 @@ font-family: Arial, Helvetica, Verdana, sans-serif;
 letter-spacing:0;
 margin-bottom:0;
 }
+td, th {
+vertical-align: top;
+}
 
 @font-face {
     font-family: 'FuturaStdCondensedLightRg';
@@ -32,11 +35,17 @@ height:103px;
 z-index: 20;
 margin:0;
 }
-/*.region-branding-inner{
+
+.logo-img a img{
 background:url("../images/logo_serignan.png") no-repeat;
 width:220px;
 height:110px;
-}*/
+}
+.logo-img a img:hover{
+background:url("../images/logo_serignan_hover.png") no-repeat;
+width:220px;
+height:110px;
+}
 #region-menu{
 background: url("../images/bandeau_menu.png") no-repeat;
 width: 730px;
@@ -132,12 +141,14 @@ text-decoration:underline;
 }
 
 /* DIAPORAMA */
+.serignan-main-slideshow,
 .block-slideshow-tourism-block,
 .block-slideshow-block{
 margin-top: -110px;
-margin-left: -38px;
+margin-left: -19px;
 position: relative;
 }
+.serignan-main-slideshow .views-slideshow-controls-text-previous a,
 .block-slideshow-tourism-block .views-slideshow-controls-text-previous a,
 .block-slideshow-block .views-slideshow-controls-text-previous a{
 background:url("../images/fleche_diapo_left.jpg") no-repeat;
@@ -148,6 +159,7 @@ width:36px;
 top: 225px;
 z-index: 100;
 }
+.serignan-main-slideshow .views-slideshow-controls-text-next a,
 .block-slideshow-tourism-block .views-slideshow-controls-text-next a,
 .block-slideshow-block .views-slideshow-controls-text-next a{
 background:url("../images/fleche_diapo_right.jpg") no-repeat;
@@ -159,11 +171,13 @@ top: 225px;
 z-index: 100;
 right:-38px;
 }
+.serignan-main-slideshow .views-slideshow-controls-text-pause a,
 .block-slideshow-tourism-block .views-slideshow-controls-text-pause a,
 .block-slideshow-block .views-slideshow-controls-text-pause a{
 text-indent:-9999px;
 position:absolute;
 }
+.serignan-main-slideshow .field-group-format,
 .block-slideshow-tourism-block .field-group-format,
 .block-slideshow-block .field-group-format{
 background: url("../images/bloc_transparent.png") no-repeat;
@@ -176,6 +190,7 @@ margin-top: -300px;
 z-index: 100;
 position: relative;
 }
+.serignan-main-slideshow .views-slideshow-controls-bottom,
 .block-slideshow-tourism-block .views-slideshow-controls-bottom,
 .block-slideshow-block .views-slideshow-controls-bottom{
 float: right;
@@ -186,6 +201,7 @@ position: relative;
 clear: right;
 margin-right: 66px;
 }
+.serignan-main-slideshow .views-slideshow-controls-bottom .views-slideshow-pager-counter-item,
 .block-slideshow-tourism-block .views-slideshow-controls-bottom .views-slideshow-pager-counter-item,
 .block-slideshow-block .views-slideshow-controls-bottom .views-slideshow-pager-counter-item{
 background-color:#e30f28;
@@ -196,11 +212,15 @@ padding:0 6px 0 6px;
 margin-left:5px;
 cursor:pointer;
 }
+.serignan-main-slideshow .views-slideshow-controls-bottom .views-slideshow-pager-counter-item.active,
 .block-slideshow-tourism-block .views-slideshow-controls-bottom .views-slideshow-pager-counter-item.active,
 .block-slideshow-block .views-slideshow-controls-bottom .views-slideshow-pager-counter-item.active{
 background-color:#FFF;
 color:#e30f28;
 }
+.serignan-main-slideshow .node-zoom .field-name-type,
+.serignan-main-slideshow .node-event .field-name-type,
+.serignan-main-slideshow .node-news .field-name-type,
 .block-slideshow-tourism-block .node-zoom .field-name-type,
 .block-slideshow-tourism-block .node-event .field-name-type,
 .block-slideshow-tourism-block .node-news .field-name-type,
@@ -217,14 +237,19 @@ line-height: 40px;
 margin-top: 5px;
 margin-right:5px;
 }
+.serignan-main-slideshow .node-event .field-name-type,
 .block-slideshow-tourism-block .node-event .field-name-type,
 .block-slideshow-block .node-event .field-name-type{
 color:#3399cc;
 }
+.serignan-main-slideshow .node-zoom .field-name-type,
 .block-slideshow-tourism-block .node-zoom .field-name-type,
 .block-slideshow-block .node-zoom .field-name-type{
 color:#003366;
 }
+.serignan-main-slideshow .node-zoom .field-name-title,
+.serignan-main-slideshow .node-event .field-name-title,
+.serignan-main-slideshow .node-news .field-name-title,
 .block-slideshow-tourism-block .node-zoom .field-name-title,
 .block-slideshow-tourism-block .node-event .field-name-title,
 .block-slideshow-tourism-block .node-news .field-name-title,
@@ -234,6 +259,15 @@ color:#003366;
 line-height:24px;
 margin-right:5px;
 }
+.serignan-main-slideshow .node-zoom .field-name-title h2 a:link,
+.serignan-main-slideshow .node-zoom .field-name-title h2 a:visited,
+.serignan-main-slideshow .node-zoom .field-name-title h2 a:hover,
+.serignan-main-slideshow .node-event .field-name-title h2 a:link,
+.serignan-main-slideshow .node-event .field-name-title h2 a:visited,
+.serignan-main-slideshow .node-event .field-name-title h2 a:hover,
+.serignan-main-slideshow .node-news .field-name-title h2 a:link,
+.serignan-main-slideshow .node-news .field-name-title h2 a:visited,
+.serignan-main-slideshow .node-news .field-name-title h2 a:hover,
 .block-slideshow-tourism-block .node-zoom .field-name-title h2 a:link,
 .block-slideshow-tourism-block .node-zoom .field-name-title h2 a:visited,
 .block-slideshow-tourism-block .node-zoom .field-name-title h2 a:hover,
@@ -259,6 +293,9 @@ color: #333;
 font-size:24px;
 text-decoration:none;
 }
+.serignan-main-slideshow .node-zoom .field-name-title h2 a:hover,
+.serignan-main-slideshow .node-event .field-name-title h2 a:hover,
+.serignan-main-slideshow .node-news .field-name-title h2 a:hover,
 .block-slideshow-tourism-block .node-zoom .field-name-title h2 a:hover,
 .block-slideshow-tourism-block .node-event .field-name-title h2 a:hover,
 .block-slideshow-tourism-block .node-news .field-name-title h2 a:hover,
@@ -267,6 +304,15 @@ text-decoration:none;
 .block-slideshow-block .node-news .field-name-title h2 a:hover{
 text-decoration:underline;
 }
+.serignan-main-slideshow .node-zoom .field-name-node-link a:link,
+.serignan-main-slideshow .node-zoom .field-name-node-link a:visited,
+.serignan-main-slideshow .node-zoom .field-name-node-link a:hover,
+.serignan-main-slideshow .node-event .field-name-node-link a:link,
+.serignan-main-slideshow .node-event .field-name-node-link a:visited,
+.serignan-main-slideshow .node-event .field-name-node-link a:hover,
+.serignan-main-slideshow .node-news .field-name-node-link a:link,
+.serignan-main-slideshow .node-news .field-name-node-link a:visited,
+.serignan-main-slideshow .node-news .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:link,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:visited,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:hover,
@@ -295,6 +341,9 @@ font-size:18px;
 padding-right:21px;
 margin-right:5px;
 }
+.serignan-main-slideshow .node-event .field-name-node-link a:link,
+.serignan-main-slideshow .node-event .field-name-node-link a:visited,
+.serignan-main-slideshow .node-event .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-event .field-name-node-link a:link,
 .block-slideshow-tourism-block .node-event .field-name-node-link a:visited,
 .block-slideshow-tourism-block .node-event .field-name-node-link a:hover,
@@ -303,6 +352,9 @@ margin-right:5px;
 .block-slideshow-block .node-event .field-name-node-link a:hover{
 color:#3399cc;
 }
+.serignan-main-slideshow .node-zoom .field-name-node-link a:link,
+.serignan-main-slideshow .node-zoom .field-name-node-link a:visited,
+.serignan-main-slideshow .node-zoom .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:link,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:visited,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:hover,
@@ -311,6 +363,9 @@ color:#3399cc;
 .block-slideshow-block .node-zoom .field-name-node-link a:hover{
 color:#003366;
 }
+.serignan-main-slideshow .node-zoom .field-name-node-link a:hover,
+.serignan-main-slideshow .node-event .field-name-node-link a:hover,
+.serignan-main-slideshow .node-news .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-zoom .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-event .field-name-node-link a:hover,
 .block-slideshow-tourism-block .node-news .field-name-node-link a:hover,
@@ -321,6 +376,7 @@ text-decoration:underline;
 }
 
 /*PHOTOS BANDEAUX PAGES INTERNES*/
+.node-type-sheet .block-header-decorator,
 .node-type-page .block-header-decorator,
 .context-associations .block-header-decorator,
 .context-autres-festivites .block-header-decorator,
@@ -795,6 +851,7 @@ background-color:#99cc33;
 .node-type-sheet.context-mairie-services .group-infos{
 background-color:#003366;
 }
+.node-type-sheet .field-name-field-phone,
 .node-type-sheet .field-name-field-add-infos{
 margin-bottom:10px;
 }
@@ -886,8 +943,20 @@ float:left;
 border:1px solid #ccc;
 margin-right:10px;
 }
+
+.block-events-block-home .field-name-field-picture{
+width:130px;
+}
+.block-events-block-home .group_content.field-group-div.group-content{
+width:140px;
+float:left;
+}
 .block-news-block-home .field-name-title{
 line-height:14px;
+}
+.block-events-block-home .field-name-body{
+float:left;
+clear:both;
 }
 .block-news-block-home .field-name-title a:link,
 .block-news-block-home .field-name-title a:visited,
@@ -940,11 +1009,19 @@ color:#666;
 /*Bloc agenda home*/
 #views_slideshow_cycle_main_events-block_home{
 margin-left:10px;
-margin-bottom: 20px;
+height :250px;
+float:left;
+width:100%;
 }
+#views_slideshow_cycle_teaser_section_events-block_home{
+width:100%;
+}
+/*.views-slideshow-cycle-main-frame-row{
+width:100% !important;
+}*/
 .block-events-block-home .views-slideshow-controls-top{
 float:right;
-margin:10px;
+padding:10px;
 z-index: 10;
 }
 .block-events-block-home .views-slideshow-pager-counter-item{
@@ -1016,6 +1093,7 @@ font-size:11px;
 background:url("../images/petite_fleche_grise.jpg") no-repeat right;
 padding-right:12px;
 margin-right:10px;
+float:right;
 }
 .block-events-block-home .more-link a:hover{
 color:#666;

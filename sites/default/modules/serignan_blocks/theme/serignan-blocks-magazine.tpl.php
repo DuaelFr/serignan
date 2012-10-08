@@ -1,8 +1,8 @@
 <div class="magazine-block">
-  <img src="/<?php echo $theme_path; ?>/magazines/images/cover-hs-2012-04.png" alt="Couverture magazine" />
+  <img src="/<?php echo $theme_path; ?>/magazines/images/cover-2012-09.jpg" alt="Couverture magazine" />
   <div class="content">
-    <h3>Avril 2012 - Hors série</h3>
-    <p>&gt; Déjà 4 ans avec vous et pour vous</p>
-    <a href="/<?php echo $theme_path; ?>/magazines/hs-2012-04.pdf">Télécharger (PDF - 3,50 Mo)</a>
+    <h3>Septembre / Octobre 2012 - N°48</h3>
+    <p>Le temps des grands travaux</p>
+    <a href="http://fr.calameo.com/read/0011801944c378dd732fd" target="_blank">Lire le magazine</a>
   </div>
 </div>
