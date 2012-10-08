@@ -59,7 +59,11 @@ function serignan_commons_node_update($node) {
  * Front menu callback
  */
 function _serignan_commons_front() {
-  return '';
+  $result = '';
+  if (module_exists('metatag')) {
+    $result .= drupal_render(metatag_metatags_view('global:frontpage', array()));
+  }
+  return $result;
 }
 
 /**
