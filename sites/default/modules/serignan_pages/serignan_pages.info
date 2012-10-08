@@ -30,6 +30,7 @@ features[field][] = node-page-field_geoloc
 features[field][] = node-page-field_introduction
 features[field][] = node-page-field_phone
 features[field][] = node-page-field_picture
+features[field][] = node-page-field_section_main
 features[field][] = node-page-field_sections
 features[field_group][] = group_content|node|page|list
 features[image][] = page_list
