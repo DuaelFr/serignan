@@ -55,9 +55,9 @@ function serignan_commons_node_update($node) {
  * Implements hook_date_format_types().
  */
 function serignan_commons_date_format_types() {
-  variable_set('date_format_date_court', 'date_court'); 
-  variable_set('date_format_date_long', 'date_long'); 
-  variable_set('date_format_format_serignan', 'format_serignan'); 
+  variable_set('date_format_date_court', 'd/m/Y'); 
+  variable_set('date_format_date_long', 'l j F Y'); 
+  variable_set('date_format_format_serignan', 'l, j F, Y - H:i'); 
   return array(
     'date_court' => t('Date court'), 
     'date_long' => t('Date long'), 
