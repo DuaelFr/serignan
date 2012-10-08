@@ -1,5 +1,5 @@
 <ul>
-  <li class="events"><a href="/sortir-decouvrir/evenements">Les évènements de Sérignan</a></li>
+  <li class="events"><a href="/sortir-decouvrir/evenements">Les événements de Sérignan</a></li>
   <li class="holidays"><a href="/vacances-famille-groupes"><span>Vacances</span><p>en famille</p></a></li>
   <li class="map"><a href="/comment-venir">Comment venir ?</a></li>
   <li class="beaches"><a href="/les-plages"><span>Les plages</span><p>de Sérignan</p></a></li>
