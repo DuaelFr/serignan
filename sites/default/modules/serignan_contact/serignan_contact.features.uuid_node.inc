@@ -25,8 +25,18 @@ function serignan_contact_uuid_features_default_content() {
   'tnid' => '0',
   'translate' => '0',
   'uuid' => '4045c45f-1b50-4d8e-91d7-e25f4a2cc359',
-  'revision_uid' => '0',
-  'body' => array(),
+  'revision_uid' => '1',
+  'body' => array(
+    'und' => array(
+      0 => array(
+        'value' => '<p>Vous avez une question à poser, une remarque à faire, une demande particulière...<br>ça tombe bien car&nbsp;vous êtes au bon endroit pour vous exprimer et nous en faire part.</p>',
+        'summary' => '',
+        'format' => 'full_html',
+        'safe_value' => '<p>Vous avez une question à poser, une remarque à faire, une demande particulière...<br />ça tombe bien car vous êtes au bon endroit pour vous exprimer et nous en faire part.</p>',
+        'safe_summary' => '',
+      ),
+    ),
+  ),
   'field_picture' => array(),
   'field_sections' => array(),
   'metatags' => array(),
@@ -55,7 +65,7 @@ function serignan_contact_uuid_features_default_content() {
       1 => array(
         'nid' => '1',
         'eid' => '1',
-        'email' => 'e.cunibil@duael.fr',
+        'email' => 'mairie@ville-serignan.fr',
         'subject' => 'Formulaire de contact du site de la ville de Sérignan',
         'from_name' => 'default',
         'from_address' => 'default',
