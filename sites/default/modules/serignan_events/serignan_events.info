@@ -41,6 +41,7 @@ features[field][] = node-event-field_date_displayed
 features[field][] = node-event-field_date_end
 features[field][] = node-event-field_date_start
 features[field][] = node-event-field_picture
+features[field][] = node-event-field_section_main
 features[field][] = node-event-field_sections
 features[field_group][] = group_content|node|event|home
 features[field_group][] = group_content|node|event|list
