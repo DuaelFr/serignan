@@ -145,11 +145,6 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['row_options']['view_mode'] = 'list';
   $handler->display->display_options['row_options']['links'] = FALSE;
-  /* Relation: Contenu : Rubrique (field_sections) */
-  $handler->display->display_options['relationships']['field_sections_tid']['id'] = 'field_sections_tid';
-  $handler->display->display_options['relationships']['field_sections_tid']['table'] = 'field_data_field_sections';
-  $handler->display->display_options['relationships']['field_sections_tid']['field'] = 'field_sections_tid';
-  $handler->display->display_options['relationships']['field_sections_tid']['required'] = TRUE;
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -165,20 +160,19 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['sorts']['mlid']['id'] = 'mlid';
   $handler->display->display_options['sorts']['mlid']['table'] = 'menu_links';
   $handler->display->display_options['sorts']['mlid']['field'] = 'mlid';
-  /* Filtre contextuel: Terme de taxonomie : Identifiant (ID) du terme */
-  $handler->display->display_options['arguments']['tid']['id'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['arguments']['tid']['field'] = 'tid';
-  $handler->display->display_options['arguments']['tid']['relationship'] = 'field_sections_tid';
-  $handler->display->display_options['arguments']['tid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['tid']['exception']['title'] = 'Tout';
-  $handler->display->display_options['arguments']['tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['tid']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['tid']['validate_options']['vocabularies'] = array(
+  /* Filtre contextuel: Contenu : Possède un identifiant (ID) de terme de taxonomie */
+  $handler->display->display_options['arguments']['tid_1']['id'] = 'tid_1';
+  $handler->display->display_options['arguments']['tid_1']['table'] = 'taxonomy_index';
+  $handler->display->display_options['arguments']['tid_1']['field'] = 'tid';
+  $handler->display->display_options['arguments']['tid_1']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['tid_1']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['tid_1']['default_argument_type'] = 'taxonomy_tid';
+  $handler->display->display_options['arguments']['tid_1']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['tid_1']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['tid_1']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['tid_1']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['tid_1']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['tid_1']['validate_options']['vocabularies'] = array(
     'section' => 'section',
   );
   /* Critère de filtrage: Contenu : Publié */
@@ -207,7 +201,6 @@ function serignan_sections_views_default_views() {
     t('‹ précédent'),
     t('suivant ›'),
     t('dernier »'),
-    t('terme à partir de field_sections'),
     t('Tout'),
     t('List (Block)'),
   );
