@@ -34,6 +34,7 @@ features[field][] = node-sheet-field_geoloc
 features[field][] = node-sheet-field_introduction
 features[field][] = node-sheet-field_phone
 features[field][] = node-sheet-field_pictures
+features[field][] = node-sheet-field_section_main
 features[field][] = node-sheet-field_sections
 features[field][] = node-sheet-field_slideshow
 features[field_group][] = group_content|node|sheet|default

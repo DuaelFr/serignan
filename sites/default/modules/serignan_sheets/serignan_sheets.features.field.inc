@@ -601,6 +601,94 @@ function serignan_sheets_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-sheet-field_section_main'.
+  $fields['node-sheet-field_section_main'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_section_main',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'section',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'sheet',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 15,
+        ),
+        'list' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_section_main',
+      'label' => 'Rubrique principale',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'term_reference_tree',
+        'settings' => array(
+          'cascading_selection' => 0,
+          'filter_view' => '',
+          'leaves_only' => 0,
+          'max_depth' => '',
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'parent_term_id' => '',
+          'select_parents' => 0,
+          'start_minimized' => 1,
+          'token_display' => '',
+          'track_list' => 0,
+        ),
+        'type' => 'term_reference_tree',
+        'weight' => '1',
+      ),
+    ),
+  );
+
   // Exported field: 'node-sheet-field_sections'.
   $fields['node-sheet-field_sections'] = array(
     'field_config' => array(
@@ -662,7 +750,7 @@ function serignan_sheets_field_default_fields() {
       ),
       'entity_type' => 'node',
       'field_name' => 'field_sections',
-      'label' => 'Rubrique',
+      'label' => 'Rubriques secondaires',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -730,6 +818,7 @@ function serignan_sheets_field_default_fields() {
             'slideshow_caption' => '',
             'slideshow_caption_link' => '',
             'slideshow_carousel_circular' => 1,
+            'slideshow_carousel_follow' => 0,
             'slideshow_carousel_image_style' => 'thumbnail',
             'slideshow_carousel_scroll' => '1',
             'slideshow_carousel_speed' => '500',
@@ -741,6 +830,7 @@ function serignan_sheets_field_default_fields() {
             'slideshow_colorbox_speed' => '350',
             'slideshow_colorbox_transition' => 'elastic',
             'slideshow_controls' => 0,
+            'slideshow_controls_position' => 'after',
             'slideshow_field_collection_image' => '',
             'slideshow_fx' => 'scrollRight',
             'slideshow_image_style' => 'fiche_slideshow',
@@ -748,8 +838,10 @@ function serignan_sheets_field_default_fields() {
             'slideshow_order' => '',
             'slideshow_pager' => 'number',
             'slideshow_pager_image_style' => '',
+            'slideshow_pager_position' => 'after',
             'slideshow_pause' => 0,
             'slideshow_speed' => '1000',
+            'slideshow_start_on_hover' => 0,
             'slideshow_timeout' => '4000',
           ),
           'type' => 'slideshow',
@@ -822,7 +914,8 @@ function serignan_sheets_field_default_fields() {
   t('Informations pratiques');
   t('Introduction');
   t('Permet de créer un diaporama d\'image.');
-  t('Rubrique');
+  t('Rubrique principale');
+  t('Rubriques secondaires');
   t('Téléphone');
   t('slideshow');
 
