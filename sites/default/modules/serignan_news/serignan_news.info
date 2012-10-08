@@ -34,6 +34,7 @@ features[features_api][] = api:1
 features[field][] = node-news-body
 features[field][] = node-news-field_news_date
 features[field][] = node-news-field_picture
+features[field][] = node-news-field_section_main
 features[field][] = node-news-field_sections
 features[field_group][] = group_content|node|news|home
 features[field_group][] = group_content|node|news|list

@@ -196,8 +196,8 @@ function serignan_news_views_default_views() {
     t('suivant ›'),
     t('dernier »'),
     t('Home (Block)'),
-    t('List (Page)'),
     t('plus'),
+    t('List (Page)'),
     t('Sidebar (Block)'),
   );
   $export['news'] = $view;
