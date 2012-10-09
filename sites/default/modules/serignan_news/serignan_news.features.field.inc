@@ -156,7 +156,7 @@ function serignan_news_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'home' => array(
           'label' => 'above',
@@ -402,10 +402,9 @@ function serignan_news_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 4,
+          'type' => 'hidden',
+          'weight' => '2',
         ),
         'home' => array(
           'label' => 'above',
@@ -510,7 +509,7 @@ function serignan_news_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'home' => array(
           'label' => 'above',
