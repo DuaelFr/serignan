@@ -393,7 +393,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '14',
+          'weight' => '6',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -538,7 +538,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '4',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -643,10 +643,9 @@ function serignan_sheets_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 15,
+          'type' => 'hidden',
+          'weight' => '3',
         ),
         'list' => array(
           'label' => 'above',
@@ -733,7 +732,7 @@ function serignan_sheets_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '7',
+          'weight' => '5',
         ),
         'list' => array(
           'label' => 'above',
