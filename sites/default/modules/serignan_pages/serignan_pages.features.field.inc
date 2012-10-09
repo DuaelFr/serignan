@@ -137,7 +137,7 @@ function serignan_pages_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '5',
+          'weight' => '4',
         ),
         'list' => array(
           'label' => 'above',
@@ -225,7 +225,7 @@ function serignan_pages_field_default_fields() {
             'geofield_map_zoom' => '16',
           ),
           'type' => 'geofield_map_map',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'list' => array(
           'label' => 'above',
@@ -575,10 +575,9 @@ function serignan_pages_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 8,
+          'type' => 'hidden',
+          'weight' => '5',
         ),
         'list' => array(
           'label' => 'above',
