@@ -36,6 +36,9 @@ function geocoder_drush_backfill() {
                 $langcode = field_language($entity_type, $entity, $field_name);
                 $items = field_get_items($entity_type, $entity, $field_name, $langcode);
                 
+                // Bypass unchanged address field lock
+                $entity->original = array();
+
                 // Check for values and if there are no values, reload the entity
                 if ($field_info['type'] == 'geofield') {
                   if (empty($items['wkt'])) node_save($entity); //TODO: fix for all entities
