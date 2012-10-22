@@ -140,25 +140,29 @@ function serignan_zoom_ds_layout_settings_info() {
   $ds_layout->view_mode = 'sidebar';
   $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
-    'hide_empty_regions' => 0,
-    'hide_sidebars' => 0,
     'regions' => array(
       'ds_content' => array(
-        0 => 'title',
-        1 => 'field_picture',
+        0 => 'field_picture',
+        1 => 'title',
         2 => 'body',
         3 => 'group_content',
         4 => 'node_link',
       ),
     ),
     'fields' => array(
-      'title' => 'ds_content',
       'field_picture' => 'ds_content',
+      'title' => 'ds_content',
       'body' => 'ds_content',
       'group_content' => 'ds_content',
       'node_link' => 'ds_content',
     ),
     'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 0,
   );
   $export['node|zoom|sidebar'] = $ds_layout;
 

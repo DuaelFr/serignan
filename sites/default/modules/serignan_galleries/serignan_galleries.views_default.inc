@@ -28,6 +28,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Appliquer';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Réinitialiser';
   $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Trier par';
   $handler->display->display_options['pager']['type'] = 'some';
@@ -104,6 +105,7 @@ function serignan_galleries_views_default_views() {
   $handler = $view->new_display('block', 'Home Videos (Block)', 'block_home_videos');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Vidéos';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -128,6 +130,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_picture']['alter']['path'] = '[field_url]';
   $handler->display->display_options['fields']['field_picture']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['field_picture']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
@@ -143,6 +146,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = '[field_url]';
   $handler->display->display_options['fields']['nothing']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -188,6 +192,7 @@ function serignan_galleries_views_default_views() {
   $handler = $view->new_display('block', 'Home Photos (Block)', 'block_home_photos');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Photos';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -212,6 +217,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['field_picture']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_picture']['alter']['path'] = '[field_url]';
   $handler->display->display_options['fields']['field_picture']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['field_picture']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_picture']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_picture']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_picture']['settings'] = array(
@@ -227,6 +233,7 @@ function serignan_galleries_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['path'] = '[field_url]';
   $handler->display->display_options['fields']['nothing']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -272,6 +279,7 @@ function serignan_galleries_views_default_views() {
   $handler = $view->new_display('block', 'Home Visits (Block)', 'block_home_visits');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Visites virtuelles';
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -360,10 +368,10 @@ function serignan_galleries_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('category'),
-    t('[field_url]'),
     t('+ de vidéos'),
     t('Home Videos (Block)'),
     t('Vidéos'),
+    t('_blank'),
     t('Home Photos (Block)'),
     t('Photos'),
     t('+ de photos'),

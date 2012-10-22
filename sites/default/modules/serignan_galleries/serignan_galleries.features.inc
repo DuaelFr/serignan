@@ -27,7 +27,7 @@ function serignan_galleries_views_api() {
 function serignan_galleries_image_default_styles() {
   $styles = array();
 
-  // Exported image style: gallery_home
+  // Exported image style: gallery_home.
   $styles['gallery_home'] = array(
     'name' => 'gallery_home',
     'effects' => array(

@@ -72,7 +72,7 @@ function serignan_zoom_field_default_fields() {
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(
-            'trim_length' => '70',
+            'trim_length' => '115',
           ),
           'type' => 'text_summary_or_trimmed',
           'weight' => '1',
