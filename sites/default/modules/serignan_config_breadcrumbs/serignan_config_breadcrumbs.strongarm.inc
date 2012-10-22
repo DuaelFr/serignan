@@ -15,11 +15,12 @@ function serignan_config_breadcrumbs_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'crumbs_weights';
   $strongarm->value = array(
-    'menu.hierarchy.main-menu' => 0,
-    'taxonomy.termReference.field_section_main.*' => 1,
-    'path' => 2,
-    'menu.hierarchy.navigation' => 3,
-    '*' => 4,
+    'serignan_commons' => 0,
+    'menu.hierarchy.main-menu' => 1,
+    'taxonomy.termReference.field_section_main.*' => 2,
+    'path' => 3,
+    'menu.hierarchy.navigation' => 4,
+    '*' => 5,
   );
   $export['crumbs_weights'] = $strongarm;
 
