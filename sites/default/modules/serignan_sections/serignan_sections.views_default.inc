@@ -160,6 +160,10 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['sorts']['mlid']['id'] = 'mlid';
   $handler->display->display_options['sorts']['mlid']['table'] = 'menu_links';
   $handler->display->display_options['sorts']['mlid']['field'] = 'mlid';
+  /* Critère de tri: Contenu : Titre */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
   /* Filtre contextuel: Contenu : Possède un identifiant (ID) de terme de taxonomie */
   $handler->display->display_options['arguments']['tid_1']['id'] = 'tid_1';
   $handler->display->display_options['arguments']['tid_1']['table'] = 'taxonomy_index';
