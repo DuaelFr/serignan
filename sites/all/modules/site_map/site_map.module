@@ -432,36 +432,60 @@ function _site_map_menus() {
   $output = '';
   $class = array();
   $options = array();
-  $mids = array_filter(variable_get('site_map_show_menus', array()));
+  $menus = variable_get('site_map_show_menus', array());
+  $menu_order = array();
+  $sorted_menu = array();
 
-  if (!empty($mids)) {
-    foreach ($mids as $mid) {
-      $menu = menu_load($mid);
-      // Use menu_tree_all_data to retrieve the expanded tree.
-      $tree = menu_tree_all_data($mid);
-      if (module_exists('i18n_menu')) {
-        $tree = i18n_menu_localize_tree($tree, $GLOBALS['language']->language);
-      }
-      $menu_display = _site_map_menu_tree_output($tree);
-      $menu_html = drupal_render($menu_display);
-      if (!empty($menu_html)) {
-        $title = t($menu['title']);
-        if (module_exists('i18n_string')) {
-          $m_array = array('menu', 'menu', $menu['menu_name'], 'title');
-          $title = i18n_string_plain($m_array, $title);
-        }
-        _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
+  // Load weight settings for each menu,
+  // also remove any disabled menus.
+  foreach ($menus as $mid => $menu) {
+    if (!empty($menu)) {
+      $safe_menu_title = strtolower(str_replace('-', '_', $mid));
+      $safe_menu_title = 'site_map_menu_order_' . $safe_menu_title;
+      $order = variable_get($safe_menu_title, array());
 
-        $class[] = 'site-map-box-menu';
-        $class[] = 'site-map-box-menu-' . $mid;
-        $attributes = array('class' => $class);
-        $output .= theme('site_map_box', array(
-          'title' => $title,
-          'content' => $menu_html,
-          'attributes' => $attributes,
-          'options' => $options,
-        ));
+      if (!empty($order)) {
+        $menu_order[$order] = $mid;
       }
+    }
+    else {
+      unset($menus[$mid]);
+    }
+  }
+
+  if (!empty($menu_order)) {
+    // Sort the menu orders.
+    ksort($menu_order);
+
+    // Find and add the sorted menus.
+    foreach ($menu_order as $order => $mid) {
+      $sorted_menu[$mid] = $menus[$mid];
+    }
+  }
+
+  // Finally, tack on any menus that don't have sorting enabled.
+  $sorted_menu += $menus;
+
+  foreach ($sorted_menu as $mid) {
+    $menu = menu_load($mid);
+    // Use menu_tree_all_data to retrieve the expanded tree.
+    $tree = menu_tree_all_data($mid);
+    if (module_exists('i18n_menu')) {
+      $tree = i18n_menu_localize_tree($tree, $GLOBALS['language']->language);
+    }
+    $menu_display = _site_map_menu_tree_output($tree);
+    $menu_html = drupal_render($menu_display);
+    if (!empty($menu_html)) {
+      $title = t($menu['title']);
+      if (module_exists('i18n_string')) {
+        $title = i18n_string_plain(array('menu', 'menu', $menu['menu_name'], 'title'), $title);
+      }
+      _site_map_set_option($options, 'site_map_show_titles', 1, 1, 'show_titles', TRUE);
+
+      $class[] = 'site-map-box-menu';
+      $class[] = 'site-map-box-menu-' . $mid;
+      $attributes = array('class' => $class);
+      $output .= theme('site_map_box', array('title' => $title, 'content' => $menu_html, 'attributes' => $attributes, 'options' => $options));
     }
   }
 

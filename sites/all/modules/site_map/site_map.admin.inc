@@ -88,6 +88,41 @@ function site_map_admin_settings_form() {
     '#default_value' => variable_get('site_map_show_menus_hidden', 0),
     '#description' => t('When enabled, hidden menu links will also be shown.'),
   );
+
+  // Add in menu ordering options.
+  $menu_option_count = count($menu_options);
+
+  $form['site_map_content']['menu_order'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Display order of menu links (weight)'),
+    '#description' => t('@first is highest and will be displayed first, with @last being displayed last.<br />NOTE: This only applies to enabled menus (above). Where numerical order is not defined, alphabetical ordering will be applied.', array(
+      '@first' => '1',
+      '@last' => $menu_option_count,
+    )),
+  );
+
+  $default_select = t('Select');
+  $menu_order = array($default_select);
+
+  for ($i = 0; $i < $menu_option_count; $i++) {
+    $order_index = $i + 1;
+    $menu_order[$order_index] = $order_index;
+  }
+
+  foreach ($menu_options as $menu_opt_key => $menu_opt_value) {
+    $safe_menu_title = strtolower(str_replace('-', '_', $menu_opt_key));
+    $safe_menu_title = 'site_map_menu_order_' . $safe_menu_title;
+
+    $form['site_map_content']['menu_order'][$safe_menu_title]= array(
+      '#type' => 'select',
+      '#title' => t($menu_opt_value),
+      '#title_display' => 'after',
+      '#default_value' => variable_get($safe_menu_title, array(0)),
+      '#options' => $menu_order,
+      '#multiple' => FALSE,
+    );
+  }
+
   if (module_exists('faq')) {
     $form['site_map_content']['site_map_show_faq'] = array(
       '#type' => 'checkbox',
