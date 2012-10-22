@@ -376,6 +376,8 @@ text-decoration:underline;
 }
 
 /*PHOTOS BANDEAUX PAGES INTERNES*/
+.context-contact .block-header-decorator,
+.page-search-node .block-header-decorator,
 .node-type-sheet .block-header-decorator,
 .node-type-page .block-header-decorator,
 .context-associations .block-header-decorator,
@@ -398,6 +400,28 @@ margin-top: -110px;
 z-index: -100;
 position: relative;
 }
+.page-node-170 .block-header-decorator,
+.context-sortir-decouvrir .block-header-decorator{
+background: url("../images/Cigaliere.jpg") no-repeat;
+}
+.page-taxonomy-term-15 .block-header-decorator,
+.page-taxonomy-term-16 .block-header-decorator{
+background: url("../images/Ecole.jpg") no-repeat;
+}
+.page-node-422 .block-header-decorator,
+.page-taxonomy-term-13 .block-header-decorator{
+background: url("../images/Musee.jpg") no-repeat;
+}
+.context-les-plages .block-header-decorator{
+background: url("../images/Plage.jpg") no-repeat;
+}
+.page-taxonomy-term-128 .block-header-decorator{
+background: url("../images/Chevaux.jpg") no-repeat;
+}
+.context-histoire-serignan .block-header-decorator,
+.page-taxonomy-term-101 .block-header-decorator{
+background: url("../images/OrbCollegiale.jpg") no-repeat;
+}
 
 
 /*RECHERCHE ET RESIZE*/
@@ -416,7 +440,7 @@ margin-top: 30px;
 }
 #block-text-resize-0{
 float: right;
-margin-right: 30px;
+margin-right: 35px;
 margin-top: 30px;
 }
 .front #block-text-resize-0{
@@ -675,6 +699,10 @@ color:#39C;
 .block-views-sections-content-block-list .field-name-title a:hover{
 color: #666;
 }
+.context-actualites-agenda #node_news_list_group_content .field-name-field-news-date{
+float:left;
+}
+.context-actualites-agenda .block-sections-content-block-list .field-name-field-date-displayed,
 .context-actualites-agenda #node_event_list_group_content .field-name-field-date-start,
 .context-actualites-agenda #node_event_list_group_content .field-name-field-date-end,
 .context-actualites-agenda #node_news_list_group_content .field-name-field-news-date {
@@ -686,6 +714,12 @@ padding-left: 10px;
 .context-actualites-agenda #node_event_list_group_content .field-name-field-date-start{
 float:left;
 margin-right:5px;
+}
+.context-actualites-agenda .block-sections-content-block-list .field-name-body {
+float:left;
+}
+.context-actualites-agenda .block-sections-content-block-list .field-name-body p{
+margin-bottom:0;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-body .field-item,
 .context-actualites-agenda #node_news_list_group_content .field-name-body .field-item,
@@ -701,6 +735,9 @@ float:left;
 .context-actualites-agenda #node_event_list_group_content .field-name-body .field-item,
 .context-actualites-agenda #node_news_list_group_content .field-name-body .field-item{
 clear:left;
+}
+.context-actualites-agenda #node_news_list_group_content .field-name-node-link a{
+margin-bottom:5px;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-node-link a,
 .context-actualites-agenda #node_news_list_group_content .field-name-node-link a,
@@ -771,7 +808,10 @@ margin-right:5px;
 }
 
 /*Contenu Agenda + Actualité*/
-.node-type-news .field-name-field-picture,
+.node-type-news .field-name-field-picture{
+margin-bottom: 10px;
+background:#E30F28;
+}
 .node-type-event .field-name-field-picture{
 float:left;
 }
@@ -783,6 +823,8 @@ height: 170px;
 padding: 20px;
 margin-bottom: 10px;
 width:235px;
+font-size: 24px;
+font-style: italic;
 }
 .node-type-news .field-name-field-news-categories{
 background-color:#e30f28;
@@ -854,6 +896,13 @@ background-color:#003366;
 .node-type-sheet .field-name-field-phone,
 .node-type-sheet .field-name-field-add-infos{
 margin-bottom:10px;
+}
+.node-type-sheet .field-name-field-phone .field-item.even{
+float:left;
+}
+.node-type-sheet .field-name-field-phone .field-item.odd{
+clear: left;
+float: left;
 }
 .node-type-sheet .group-content{
 background: url("../images/bg_body.jpg") no-repeat #fff;
@@ -952,7 +1001,7 @@ width:140px;
 float:left;
 }
 .block-news-block-home .field-name-title{
-line-height:14px;
+line-height:13px;
 }
 .block-events-block-home .field-name-body{
 float:left;
@@ -981,11 +1030,12 @@ line-height:14px;
 .block-news-block-home .field-name-node-link a:link,
 .block-news-block-home .field-name-node-link a:visited,
 .block-news-block-home .field-name-node-link a:hover{
-float:left;
-color:#e30f28;
-font-weight:normal;
-font-size:12px;
-text-decoration:none;
+float: right;
+color: #E30F28;
+font-weight: normal;
+font-size: 12px;
+text-decoration: none;
+margin-top: -15px;
 }
 .block-news-block-home .field-name-node-link a:hover{
 color:#333;
@@ -1056,8 +1106,7 @@ text-decoration:underline;
 color:#666;
 padding-bottom:10px;
 }
-.block-events-block-home .field-name-field-date-start,
-.block-events-block-home .field-name-field-date-end{
+.block-events-block-home .field-name-field-date-displayed{
 color:#333;
 font-weight:bold;
 font-style:italic;
@@ -1192,6 +1241,7 @@ background:url("../images/bg_actu.png") no-repeat #FFF;
 .block-news-block-sidebar .content ul li{
 margin:0 7px 7px 7px;
 }
+.block-events-block-sidebar .field-name-field-picture,
 .block-zoom-block-sidebar .field-name-field-picture,
 .block-news-block-sidebar .field-name-field-picture{
 float:left;
@@ -1215,6 +1265,19 @@ color:#e30f28;
 font-weight:bold;
 font-size:12px;
 text-decoration:none;
+}
+.block-news-block-sidebar .field-name-title a:link,
+.block-news-block-sidebar .field-name-title a:visited,
+.block-news-block-sidebar .field-name-title a:hover{
+float: left;
+width: 160px;
+margin-top: 6px;
+}
+.block-news-block-sidebar .node-news .field-type-text-with-summary{
+clear:none;
+}
+.block-news-block-sidebar .field-name-node-link{
+float:left;
 }
 .block-events-block-sidebar .field-name-title a:link,
 .block-events-block-sidebar .field-name-title a:visited,
@@ -1241,6 +1304,9 @@ color:#333;
 .block-news-block-sidebar .field-name-body p{
 line-height:14px;
 margin-bottom:0;
+}
+.block-events-block-sidebar .field-name-body p{
+clear:left;
 }
 .block-events-block-sidebar .field-name-node-link a:link,
 .block-events-block-sidebar .field-name-node-link a:visited,
@@ -1337,6 +1403,17 @@ margin-bottom:9px;
 padding-bottom:9px;
 }
 /*Bloc agenda*/
+.block-events-block-sidebar .field-name-body{
+float:left;
+}
+.block-events-block-sidebar .field-name-field-date-displayed{
+font-style:italic;
+font-weight:bold;
+line-height:15px;
+}
+.block-events-block-sidebar .field-name-node-link{
+clear:left;
+}
 .block-news-block-sidebar .node-news .field-name-body,
 .block-events-block-sidebar .node-event .field-name-body{
 background-image:none;
@@ -1549,10 +1626,10 @@ line-height: 20px;
 text-transform:uppercase;
 }
 .block-simplenews-0 p{
-margin-bottom: 5px;
+margin-bottom: 0px;
 line-height: 13px;
 font-size: 11px;
-margin-top: 10px;
+margin-top: 7px;
 }
 .block-simplenews-0 .form-item-mail{
 margin:0;
@@ -1656,16 +1733,16 @@ margin-top: -50px;
 .block-menu-footer-menu {
 }
 .block-menu-footer-menu ul.menu {
+min-height: 120px;
 }
 .block-menu-footer-menu ul.menu > li { 
-background:url("../images/i_gros.png") no-repeat center;
+background: url("../images/i_gros.png") no-repeat center;
 display: inline;
 float: left;
 position: relative;
-margin: 0 10px 0 10px;
+margin: 0;
 padding: 0;
 width: 220px;
-height:97px;
 }
 .block-menu-footer-menu ul.menu > li.first {
 clear: left;
@@ -1692,7 +1769,7 @@ visibility: hidden;
 .block-menu-footer-menu ul.menu ul li a { 
 background: transparent url("../images/fleche_menu.png") no-repeat left center;
 margin: 0 0 0 30px;
-padding: 0 0 0 30px; 
+padding: 0 0 0 20px; 
 color:#666;
 }
 .block-menu-footer-menu ul.menu ul li a.flag {
