@@ -376,8 +376,11 @@ text-decoration:underline;
 }
 
 /*PHOTOS BANDEAUX PAGES INTERNES*/
+.context-printmail .block-header-decorator,
+.context-user .block-header-decorator,
+.context-admin .block-header-decorator,
 .context-contact .block-header-decorator,
-.page-search-node .block-header-decorator,
+.context-search .block-header-decorator,
 .node-type-sheet .block-header-decorator,
 .node-type-page .block-header-decorator,
 .context-associations .block-header-decorator,
