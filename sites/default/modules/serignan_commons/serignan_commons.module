@@ -99,3 +99,58 @@ function _serignan_commons_ds_field_type($field) {
     return node_type_get_name($field['entity']);
   }
 }
+
+
+// -----------------------------------------------------------------------------
+// CRUMBS
+
+/**
+ * Implements hook_crumbs_plugins()
+ */
+function serignan_commons_crumbs_plugins($api) {
+  // Just one plugin for the entire module.
+  $api->monoPlugin();
+}
+
+
+/**
+ * Implementation of class hook class_CrumbsParentFinder
+ * on the behalf of path module.
+ */
+class serignan_commons_CrumbsMonoPlugin implements crumbs_MonoPlugin {
+
+  function describe($api) {
+    return t('Special breadcrumb for search paths.');
+  }
+
+  function disabledByDefault() {
+    return FALSE;
+  }
+
+  function findParent($path, $item) {
+    $parts = explode('/', $path);
+    if ($parts[0] == 'search') {
+      if (count($parts) > 2) {
+        return 'search/' . $parts[1];
+      }
+      elseif (count($parts) == 2) {
+        return 'search';
+      }      
+    }
+  }
+
+  function findTitle($path, $item) {
+    $parts = explode('/', $path);
+    if ($parts[0] == 'search') {
+      if (count($parts) > 2) {
+        return t('Results');
+      }
+      elseif (count($parts) == 2) {
+        return t('Search') . ' ' . t(ucfirst($parts[1])); 
+      }
+      elseif (count($parts) == 1) {
+        return t('Search');
+      }      
+    }
+  }
+}
