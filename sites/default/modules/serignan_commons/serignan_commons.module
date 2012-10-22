@@ -10,6 +10,22 @@ include_once 'serignan_commons.features.inc';
 // HOOKS
 
 /**
+ * Implements hook_init().
+ */
+function serignan_commons_init() {
+  $element = array(
+    '#tag' => 'link', // The #tag is the html tag - <link />
+    '#attributes' => array( // Set up an array of attributes inside the tag
+      'href' => url('actualites-agenda/rss', array('absolute' => TRUE)), 
+      'rel' => 'alternate',
+      'type' => 'application/rss+xml',
+      'title' => 'Actualités et Agendas de la ville de Sérignan',
+    ),
+  );
+  drupal_add_html_head($element, 'news_events_rss');
+}
+
+/**
  * Implements hook_menu().
  */
 function serignan_commons_menu() {
