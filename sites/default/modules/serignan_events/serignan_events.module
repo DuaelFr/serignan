@@ -5,12 +5,3 @@
  */
 
 include_once 'serignan_events.features.inc';
-
-/**
- * Implements hook_serignan_commons_get_parent().
- */
-function serignan_events_serignan_commons_get_parent($node) {
-  if ($node->type == 'event') {
-    return array('agenda' => 'Agenda');
-  }
-}
