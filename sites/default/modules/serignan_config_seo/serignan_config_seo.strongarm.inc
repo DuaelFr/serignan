@@ -692,5 +692,174 @@ function serignan_config_seo_strongarm() {
   $strongarm->value = 1;
   $export['search404_use_search_engine'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_categories_depth';
+  $strongarm->value = 'all';
+  $export['site_map_categories_depth'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_css';
+  $strongarm->value = 0;
+  $export['site_map_css'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_forum_threshold';
+  $strongarm->value = '-1';
+  $export['site_map_forum_threshold'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_main_menu';
+  $strongarm->value = '1';
+  $export['site_map_menu_order_main_menu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_management';
+  $strongarm->value = '0';
+  $export['site_map_menu_order_management'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_menu_footer_menu';
+  $strongarm->value = '2';
+  $export['site_map_menu_order_menu_footer_menu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_menu_top_menu';
+  $strongarm->value = '0';
+  $export['site_map_menu_order_menu_top_menu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_navigation';
+  $strongarm->value = '0';
+  $export['site_map_menu_order_navigation'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_menu_order_user_menu';
+  $strongarm->value = '0';
+  $export['site_map_menu_order_user_menu'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_message';
+  $strongarm->value = array(
+    'value' => '',
+    'format' => 'full_html',
+  );
+  $export['site_map_message'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_page_title';
+  $strongarm->value = 'Plan du site';
+  $export['site_map_page_title'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_rss_depth';
+  $strongarm->value = 'all';
+  $export['site_map_rss_depth'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_rss_front';
+  $strongarm->value = 'rss.xml';
+  $export['site_map_rss_front'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_count';
+  $strongarm->value = 1;
+  $export['site_map_show_count'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_description';
+  $strongarm->value = 0;
+  $export['site_map_show_description'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_front';
+  $strongarm->value = 1;
+  $export['site_map_show_front'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_menus';
+  $strongarm->value = array(
+    'menu-footer-menu' => 'menu-footer-menu',
+    'main-menu' => 'main-menu',
+    'management' => 0,
+    'navigation' => 0,
+    'menu-top-menu' => 0,
+    'user-menu' => 0,
+  );
+  $export['site_map_show_menus'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_menus_hidden';
+  $strongarm->value = 1;
+  $export['site_map_show_menus_hidden'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_rss_links';
+  $strongarm->value = '0';
+  $export['site_map_show_rss_links'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_titles';
+  $strongarm->value = 0;
+  $export['site_map_show_titles'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_show_vocabularies';
+  $strongarm->value = array(
+    5 => 0,
+    6 => 0,
+    1 => 0,
+    4 => 0,
+  );
+  $export['site_map_show_vocabularies'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'site_map_term_threshold';
+  $strongarm->value = '0';
+  $export['site_map_term_threshold'] = $strongarm;
+
   return $export;
 }
