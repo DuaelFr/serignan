@@ -807,7 +807,7 @@ border-radius: 0 0 0 0;
 margin-right:5px;
 }
 
-/*Contenu Agenda + Actualité*/
+/*Contenu Agenda + Actualitï¿½*/
 .node-type-news .field-name-field-picture{
 margin-bottom: 10px;
 background:#E30F28;
@@ -825,6 +825,9 @@ margin-bottom: 10px;
 width:235px;
 font-size: 24px;
 font-style: italic;
+}
+.node-type-event .group-infos .field-name-field-location {
+font-size: .8em;
 }
 .node-type-news .field-name-field-news-categories{
 background-color:#e30f28;
@@ -1106,7 +1109,8 @@ text-decoration:underline;
 color:#666;
 padding-bottom:10px;
 }
-.block-events-block-home .field-name-field-date-displayed{
+.block-events-block-home .field-name-field-date-displayed,
+.block-events-block-home .field-name-field-location{
 color:#333;
 font-weight:bold;
 font-style:italic;
@@ -1406,7 +1410,8 @@ padding-bottom:9px;
 .block-events-block-sidebar .field-name-body{
 float:left;
 }
-.block-events-block-sidebar .field-name-field-date-displayed{
+.block-events-block-sidebar .field-name-field-date-displayed,
+.block-events-block-sidebar .field-name-field-location{
 font-style:italic;
 font-weight:bold;
 line-height:15px;

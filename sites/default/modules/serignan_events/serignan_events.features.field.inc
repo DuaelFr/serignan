@@ -59,7 +59,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '160',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'list' => array(
           'label' => 'hidden',
@@ -68,7 +68,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '150',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'sidebar' => array(
           'label' => 'hidden',
@@ -77,7 +77,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '140',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '2',
+          'weight' => '3',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -112,7 +112,7 @@ function serignan_events_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -171,7 +171,7 @@ function serignan_events_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_plain',
-          'weight' => '3',
+          'weight' => '1',
         ),
         'sidebar' => array(
           'label' => 'hidden',
@@ -272,7 +272,7 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '11',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -373,7 +373,7 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '6',
+          'weight' => '12',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -413,6 +413,104 @@ function serignan_events_field_default_fields() {
         ),
         'type' => 'date_popup',
         'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-event-field_location'.
+  $fields['node-event-field_location'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_location',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'event',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '9',
+        ),
+        'home' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '7',
+        ),
+        'list' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '2',
+        ),
+        'sidebar' => array(
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '2',
+        ),
+        'slideshow' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_location',
+      'label' => 'Lieu',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'maxlength_js' => 0,
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '7',
       ),
     ),
   );
@@ -486,7 +584,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '14',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -599,19 +697,19 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'list' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '0',
         ),
         'sidebar' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '10',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -716,7 +814,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '13',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -767,6 +865,7 @@ function serignan_events_field_default_fields() {
   t('Description');
   t('Du');
   t('Image');
+  t('Lieu');
   t('Rubrique principale');
   t('Rubriques secondaires');
   t('au');

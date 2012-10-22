@@ -28,7 +28,7 @@ function serignan_events_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -58,7 +58,7 @@ function serignan_events_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '3',
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -117,16 +117,15 @@ function serignan_events_ds_layout_settings_info() {
   $ds_layout->view_mode = 'home';
   $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
-    'hide_empty_regions' => 0,
-    'hide_sidebars' => 0,
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
         1 => 'field_picture',
         2 => 'group_content',
         3 => 'field_date_displayed',
-        4 => 'body',
-        5 => 'node_link',
+        4 => 'field_location',
+        5 => 'body',
+        6 => 'node_link',
       ),
     ),
     'fields' => array(
@@ -134,10 +133,17 @@ function serignan_events_ds_layout_settings_info() {
       'field_picture' => 'ds_content',
       'group_content' => 'ds_content',
       'field_date_displayed' => 'ds_content',
+      'field_location' => 'ds_content',
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),
     'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 0,
   );
   $export['node|event|home'] = $ds_layout;
 
@@ -149,23 +155,29 @@ function serignan_events_ds_layout_settings_info() {
   $ds_layout->view_mode = 'sidebar';
   $ds_layout->layout = 'ds_1col';
   $ds_layout->settings = array(
-    'hide_empty_regions' => 0,
-    'hide_sidebars' => 0,
     'regions' => array(
       'ds_content' => array(
         0 => 'title',
         1 => 'field_date_displayed',
-        2 => 'body',
-        3 => 'node_link',
+        2 => 'field_location',
+        3 => 'body',
+        4 => 'node_link',
       ),
     ),
     'fields' => array(
       'title' => 'ds_content',
       'field_date_displayed' => 'ds_content',
+      'field_location' => 'ds_content',
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),
     'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 0,
   );
   $export['node|event|sidebar'] = $ds_layout;
 

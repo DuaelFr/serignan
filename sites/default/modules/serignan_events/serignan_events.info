@@ -40,6 +40,7 @@ features[field][] = node-event-body
 features[field][] = node-event-field_date_displayed
 features[field][] = node-event-field_date_end
 features[field][] = node-event-field_date_start
+features[field][] = node-event-field_location
 features[field][] = node-event-field_picture
 features[field][] = node-event-field_section_main
 features[field][] = node-event-field_sections
