@@ -128,6 +128,17 @@ function tvi_taxonomy_admin_form(&$form, $settings) {
     '#default_value' => $settings->status,
     '#description' => t('Unchecking this field will disable the use of the view when displaying this taxonomy page.'),
   );
+
+  if ($settings->type == TVI_TYPE_TERM) {
+    // Inheritance switch
+    $form['tvi']['inherit'] = array(
+      '#id' => 'tvi-inherit-check',
+      '#type' => 'checkbox',
+      '#title' => t('Child terms will use this settings.'),
+      '#default_value' => $settings->inherit,
+      '#description' => t('Checking this field will allow to define a view used by the current term and its children recursively while these children does not have their own settings.'),
+    );
+  }
 }
 
 /**
