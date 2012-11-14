@@ -17,21 +17,23 @@ function serignan_sections_context_default_contexts() {
   $context->description = '';
   $context->tag = 'special';
   $context->conditions = array(
-    'views' => array(
+    'taxonomy_term' => array(
       'values' => array(
-        'sections' => 'sections',
-        'sections:page_subterms' => 'sections:page_subterms',
+        'section' => 'section',
+      ),
+      'options' => array(
+        'term_form' => '0',
       ),
     ),
   );
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-sections_content-block_list' => array(
+        'views-sections-block_subterms' => array(
           'module' => 'views',
-          'delta' => 'sections_content-block_list',
+          'delta' => 'sections-block_subterms',
           'region' => 'content',
-          'weight' => '9',
+          'weight' => '-10',
         ),
       ),
     ),

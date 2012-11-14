@@ -72,8 +72,6 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['parent']['field'] = 'parent';
   $handler->display->display_options['arguments']['parent']['default_action'] = 'default';
   $handler->display->display_options['arguments']['parent']['exception']['title'] = 'Tout';
-  $handler->display->display_options['arguments']['parent']['title_enable'] = TRUE;
-  $handler->display->display_options['arguments']['parent']['title'] = '%1';
   $handler->display->display_options['arguments']['parent']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['parent']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['parent']['summary']['format'] = 'default_summary';
@@ -92,10 +90,9 @@ function serignan_sections_views_default_views() {
     'section' => 'section',
   );
 
-  /* Display: Subterms (Page) */
-  $handler = $view->new_display('page', 'Subterms (Page)', 'page_subterms');
+  /* Display: Subterms (Block) */
+  $handler = $view->new_display('block', 'Subterms (Block)', 'block_subterms');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'taxonomy/term/%';
   $translatables['sections'] = array(
     t('Master'),
     t('plus'),
@@ -105,8 +102,7 @@ function serignan_sections_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Tout'),
-    t('%1'),
-    t('Subterms (Page)'),
+    t('Subterms (Block)'),
   );
   $export['sections'] = $view;
 
@@ -122,6 +118,7 @@ function serignan_sections_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['css_class'] = 'section-content-list';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'plus';
@@ -170,6 +167,8 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['arguments']['tid_1']['field'] = 'tid';
   $handler->display->display_options['arguments']['tid_1']['default_action'] = 'default';
   $handler->display->display_options['arguments']['tid_1']['exception']['title'] = 'Tout';
+  $handler->display->display_options['arguments']['tid_1']['title_enable'] = TRUE;
+  $handler->display->display_options['arguments']['tid_1']['title'] = '%1';
   $handler->display->display_options['arguments']['tid_1']['default_argument_type'] = 'taxonomy_tid';
   $handler->display->display_options['arguments']['tid_1']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['tid_1']['summary']['format'] = 'default_summary';
@@ -190,6 +189,58 @@ function serignan_sections_views_default_views() {
   /* Display: List (Block) */
   $handler = $view->new_display('block', 'List (Block)', 'block_list');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+
+  /* Display: List News (Block) */
+  $handler = $view->new_display('block', 'List News (Block)', 'block_1');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Critère de tri: Contenu : Date de publication */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'news' => 'news',
+  );
+
+  /* Display: List Events (Block) */
+  $handler = $view->new_display('block', 'List Events (Block)', 'block_2');
+  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Critère de tri: Contenu : Du (field_date_start) */
+  $handler->display->display_options['sorts']['field_date_start_value']['id'] = 'field_date_start_value';
+  $handler->display->display_options['sorts']['field_date_start_value']['table'] = 'field_data_field_date_start';
+  $handler->display->display_options['sorts']['field_date_start_value']['field'] = 'field_date_start_value';
+  $handler->display->display_options['sorts']['field_date_start_value']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Contenu : Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+  );
   $translatables['sections_content'] = array(
     t('Master'),
     t('plus'),
@@ -206,7 +257,10 @@ function serignan_sections_views_default_views() {
     t('suivant ›'),
     t('dernier »'),
     t('Tout'),
+    t('%1'),
     t('List (Block)'),
+    t('List News (Block)'),
+    t('List Events (Block)'),
   );
   $export['sections_content'] = $view;
 

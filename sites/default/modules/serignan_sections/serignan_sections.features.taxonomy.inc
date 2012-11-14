@@ -13,7 +13,7 @@ function serignan_sections_taxonomy_default_vocabularies() {
       'name' => 'Rubrique',
       'machine_name' => 'section',
       'description' => '',
-      'hierarchy' => '1',
+      'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
       'metatags' => array(),
