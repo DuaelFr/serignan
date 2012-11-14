@@ -46,6 +46,7 @@ features[field][] = node-event-field_section_main
 features[field][] = node-event-field_sections
 features[field_group][] = group_content|node|event|home
 features[field_group][] = group_content|node|event|list
+features[field_group][] = group_content|node|event|sidebar
 features[field_group][] = group_content|node|event|slideshow
 features[field_group][] = group_infos|node|event|default
 features[image][] = event_home

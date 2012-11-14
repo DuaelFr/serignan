@@ -169,7 +169,7 @@ function serignan_contact_uuid_features_default_content() {
       'external' => '0',
       'has_children' => '0',
       'expanded' => '0',
-      'weight' => '-39',
+      'weight' => '-48',
       'depth' => '2',
       'customized' => '1',
       'p1' => '368',

@@ -48,7 +48,7 @@ function serignan_events_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'sidebar';
   $ds_fieldsetting->settings = array(
     'title' => array(
-      'weight' => '0',
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -58,7 +58,7 @@ function serignan_events_ds_field_settings_info() {
       ),
     ),
     'node_link' => array(
-      'weight' => '4',
+      'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
       'formatter_settings' => array(
@@ -157,14 +157,18 @@ function serignan_events_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title',
-        1 => 'field_date_displayed',
-        2 => 'field_location',
-        3 => 'body',
-        4 => 'node_link',
+        0 => 'field_picture',
+        1 => 'group_content',
+        2 => 'title',
+        3 => 'field_date_displayed',
+        4 => 'field_location',
+        5 => 'body',
+        6 => 'node_link',
       ),
     ),
     'fields' => array(
+      'field_picture' => 'ds_content',
+      'group_content' => 'ds_content',
       'title' => 'ds_content',
       'field_date_displayed' => 'ds_content',
       'field_location' => 'ds_content',

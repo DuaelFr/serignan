@@ -77,7 +77,7 @@ function serignan_events_field_default_fields() {
             'trim_length' => '140',
           ),
           'type' => 'text_summary_or_trimmed',
-          'weight' => '3',
+          'weight' => '5',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -178,7 +178,7 @@ function serignan_events_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_plain',
-          'weight' => '1',
+          'weight' => '3',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -272,7 +272,7 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '11',
+          'weight' => '13',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -373,7 +373,7 @@ function serignan_events_field_default_fields() {
           'label' => 'inline',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '12',
+          'weight' => '14',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -478,7 +478,7 @@ function serignan_events_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_plain',
-          'weight' => '2',
+          'weight' => '4',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -581,10 +581,14 @@ function serignan_events_field_default_fields() {
           'weight' => '0',
         ),
         'sidebar' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '14',
+          'label' => 'hidden',
+          'module' => 'image',
+          'settings' => array(
+            'image_link' => 'content',
+            'image_style' => 'news_sidebar',
+          ),
+          'type' => 'image',
+          'weight' => '0',
         ),
         'slideshow' => array(
           'label' => 'hidden',
@@ -697,7 +701,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '0',
+          'weight' => 0,
         ),
         'list' => array(
           'label' => 'above',
@@ -709,7 +713,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '12',
         ),
         'slideshow' => array(
           'label' => 'above',
@@ -814,7 +818,7 @@ function serignan_events_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '13',
+          'weight' => '15',
         ),
         'slideshow' => array(
           'label' => 'above',
