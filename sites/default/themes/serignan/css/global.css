@@ -617,24 +617,24 @@ line-height: 30px;
 background: url("../images/picto_titre_agenda.jpg") no-repeat left;
 }
 /* Liste Rubriques*/
-.view-display-id-page_subterms table{
+.block-sections-block-subterms table{
 border:none;
 }
-.view-display-id-page_subterms td{
+.block-sections-block-subterms td{
 padding:0;
 }
-.view-display-id-page_subterms .group_content{
+.block-sections-block-subterms .group_content{
 background: url("../images/bg_liste_rubrique_content.jpg") no-repeat #fff;
 padding: 0 10px;
 width:280px;
 }
-.view-display-id-page_subterms .field-name-title{
+.block-sections-block-subterms .field-name-title{
 line-height:28px;
 padding-top: 5px;
 }
-.view-display-id-page_subterms .field-name-title a:link,
-.view-display-id-page_subterms .field-name-title a:visited,
-.view-display-id-page_subterms .field-name-title a:hover{
+.block-sections-block-subterms .field-name-title a:link,
+.block-sections-block-subterms .field-name-title a:visited,
+.block-sections-block-subterms .field-name-title a:hover{
 font-family: 'FuturaStdCondensedLightRg';
 font-weight: normal;
 font-style: normal;
@@ -642,47 +642,47 @@ color: #99cc33;
 font-size: 24px;
 text-decoration:none;
 }
-.context-sortir-decouvrir .view-display-id-page_subterms .field-name-title a:link,
-.context-sortir-decouvrir .view-display-id-page_subterms .field-name-title a:visited,
-.context-sortir-decouvrir .view-display-id-page_subterms .field-name-title a:hover{
+.context-sortir-decouvrir .block-sections-block-subterms .field-name-title a:link,
+.context-sortir-decouvrir .block-sections-block-subterms .field-name-title a:visited,
+.context-sortir-decouvrir .block-sections-block-subterms .field-name-title a:hover{
 color: #3399cc;
 }
-.context-mairie-services .view-display-id-page_subterms .field-name-title a:link,
-.context-mairie-services .view-display-id-page_subterms .field-name-title a:visited,
-.context-mairie-services .view-display-id-page_subterms .field-name-title a:hover{
+.context-mairie-services .block-sections-block-subterms .field-name-title a:link,
+.context-mairie-services .block-sections-block-subterms .field-name-title a:visited,
+.context-mairie-services .block-sections-block-subterms .field-name-title a:hover{
 color: #003366;
 }
-.context-actualites-agenda .view-display-id-page_subterms .field-name-title a:link,
-.context-actualites-agenda .view-display-id-page_subterms .field-name-title a:visited,
-.context-actualites-agenda .view-display-id-page_subterms .field-name-title a:hover{
+.context-actualites-agenda .block-sections-block-subterms .field-name-title a:link,
+.context-actualites-agenda .block-sections-block-subterms .field-name-title a:visited,
+.context-actualites-agenda .block-sections-block-subterms .field-name-title a:hover{
 color: #e30f28;
 }
-.view-display-id-page_subterms .field-name-title a:hover{
+.block-sections-block-subterms .field-name-title a:hover{
 color:#666;
 }
-.view-display-id-page_subterms .field-name-field-description{
+.block-sections-block-subterms .field-name-field-description{
 line-height:14px;
 }
 /* Liste Section Content*/
 .view-id-news.view-display-id-page_list ul li.views-row,
 .view-id-events.view-display-id-page_list ul li.views-row,
-.block-views-sections-content-block-list ul li.views-row{
+.section-content-list ul li.views-row{
 margin:0 0 4px 0;
 }
 #block-views-actualit-s-et-agenda-block-1 .view-actualit-s-et-agenda .field-type-image,
 .view-id-events.view-display-id-page_list .field-type-image,
-.block-views-sections-content-block-list .field-type-image{
+.section-content-list .field-type-image{
 float:left;
 }
-.context-actualites-agenda .block-views-sections-content-block-list .group-content,
-.block-views-sections-content-block-list .field-group-format{
+.context-actualites-agenda .section-content-list .group-content,
+.section-content-list .field-group-format{
 background: url("../images/bg_liste_section_content.jpg") no-repeat;
 float:left;
 width:446px;
 height:102px;
 margin:0;
 }
-.block-views-sections-content-block-list .field-name-title a{
+.section-content-list .field-name-title a{
 font-family: 'FuturaStdCondensedLightRg';
 font-weight: normal;
 font-style: normal;
@@ -701,21 +701,21 @@ line-height:30px;
 .context-actualites-agenda #node_event_list_group_content .field-name-title a{
 color:#3399CC;
 }
-.context-vivre-serignan .block-views-sections-content-block-list .field-name-title a{
+.context-vivre-serignan .section-content-list .field-name-title a{
 color: #99cc33;
 }
-.context-sortir-decouvrir .block-views-sections-content-block-list .field-name-title a{
+.context-sortir-decouvrir .section-content-list .field-name-title a{
 color:#39C;
 }
 .context-actualites-agenda #node_news_list_group_content .field-name-title a:hover,
 .context-actualites-agenda #node_event_list_group_content .field-name-title a:hover,
-.block-views-sections-content-block-list .field-name-title a:hover{
+.section-content-list .field-name-title a:hover{
 color: #666;
 }
 .context-actualites-agenda #node_news_list_group_content .field-name-field-news-date{
 float:left;
 }
-.context-actualites-agenda .block-sections-content-block-list .field-name-field-date-displayed,
+.context-actualites-agenda .section-content-list .field-name-field-date-displayed,
 .context-actualites-agenda #node_event_list_group_content .field-name-field-date-start,
 .context-actualites-agenda #node_event_list_group_content .field-name-field-date-end,
 .context-actualites-agenda #node_news_list_group_content .field-name-field-news-date {
@@ -728,15 +728,15 @@ padding-left: 10px;
 float:left;
 margin-right:5px;
 }
-.context-actualites-agenda .block-sections-content-block-list .field-name-body {
+.context-actualites-agenda .section-content-list .field-name-body {
 float:left;
 }
-.context-actualites-agenda .block-sections-content-block-list .field-name-body p{
+.context-actualites-agenda .section-content-list .field-name-body p{
 margin-bottom:0;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-body .field-item,
 .context-actualites-agenda #node_news_list_group_content .field-name-body .field-item,
-.block-views-sections-content-block-list .field-name-field-introduction{
+.section-content-list .field-name-field-introduction{
 margin:0;
 padding-left: 10px;
 line-height:14px;
@@ -754,7 +754,7 @@ margin-bottom:5px;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-node-link a,
 .context-actualites-agenda #node_news_list_group_content .field-name-node-link a,
-.block-views-sections-content-block-list .field-name-node-link a{
+.section-content-list .field-name-node-link a{
 float:right;
 padding-right: 10px;
 margin-top: 10px;
@@ -768,7 +768,7 @@ margin-top: 0;
 }
 .context-actualites-agenda #node_event_list_group_content .field-name-node-link a:hover,
 .context-actualites-agenda #node_news_list_group_content .field-name-node-link a:hover,
-.block-views-sections-content-block-list .field-name-node-link a:hover{
+.section-content-list .field-name-node-link a:hover{
 text-decoration:underline;
 }
 
@@ -1803,3 +1803,5 @@ background: transparent url("../images/drapeau.png") no-repeat left center;
 padding: 0 0 0 20px;
 color:#666;
 }
+
+.feed-icon { display: none; }
