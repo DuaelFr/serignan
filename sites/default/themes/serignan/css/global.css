@@ -148,6 +148,16 @@ margin-top: -110px;
 margin-left: -19px;
 position: relative;
 }
+.context-vivre-serignan .serignan-main-slideshow,
+.context-vivre-serignan .block-slideshow-block,
+.context-mairie-services .serignan-main-slideshow,
+.context-mairie-services .block-slideshow-block,
+.context-actualites-agenda .serignan-main-slideshow,
+.context-actualites-agenda .block-slideshow-block{
+margin-top: -110px;
+margin-left: -39px;
+position: relative;
+}
 .serignan-main-slideshow .views-slideshow-controls-text-previous a,
 .block-slideshow-tourism-block .views-slideshow-controls-text-previous a,
 .block-slideshow-block .views-slideshow-controls-text-previous a{
@@ -1119,6 +1129,10 @@ font-weight:bold;
 font-style:italic;
 float:left;
 }
+.block-events-block-home .field-name-field-location{
+color:#3399cc;
+font-weight:normal;
+}
 .block-events-block-home .field-name-field-date-end{
 margin-bottom:10px;
 }
@@ -1313,7 +1327,7 @@ line-height:14px;
 margin-bottom:0;
 }
 .block-events-block-sidebar .field-name-body p{
-clear:left;
+width: 165px;
 }
 .block-events-block-sidebar .field-name-node-link a:link,
 .block-events-block-sidebar .field-name-node-link a:visited,
@@ -1418,6 +1432,10 @@ float:left;
 font-style:italic;
 font-weight:bold;
 line-height:15px;
+}
+.block-events-block-sidebar .field-name-field-location{
+color:#3399cc;
+font-weight:normal;
 }
 .block-events-block-sidebar .field-name-node-link{
 clear:left;
