@@ -186,6 +186,22 @@ function menu_node_views_views_data() {
       'handler' => 'views_handler_sort',
     ),
   );
+  $data['menu_links']['hidden'] = array(
+    'title' => t('Hidden'),
+    'help' => t('The menu item visibility.'),
+    'field' => array(
+      'click sortable' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+  );
   $data['menu_links']['depth'] = array(
     'title' => t('Depth'),
     'help' => t('The depth of the menu item.'),
