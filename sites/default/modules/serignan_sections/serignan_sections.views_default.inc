@@ -139,9 +139,7 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['pager']['options']['tags']['next'] = 'suivant ›';
   $handler->display->display_options['pager']['options']['tags']['last'] = 'dernier »';
   $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['view_mode'] = 'list';
-  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
   /* Champ: Contenu : Titre */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -149,6 +147,11 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Critère de tri: Menu : In a menu */
+  $handler->display->display_options['sorts']['in_menu']['id'] = 'in_menu';
+  $handler->display->display_options['sorts']['in_menu']['table'] = 'menu_links';
+  $handler->display->display_options['sorts']['in_menu']['field'] = 'in_menu';
+  $handler->display->display_options['sorts']['in_menu']['order'] = 'DESC';
   /* Critère de tri: Menu : Poids */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
   $handler->display->display_options['sorts']['weight']['table'] = 'menu_links';
@@ -189,6 +192,30 @@ function serignan_sections_views_default_views() {
   /* Display: List (Block) */
   $handler = $view->new_display('block', 'List (Block)', 'block_list');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Critère de tri: Menu : Poids */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'menu_links';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  /* Critère de tri: Menu : Menu link id */
+  $handler->display->display_options['sorts']['mlid']['id'] = 'mlid';
+  $handler->display->display_options['sorts']['mlid']['table'] = 'menu_links';
+  $handler->display->display_options['sorts']['mlid']['field'] = 'mlid';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Critère de filtrage: Contenu : Publié */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Critère de filtrage: Menu : Menu link id */
+  $handler->display->display_options['filters']['mlid']['id'] = 'mlid';
+  $handler->display->display_options['filters']['mlid']['table'] = 'menu_links';
+  $handler->display->display_options['filters']['mlid']['field'] = 'mlid';
+  $handler->display->display_options['filters']['mlid']['operator'] = '>';
+  $handler->display->display_options['filters']['mlid']['value']['value'] = '0';
 
   /* Display: List News (Block) */
   $handler = $view->new_display('block', 'List News (Block)', 'block_1');
@@ -224,7 +251,6 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['sorts']['field_date_start_value']['id'] = 'field_date_start_value';
   $handler->display->display_options['sorts']['field_date_start_value']['table'] = 'field_data_field_date_start';
   $handler->display->display_options['sorts']['field_date_start_value']['field'] = 'field_date_start_value';
-  $handler->display->display_options['sorts']['field_date_start_value']['order'] = 'DESC';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Critère de filtrage: Contenu : Publié */
@@ -241,6 +267,12 @@ function serignan_sections_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'event' => 'event',
   );
+  /* Critère de filtrage: Contenu : au (field_date_end) */
+  $handler->display->display_options['filters']['field_date_end_value']['id'] = 'field_date_end_value';
+  $handler->display->display_options['filters']['field_date_end_value']['table'] = 'field_data_field_date_end';
+  $handler->display->display_options['filters']['field_date_end_value']['field'] = 'field_date_end_value';
+  $handler->display->display_options['filters']['field_date_end_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_end_value']['default_date'] = 'now';
   $translatables['sections_content'] = array(
     t('Master'),
     t('plus'),
