@@ -9,6 +9,7 @@ files[] = menu_node_views.views.inc
 files[] = includes/menu_node_views_argument_nid.inc
 files[] = includes/menu_node_views_field_link_title.inc
 files[] = includes/menu_node_views_sort_menu.inc
+files[] = includes/menu_node_views_sort_in_menu.inc
 files[] = includes/menu_node_views_field_description.inc
 files[] = includes/menu_node_views_field_menu_name.inc
 

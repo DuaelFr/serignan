@@ -186,6 +186,14 @@ function menu_node_views_views_data() {
       'handler' => 'views_handler_sort',
     ),
   );
+  $data['menu_links']['in_menu'] = array(
+    'title' => t('In a menu'),
+    'help' => t('The boolean indicating if the item is attached in a menu.'),
+    'sort' => array(
+      'field' => 'mlid',
+      'handler' => 'menu_node_views_sort_in_menu',
+    ),
+  );
   $data['menu_links']['hidden'] = array(
     'title' => t('Hidden'),
     'help' => t('The menu item visibility.'),
