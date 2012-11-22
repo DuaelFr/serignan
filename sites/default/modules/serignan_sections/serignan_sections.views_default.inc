@@ -194,30 +194,6 @@ function serignan_sections_views_default_views() {
   /* Display: List (Block) */
   $handler = $view->new_display('block', 'List (Block)', 'block_list');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Critère de tri: Menu : Poids */
-  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['table'] = 'menu_links';
-  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  /* Critère de tri: Menu : Menu link id */
-  $handler->display->display_options['sorts']['mlid']['id'] = 'mlid';
-  $handler->display->display_options['sorts']['mlid']['table'] = 'menu_links';
-  $handler->display->display_options['sorts']['mlid']['field'] = 'mlid';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Critère de filtrage: Contenu : Publié */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Critère de filtrage: Menu : Menu link id */
-  $handler->display->display_options['filters']['mlid']['id'] = 'mlid';
-  $handler->display->display_options['filters']['mlid']['table'] = 'menu_links';
-  $handler->display->display_options['filters']['mlid']['field'] = 'mlid';
-  $handler->display->display_options['filters']['mlid']['operator'] = '>';
-  $handler->display->display_options['filters']['mlid']['value']['value'] = '0';
 
   /* Display: List News (Block) */
   $handler = $view->new_display('block', 'List News (Block)', 'block_1');
