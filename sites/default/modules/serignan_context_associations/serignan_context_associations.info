@@ -1,6 +1,7 @@
 name = Serignan Context Associations
 core = 7.x
 package = Serignan
+php = 5.2.4
 version = 7.x-1.0
 project = serignan_context_associations
 dependencies[] = context

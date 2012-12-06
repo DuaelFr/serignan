@@ -30,7 +30,7 @@ function serignan_context_associations_context_default_contexts() {
           'module' => 'serignan_blocks',
           'delta' => 'agenda_associations',
           'region' => 'content',
-          'weight' => '-1',
+          'weight' => '-15',
         ),
       ),
     ),
